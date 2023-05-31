@@ -1,0 +1,62 @@
+# Compiled class files
+**/*.class
+
+# Log file
+log_file.log
+
+# BlueJ files
+**/*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+**/*.jar
+**/*.war
+**/*.nar
+**/*.ear
+**/*.zip
+**/*.tar.gz
+**/*.rar
+
+# IntelliJ IDEA #
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# NetBeans files
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code #
+.vscode/
+
+# STS #
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# macOS system files
+.DS_Store
+
+# Maven #
+target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/
+mvn/
+mvnm/
+mvnm.cmd
+
+# Node.js #
+node_modules/
+
+# General #
+HELP.md
