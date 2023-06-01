@@ -1,0 +1,64 @@
+/* Add a box-sizing rule for all elements */
+* {
+    box-sizing: border-box;
+}
+
+/* Improve the header styles */
+.header {
+    margin-left: 15px;
+    margin-right: 15px;
+    overflow: hidden;
+    background-color: #83CEA5;
+}
+
+.header a {
+    font-size: 25px;
+    float: left;
+    display: block;
+    color: #FBF6A2;
+    border: 2px solid #53A78A;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s; /* Add a smooth transition effect */
+}
+
+.header a:hover {
+    background-color: #53A78A;
+    color: #FAD188;
+}
+
+/* Improve the body styles */
+body {
+    background-color: #F7FFE0;
+    font-family: Arial, sans-serif; /* Add a fallback font */
+}
+
+/* Improve the heading styles */
+h1 {
+    font-size: 45px;
+    text-decoration: underline;
+    font-family: Georgia, serif;
+    padding: 15px;
+    color: #08415C;
+    margin-top: 0; /* Remove default margin */
+}
+
+/* Improve the table styles */
+table {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 25px;
+    font-family: Georgia, serif;
+    padding: 8px;
+    color: #08415C;
+    border-collapse: collapse; /* Add border collapse to remove spacing between table cells */
+}
+
+tr,
+td,
+th {
+    border: 2px solid #6A2E35;
+    padding: 10px;
+    text-align: center; /* Center align the table content */
+}
