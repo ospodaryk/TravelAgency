@@ -24,6 +24,8 @@ log_file.log
 *.iws
 *.iml
 *.ipr
+.idea/compiler.xml
+.idea/misc.xml
 
 # NetBeans files
 /nbproject/private/
