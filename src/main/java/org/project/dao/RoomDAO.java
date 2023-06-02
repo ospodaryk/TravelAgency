@@ -2,9 +2,6 @@ package org.project.dao;
 
 import org.project.models.Room;
 
-public interface RoomDao {
-
-    void save(Room user);
-
-    Room get(long id);
+public interface RoomDAO extends GenericDAO<Room, Integer> {
+    // additional methods related to Country can be added here
 }

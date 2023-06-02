@@ -1,26 +1,14 @@
 package org.project.dao.implementation;
 
 import org.hibernate.SessionFactory;
-import org.project.dao.CountryDao;
+import org.project.dao.CountryDAO;
 import org.project.models.Country;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public class CountryDaoImpl implements CountryDao {
+public class CountryDAOImpl extends GenericDAOImpl<Country, Integer> implements CountryDAO {
 
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    @Override
-    public void save(Country user) {
-        sessionFactory.getCurrentSession().saveOrUpdate(user);
+    public CountryDAOImpl(SessionFactory sessionFactory) {
+        super(sessionFactory);
     }
 
-    @Override
-    public Country get(long id) {
-        return sessionFactory.getCurrentSession().get(Country.class, id);
-    }
-
-    //
+    // implementation of additional methods related to Country can be added here
 }

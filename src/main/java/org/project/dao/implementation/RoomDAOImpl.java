@@ -1,26 +1,14 @@
 package org.project.dao.implementation;
 
 import org.hibernate.SessionFactory;
-import org.project.dao.RoomDao;
+import org.project.dao.RoomDAO;
 import org.project.models.Room;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public class RoomDaoImpl implements RoomDao {
+public class RoomDAOImpl extends GenericDAOImpl<Room, Integer> implements RoomDAO {
 
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    @Override
-    public void save(Room user) {
-        sessionFactory.getCurrentSession().saveOrUpdate(user);
+    public RoomDAOImpl(SessionFactory sessionFactory) {
+        super(sessionFactory);
     }
 
-    @Override
-    public Room get(long id) {
-        return sessionFactory.getCurrentSession().get(Room.class, id);
-    }
-
-    // Implement other methods for CRUD operations...
+    // implementation of additional methods related to Country can be added here
 }

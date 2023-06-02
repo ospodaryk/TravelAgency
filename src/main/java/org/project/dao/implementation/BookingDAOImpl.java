@@ -1,26 +1,14 @@
 package org.project.dao.implementation;
 
 import org.hibernate.SessionFactory;
-import org.project.dao.BookingDao;
+import org.project.dao.BookingDAO;
 import org.project.models.Booking;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public class BookingDaoImpl implements BookingDao {
+public class BookingDAOImpl extends GenericDAOImpl<Booking, Integer> implements BookingDAO {
 
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    @Override
-    public void save(Booking user) {
-        sessionFactory.getCurrentSession().saveOrUpdate(user);
+    public BookingDAOImpl(SessionFactory sessionFactory) {
+        super(sessionFactory);
     }
 
-    @Override
-    public Booking get(long id) {
-        return sessionFactory.getCurrentSession().get(Booking.class, id);
-    }
-
-    //
+    // implementation of additional methods related to Booking can be added here
 }

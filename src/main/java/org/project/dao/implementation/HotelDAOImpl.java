@@ -1,26 +1,14 @@
 package org.project.dao.implementation;
 
 import org.hibernate.SessionFactory;
-import org.project.dao.HotelDao;
+import org.project.dao.HotelDAO;
 import org.project.models.Hotel;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public class HotelDaoImpl implements HotelDao {
+public class HotelDAOImpl extends GenericDAOImpl<Hotel, Integer> implements HotelDAO {
 
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    @Override
-    public void save(Hotel user) {
-        sessionFactory.getCurrentSession().saveOrUpdate(user);
+    public HotelDAOImpl(SessionFactory sessionFactory) {
+        super(sessionFactory);
     }
 
-    @Override
-    public Hotel get(long id) {
-        return sessionFactory.getCurrentSession().get(Hotel.class, id);
-    }
-
-    // Implement other methods for CRUD operations...
+    // implementation of additional methods related to Country can be added here
 }

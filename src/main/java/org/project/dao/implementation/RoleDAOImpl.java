@@ -1,26 +1,14 @@
 package org.project.dao.implementation;
 
 import org.hibernate.SessionFactory;
-import org.project.dao.RoleDao;
+import org.project.dao.RoleDAO;
 import org.project.models.Role;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public class RoleDaoImpl implements RoleDao {
+public class RoleDAOImpl extends GenericDAOImpl<Role, Integer> implements RoleDAO {
 
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    @Override
-    public void save(Role user) {
-        sessionFactory.getCurrentSession().saveOrUpdate(user);
+    public RoleDAOImpl(SessionFactory sessionFactory) {
+        super(sessionFactory);
     }
 
-    @Override
-    public Role get(long id) {
-        return sessionFactory.getCurrentSession().get(Role.class, id);
-    }
-
-    // Implement other methods for CRUD operations...
+    // implementation of additional methods related to Country can be added here
 }

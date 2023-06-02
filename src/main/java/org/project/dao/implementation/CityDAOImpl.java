@@ -1,26 +1,14 @@
 package org.project.dao.implementation;
 
 import org.hibernate.SessionFactory;
-import org.project.dao.BookingDao;
-import org.project.dao.CityDao;
-import org.project.models.Booking;
+import org.project.dao.CityDAO;
 import org.project.models.City;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public class CityDaoImpl implements CityDao {
+public class CityDAOImpl extends GenericDAOImpl<City, Integer> implements CityDAO {
 
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    @Override
-    public void save(City user) {
-        sessionFactory.getCurrentSession().saveOrUpdate(user);
+    public CityDAOImpl(SessionFactory sessionFactory) {
+        super(sessionFactory);
     }
 
-    @Override
-    public City get(long id) {
-        return sessionFactory.getCurrentSession().get(City.class, id);
-    }
+    // implementation of additional methods related to City can be added here
 }

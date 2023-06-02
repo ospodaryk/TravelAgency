@@ -7,12 +7,6 @@ import org.project.dao.GenericDAO;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.project.dao.GenericDAO;
-import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
-
 public abstract class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T, ID> {
 
     private Class<T> persistentClass;
@@ -24,7 +18,7 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
                 .getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
-    protected Session getSession(){
+    protected Session getSession() {
         return sessionFactory.getCurrentSession();
     }
 
