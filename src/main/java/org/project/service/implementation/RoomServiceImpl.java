@@ -3,9 +3,10 @@ package org.project.service.implementation;
 import org.project.dao.RoomDAO;
 import org.project.models.Room;
 import org.project.service.RoomService;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-
+@Service
 @Transactional
 public class RoomServiceImpl implements RoomService {
 

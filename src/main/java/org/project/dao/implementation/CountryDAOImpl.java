@@ -3,6 +3,9 @@ package org.project.dao.implementation;
 import org.hibernate.SessionFactory;
 import org.project.dao.CountryDAO;
 import org.project.models.Country;
+import org.springframework.stereotype.Repository;
+
+@Repository
 
 public class CountryDAOImpl extends GenericDAOImpl<Country, Integer> implements CountryDAO {
 

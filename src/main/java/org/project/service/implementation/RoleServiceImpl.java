@@ -6,10 +6,15 @@ import org.project.service.RoleService;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 @Transactional
 public class RoleServiceImpl implements RoleService {
 
     private final RoleDAO roleDAO;
+    @Autowired
 
     public RoleServiceImpl(RoleDAO roleDAO) {
         this.roleDAO = roleDAO;

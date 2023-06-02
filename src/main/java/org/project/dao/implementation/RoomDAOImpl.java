@@ -3,6 +3,9 @@ package org.project.dao.implementation;
 import org.hibernate.SessionFactory;
 import org.project.dao.RoomDAO;
 import org.project.models.Room;
+import org.springframework.stereotype.Repository;
+
+@Repository
 
 public class RoomDAOImpl extends GenericDAOImpl<Room, Integer> implements RoomDAO {
 
