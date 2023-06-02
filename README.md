@@ -10,13 +10,13 @@ This project is a web application for a travel agency, allowing users to find an
 - Thymeleaf
 - Spring Security
 - IntelliJ (IDE)
-- PostgreSQL
+- MySQL
 
 ## Project To-do List
 
-- [ ] **Database Setup**:
-    - Create a PostgreSQL database for the application.
-    - Setup necessary tables (`Role`, `User`, `Country`, `City`, `Hotel`, `Room`, `Booking`, `BookingRoom`).
+- [x] **Database Setup**:
+    - Create a MySQL database for the application.
+    - Setup necessary tables (`Role`, `User`, `Country`, `City`, `Hotel`, `Room`, `Booking`).
 
 - [ ] **Backend Development**:
     - Implement entities (`Role`, `User`, `Country`, `City`, `Hotel`, `Room`, `Booking`, `BookingRoom`) using Hibernate.
