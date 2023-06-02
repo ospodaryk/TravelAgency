@@ -18,6 +18,56 @@ log_file.log
 **/*.zip
 **/*.tar.gz
 **/*.rar
+.idea/jpa-buddy.xml
+.idea/misc.xml
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+.mvn/wrapper/maven-wrapper.jar
+.mvn
+../.mvn
+
+./.mvn
+./mvn
+../mvn
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+log_file.log
+../log_file.log
+./log_file.log
+### IntelliJ IDEA ###
+.DS_Store
+.idea
+.mvn/wrapper/
+/wrapper
+.mvn/wrapper
+.mvn
+mvnm
+mvnm.cmd
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
 
 # IntelliJ IDEA #
 .idea/
