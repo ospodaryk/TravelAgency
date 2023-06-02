@@ -1,7 +1,7 @@
 package org.project.models;
 
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 
 @Data

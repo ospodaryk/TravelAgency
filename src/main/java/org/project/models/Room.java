@@ -1,9 +1,9 @@
 package org.project.models;
 
-import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Set;
+import javax.persistence.*;
 
 @Data
 @Entity
