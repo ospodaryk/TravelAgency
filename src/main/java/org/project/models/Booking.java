@@ -14,7 +14,9 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bookingId;
 
-    private Date date;
+    private Date start_date;
+    private Date end_date;
+
     private int numOfPeople;
 
     @ManyToOne
