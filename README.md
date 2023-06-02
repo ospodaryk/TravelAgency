@@ -18,7 +18,7 @@ This project is a web application for a travel agency, allowing users to find an
     - Create a MySQL database for the application.
     - Setup necessary tables (`Role`, `User`, `Country`, `City`, `Hotel`, `Room`, `Booking`).
 
-- [ ] **Backend Development**:
+- [x] **Backend Development**:
     - Implement entities (`Role`, `User`, `Country`, `City`, `Hotel`, `Room`, `Booking`, `BookingRoom`) using Hibernate.
     - Implement DAOs for each entity.
     - Implement Service layer for business logic.
