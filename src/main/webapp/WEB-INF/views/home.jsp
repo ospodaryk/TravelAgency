@@ -1,11 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="ISO-8859-1">
     <title>Welcome</title>
+    <style>
+        <%@include file="../styles/main.css"%>
+    </style>
 </head>
 <body>
-<h1>${message}</h1>
+<button onclick="window.location.href='/user';">Go to User</button>
+<button onclick="window.location.href='/hotel';">Go to Hotel</button>
+
 </body>
 </html>
