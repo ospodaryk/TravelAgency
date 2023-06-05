@@ -1,8 +1,8 @@
 package org.project.models;
 
-import javax.persistence.*;
 import lombok.Data;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
@@ -18,6 +18,7 @@ public class Booking {
     private Date end_date;
 
     private int numOfPeople;
+    private boolean isActual;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
