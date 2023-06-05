@@ -22,6 +22,7 @@
                 <option value="${role.id}">${role.roleName}</option>
             </c:forEach>
         </select>
+
     </h3>
     <button type="submit" class="update" style="margin-left: 30px">Update</button>
     <button type="reset" class="clear">Clear</button>

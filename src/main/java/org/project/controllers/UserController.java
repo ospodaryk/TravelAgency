@@ -1,6 +1,7 @@
 package org.project.controllers;
 
 import org.project.models.Hotel;
+import org.project.models.Role;
 import org.project.models.User;
 import org.project.service.RoleService;
 import org.project.service.UserService;
@@ -9,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import java.beans.PropertyEditorSupport;
 import java.util.List;
 
 @RequestMapping("/user")
@@ -25,6 +28,7 @@ public class UserController {
         this.userService = userService;
         this.roleService = roleService;
     }
+
 
     @GetMapping
     public String showAllUsers(Model model) {
@@ -73,18 +77,29 @@ public class UserController {
             return "update-user-admin";}
         return "update-user";
     }
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(Role.class, "role", new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String text) {
+                Role role = roleService.getRoleById(Long.parseLong(text));
+                setValue(role);
+            }
+        });
+    }
 
     @PostMapping("/update/{id}")
     public String update(@PathVariable(name = "id") Long id,  @ModelAttribute(name = "user") User user, BindingResult result) {
         if (result.hasErrors()) {
             System.out.println("\n\n\n\nERROR:");
             System.out.println(result.getAllErrors());
+            System.out.println(user.getRole());
             System.out.println("\n\n\n\n");
             return "update-user";
         }
-        System.out.println("INCOMED OBJECT+"+user);
+        System.out.println("ПРИЙШЛО З СИСТЕМИ +"+user);
         userService.updateUser(id,user);
-        System.out.println("-------------updated");
+        System.out.println("ОНОВЛЕНО"+user);
         return "redirect:/";
     }
 

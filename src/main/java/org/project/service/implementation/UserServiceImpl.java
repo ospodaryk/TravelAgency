@@ -5,10 +5,15 @@ import org.project.dao.RoleDAO;
 import org.project.dao.UserDAO;
 import org.project.models.User;
 import org.project.models.Role;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
 
 import org.project.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,16 +58,25 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(long id, User user) {
         User existingUser = userDAO.findById(id);
+
         if (existingUser != null) {
+            System.out.println("ROLE______________________________"+user.getRole());
             Role role = user.getRole();
             if (role != null) {
                 existingUser.setRole(role);
             } else existingUser.setRole(roleDAO.findById(2L));
 
             existingUser.setUserId(id);
+            existingUser.setName(user.getName());
+            existingUser.setLogin(user.getLogin());
+            existingUser.setPassword(user.getPassword());
+            existingUser.setSurname(user.getSurname());
+            existingUser.setEmail(user.getEmail());
             userDAO.update(existingUser);
         }
+
     }
+
 
     @Override
     public void deleteUser(long id) {
