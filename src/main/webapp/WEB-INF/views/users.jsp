@@ -6,7 +6,7 @@
     <style>
         <%@include file="../styles/main.css"%>
     </style>
-</head> <!-- Here, I added the closing head tag -->
+</head>
 <body>
 <h1>Users</h1>
 

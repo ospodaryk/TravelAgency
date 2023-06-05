@@ -1,6 +1,5 @@
 package org.project.controllers;
 
-import org.project.models.Hotel;
 import org.project.models.Role;
 import org.project.models.User;
 import org.project.service.RoleService;
@@ -72,11 +71,13 @@ public class UserController {
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         model.addAttribute("user", user);
         model.addAttribute("allRoles", roleService.getAllRoles());
-        Long role_id=user.getRole().getId();
-        if(role_id==1){
-            return "update-user-admin";}
+        Long role_id = user.getRole().getId();
+        if (role_id == 1) {
+            return "update-user-admin";
+        }
         return "update-user";
     }
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(Role.class, "role", new PropertyEditorSupport() {
@@ -89,7 +90,7 @@ public class UserController {
     }
 
     @PostMapping("/update/{id}")
-    public String update(@PathVariable(name = "id") Long id,  @ModelAttribute(name = "user") User user, BindingResult result) {
+    public String update(@PathVariable(name = "id") Long id, @ModelAttribute(name = "user") User user, BindingResult result) {
         if (result.hasErrors()) {
             System.out.println("\n\n\n\nERROR:");
             System.out.println(result.getAllErrors());
@@ -97,9 +98,9 @@ public class UserController {
             System.out.println("\n\n\n\n");
             return "update-user";
         }
-        System.out.println("ПРИЙШЛО З СИСТЕМИ +"+user);
-        userService.updateUser(id,user);
-        System.out.println("ОНОВЛЕНО"+user);
+        System.out.println("ПРИЙШЛО З СИСТЕМИ +" + user);
+        userService.updateUser(id, user);
+        System.out.println("ОНОВЛЕНО" + user);
         return "redirect:/";
     }
 

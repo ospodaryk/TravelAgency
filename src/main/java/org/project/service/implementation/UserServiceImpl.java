@@ -3,17 +3,11 @@ package org.project.service.implementation;
 import org.project.dao.BookingDAO;
 import org.project.dao.RoleDAO;
 import org.project.dao.UserDAO;
-import org.project.models.User;
 import org.project.models.Role;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
-import org.springframework.stereotype.Service;
-
+import org.project.models.User;
 import org.project.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,7 +54,7 @@ public class UserServiceImpl implements UserService {
         User existingUser = userDAO.findById(id);
 
         if (existingUser != null) {
-            System.out.println("ROLE______________________________"+user.getRole());
+            System.out.println("ROLE______________________________" + user.getRole());
             Role role = user.getRole();
             if (role != null) {
                 existingUser.setRole(role);

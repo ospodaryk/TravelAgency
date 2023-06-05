@@ -4,9 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.project.dao.BookingDAO;
-import org.project.dao.UserDAO;
 import org.project.models.Booking;
-import org.project.models.User;
 import org.springframework.stereotype.Repository;
 
 @Repository
