@@ -52,7 +52,7 @@ public class UserController {
         }
         user.setRole(roleService.getRoleById(2));
         userService.saveUser(user);
-        return "redirect:/todos/all/users/" + user.getUserId();
+        return "redirect:/user/" + user.getUserId();
     }
 
     @GetMapping("/{id}")
