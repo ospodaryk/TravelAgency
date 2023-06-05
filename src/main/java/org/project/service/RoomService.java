@@ -3,7 +3,7 @@ package org.project.service;
 import org.project.models.Room;
 
 public interface RoomService {
-    Room getRoomById(int roomId);
+    Room getRoomById(long roomId);
 
     void saveRoom(Room room);
 

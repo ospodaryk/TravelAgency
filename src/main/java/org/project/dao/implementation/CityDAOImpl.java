@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 
-public class CityDAOImpl extends GenericDAOImpl<City, Integer> implements CityDAO {
+public class CityDAOImpl extends GenericDAOImpl<City, Long> implements CityDAO {
 
     public CityDAOImpl(SessionFactory sessionFactory) {
         super(sessionFactory);

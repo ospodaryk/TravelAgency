@@ -22,7 +22,7 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public City getCityById(int id) {
+    public City getCityById(long id) {
         return cityDAO.findById(id);
     }
 

@@ -12,7 +12,7 @@ import java.util.Set;
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int bookingId;
+    private Long bookingId;
 
     private Date start_date;
     private Date end_date;

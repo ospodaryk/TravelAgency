@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int hotelId;
+    private Long hotelId;
 
     private String name;
     private String location;

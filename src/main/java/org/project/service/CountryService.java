@@ -3,7 +3,7 @@ package org.project.service;
 import org.project.models.Country;
 
 public interface CountryService {
-    Country getCountryById(int id);
+    Country getCountryById(long id);
 
     void saveCountry(Country country);
 

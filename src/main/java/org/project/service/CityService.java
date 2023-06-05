@@ -3,7 +3,7 @@ package org.project.service;
 import org.project.models.City;
 
 public interface CityService {
-    City getCityById(int id);
+    City getCityById(long id);
 
     void saveCity(City city);
 

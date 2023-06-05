@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 
-public class RoomDAOImpl extends GenericDAOImpl<Room, Integer> implements RoomDAO {
+public class RoomDAOImpl extends GenericDAOImpl<Room, Long> implements RoomDAO {
 
     public RoomDAOImpl(SessionFactory sessionFactory) {
         super(sessionFactory);

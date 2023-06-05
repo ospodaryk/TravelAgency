@@ -11,7 +11,7 @@ import java.util.Set;
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int roomId;
+    private Long roomId;
     private int capacity;
     private int number;
     @ManyToOne

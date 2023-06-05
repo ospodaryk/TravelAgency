@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int countryId;
+    private Long countryId;
 
     private String name;
 }

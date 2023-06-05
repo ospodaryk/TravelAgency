@@ -1,7 +1,11 @@
 package org.project.service.implementation;
 
+import org.project.dao.BookingDAO;
+import org.project.dao.RoleDAO;
 import org.project.dao.UserDAO;
 import org.project.models.User;
+import org.project.models.Role;
+
 import org.project.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,10 +23,14 @@ public class UserServiceImpl implements UserService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
     private final UserDAO userDAO;
+    private final RoleDAO roleDAO;
+    private final BookingDAO bookingDAO;
 
     @Autowired
-    public UserServiceImpl(UserDAO userDAO) {
+    public UserServiceImpl(UserDAO userDAO, RoleDAO roleDAO, BookingDAO bookingDAO) {
         this.userDAO = userDAO;
+        this.roleDAO = roleDAO;
+        this.bookingDAO = bookingDAO;
     }
 
     @Override
@@ -31,7 +39,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(int userId) {
+    public User getUserById(long userId) {
         LOGGER.info("Getting user by ID: {}", userId);
         return userDAO.findById(userId);
     }
@@ -43,14 +51,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(User user) {
-        LOGGER.info("Updating user: {}", user);
-        userDAO.update(user);
+    public void updateUser(long id, User user) {
+        User existingUser = userDAO.findById(id);
+        if (existingUser != null) {
+            Role role = user.getRole();
+            if (role != null) {
+                existingUser.setRole(role);
+            } else existingUser.setRole(roleDAO.findById(2L));
+
+            existingUser.setUserId(id);
+            userDAO.update(existingUser);
+        }
     }
 
     @Override
-    public void deleteUser(User user) {
-        LOGGER.info("Deleting user: {}", user);
-        userDAO.delete(user);
+    public void deleteUser(long id) {
+        bookingDAO.deleteByUserId(id);
+        userDAO.delete(userDAO.findById(id));
     }
+
 }

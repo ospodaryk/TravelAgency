@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 
-public class CountryDAOImpl extends GenericDAOImpl<Country, Integer> implements CountryDAO {
+public class CountryDAOImpl extends GenericDAOImpl<Country, Long> implements CountryDAO {
 
     public CountryDAOImpl(SessionFactory sessionFactory) {
         super(sessionFactory);

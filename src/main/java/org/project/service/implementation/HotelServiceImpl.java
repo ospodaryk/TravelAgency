@@ -26,7 +26,7 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public Hotel getHotelById(int id) {
+    public Hotel getHotelById(long id) {
         return hotelDAO.findById(id);
     }
 

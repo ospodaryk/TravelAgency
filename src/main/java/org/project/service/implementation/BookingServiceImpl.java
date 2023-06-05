@@ -21,7 +21,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public Booking getBookingById(int id) {
+    public Booking getBookingById(long id) {
         return bookingDAO.findById(id);
     }
 

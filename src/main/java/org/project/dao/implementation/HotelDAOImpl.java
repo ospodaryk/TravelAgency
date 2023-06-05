@@ -6,7 +6,7 @@ import org.project.models.Hotel;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class HotelDAOImpl extends GenericDAOImpl<Hotel, Integer> implements HotelDAO {
+public class HotelDAOImpl extends GenericDAOImpl<Hotel, Long> implements HotelDAO {
 
     public HotelDAOImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
