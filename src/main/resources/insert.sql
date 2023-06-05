@@ -1,47 +1,151 @@
--- Inserting roles
-INSERT INTO Role (role_name) VALUES
-                                 ('Administrator'),
-                                 ('User');
-
--- Inserting users
-INSERT INTO User (login, name, surname, email, password, role_id) VALUES
-                                                                      ('admin', 'Administrator', '', 'admin@example.com', 'admin123', 1),
-                                                                      ('user1', 'User', '1', 'user1@example.com', 'user123', 2),
-                                                                      ('user2', 'User', '2', 'user2@example.com', 'user456', 2);
-
--- Inserting countries
-INSERT INTO Country (name) VALUES
-                               ('Ukraine'),
-                               ('USA'),
-                               ('United Kingdom');
-
--- Inserting cities
-INSERT INTO City (name, country_id) VALUES
-                                        ('Kyiv', 1),
-                                        ('Lviv', 1),
-                                        ('New York', 2),
-                                        ('London', 3);
-
--- Inserting hotels
-INSERT INTO Hotel (name, city_id, location, description) VALUES
-                                                             ('Grand Hotel', 1, '123 Main Street, Kyiv', 'Luxurious hotel located in the heart of Kyiv'),
-                                                             ('Riviera Hotel', 2, '456 Elm Street, Lviv', 'Charming hotel offering scenic views of Lviv'),
-                                                             ('The Plaza', 3, '789 Broadway, New York', 'Iconic hotel known for its elegance and luxury');
-
--- Inserting rooms
-INSERT INTO Room (hotel_id, capacity, number, type, price, is_available) VALUES
-                                                                             (1, 2, 101, 'Standard', 100.00, 1),
-                                                                             (1, 3, 102, 'Deluxe', 150.00, 1),
-                                                                             (2, 2, 201, 'Standard', 120.00, 1),
-                                                                             (2, 4, 202, 'Suite', 200.00, 1);
-
--- Inserting bookings
-INSERT INTO Booking (user_id, hotel_id, start_date, end_date, num_of_people) VALUES
-                                                                                 (2, 1, '2023-06-10', '2023-06-15', 2),
-                                                                                 (3, 2, '2023-07-01', '2023-07-05', 1);
-
--- Inserting booking rooms
-INSERT INTO BookingRoom (booking_id, room_id) VALUES
-                                                  (1, 1),
-                                                  (1, 2),
-                                                  (2, 3);
+-- -- Inserting roles
+-- INSERT INTO Role (role_name)
+-- VALUES ('Administrator'),
+--        ('User');
+--
+--
+-- INSERT INTO User (login, name, surname, email, password, role_id)
+-- VALUES ('michael.scott', 'Michael', 'Scott', 'michael.scott@example.com', 'bestboss123', 1),
+--        ('jim.halpert', 'Jim', 'Halpert', 'jim.halpert@example.com', 'pranks123', 2),
+--        ('pam.beesly', 'Pam', 'Beesly', 'pam.beesly@example.com', 'painting123', 2),
+--        ('dwight.schrute', 'Dwight', 'Schrute', 'dwight.schrute@example.com', 'beets123', 2),
+--        ('angela.martin', 'Angela', 'Martin', 'angela.martin@example.com', 'cats123', 2),
+--        ('oscar.martinez', 'Oscar', 'Martinez', 'oscar.martinez@example.com', 'smart123', 2),
+--        ('stanley.hudson', 'Stanley', 'Hudson', 'stanley.hudson@example.com', 'crossword123', 2),
+--        ('phyllis.vance', 'Phyllis', 'Vance', 'phyllis.vance@example.com', 'knitting123', 2),
+--        ('ryan.howard', 'Ryan', 'Howard', 'ryan.howard@example.com', 'fire123', 1),
+--        ('andy.bernard', 'Andy', 'Bernard', 'andy.bernard@example.com', 'singing123', 2),
+--        ('erin.hannon', 'Erin', 'Hannon', 'erin.hannon@example.com', 'cheerful123', 2),
+--        ('kevin.malone', 'Kevin', 'Malone', 'kevin.malone@example.com', 'chili123', 2),
+--        ('toby.flenderson', 'Toby', 'Flenderson', 'toby.flenderson@example.com', 'hr123', 2),
+--        ('kelly.kapoor', 'Kelly', 'Kapoor', 'kelly.kapoor@example.com', 'fashion123', 2),
+--        ('creed.brattom', 'Creed', 'Bratton', 'creed.bratton@example.com', 'mysterious123', 2);
+--
+-- -- Inserting countries
+-- INSERT INTO Country (name)
+-- VALUES ('Ukraine'),
+--        ('USA'),
+--        ('United Kingdom');
+--
+-- -- Inserting cities
+-- INSERT INTO City (name, country_id)
+-- VALUES ('Kyiv', 1),
+--        ('Lviv', 1),
+--        ('New York', 2),
+--        ('London', 3);
+--
+-- -- Inserting hotels
+-- INSERT INTO Hotel (name, city_id, location, description)
+-- VALUES ('Grand Hotel', 1, '123 Main Street, Kyiv', 'Luxurious hotel located in the heart of Kyiv'),
+--        ('Riviera Hotel', 2, '456 Elm Street, Lviv', 'Charming hotel offering scenic views of Lviv'),
+--        ('The Plaza', 3, '789 Broadway, New York', 'Iconic hotel known for its elegance and luxury');
+--
+--
+-- -- Inserting bookings
+-- INSERT INTO Booking (user_id, hotel_id, start_date, end_date, numOfPeople, isActual)
+-- VALUES (2, 1, '2023-06-10', '2023-06-15', 2, 0),
+--        (3, 2, '2023-07-01', '2023-07-05', 1, 1);
+--
+-- INSERT INTO User (login, name, surname, email, password, role_id)
+-- VALUES ('michael.scott', 'Michael', 'Scott', 'michael.scott@example.com', 'bestboss123', 1),
+--        ('jim.halpert', 'Jim', 'Halpert', 'jim.halpert@example.com', 'pranks123', 2),
+--        ('pam.beesly', 'Pam', 'Beesly', 'pam.beesly@example.com', 'painting123', 2),
+--        ('dwight.schrute', 'Dwight', 'Schrute', 'dwight.schrute@example.com', 'beets123', 2),
+--        ('angela.martin', 'Angela', 'Martin', 'angela.martin@example.com', 'cats123', 2),
+--        ('oscar.martinez', 'Oscar', 'Martinez', 'oscar.martinez@example.com', 'smart123', 2),
+--        ('stanley.hudson', 'Stanley', 'Hudson', 'stanley.hudson@example.com', 'crossword123', 2),
+--        ('phyllis.vance', 'Phyllis', 'Vance', 'phyllis.vance@example.com', 'knitting123', 2),
+--        ('ryan.howard', 'Ryan', 'Howard', 'ryan.howard@example.com', 'fire123', 1),
+--        ('andy.bernard', 'Andy', 'Bernard', 'andy.bernard@example.com', 'singing123', 2),
+--        ('erin.hannon', 'Erin', 'Hannon', 'erin.hannon@example.com', 'cheerful123', 2),
+--        ('kevin.malone', 'Kevin', 'Malone', 'kevin.malone@example.com', 'chili123', 2),
+--        ('toby.flenderson', 'Toby', 'Flenderson', 'toby.flenderson@example.com', 'hr123', 2),
+--        ('kelly.kapoor', 'Kelly', 'Kapoor', 'kelly.kapoor@example.com', 'fashion123', 2),
+--        ('creed.brattom', 'Creed', 'Bratton', 'creed.bratton@example.com', 'mysterious123', 2);
+--
+-- -- Inserting countries
+-- INSERT INTO Country (name)
+-- VALUES ('Germany'),
+--        ('France'),
+--        ('Italy'),
+--        ('Spain'),
+--        ('Canada'),
+--        ('Mexico'),
+--        ('Australia'),
+--        ('Japan');
+--
+-- -- Inserting cities
+-- INSERT INTO City (name, country_id)
+-- VALUES ('Berlin', 4),
+--        ('Munich', 4),
+--        ('Paris', 5),
+--        ('Lyon', 5),
+--        ('Rome', 6),
+--        ('Madrid', 7),
+--        ('Toronto', 8),
+--        ('Vancouver', 8),
+--        ('Mexico City', 9),
+--        ('Sydney', 10),
+--        ('Tokyo', 11);
+--
+-- -- Inserting hotels
+-- INSERT INTO Hotel (name, city_id, location, description)
+-- VALUES ('Berlin Grand', 5, '2 Berlin St, Berlin', 'Luxury hotel in Berlin'),
+--        ('Munich Royal', 6, '3 Munich St, Munich', 'Royal hotel in Munich'),
+--        ('Paris Plaza', 7, '4 Paris St, Paris', 'Stylish hotel in Paris'),
+--        ('Lyon Luxury', 8, '5 Lyon St, Lyon', 'Luxury hotel in Lyon'),
+--        ('Rome Palace', 9, '6 Rome St, Rome', 'Classic hotel in Rome'),
+--        ('Madrid Inn', 10, '7 Madrid St, Madrid', 'Comfortable hotel in Madrid'),
+--        ('Toronto Towers', 11, '8 Toronto St, Toronto', 'Elegant hotel in Toronto'),
+--        ('Vancouver Views', 12, '9 Vancouver St, Vancouver', 'Hotel with the best views in Vancouver'),
+--        ('Mexico City Marriott', 13, '10 Mexico City St, Mexico City', 'Best hotel in Mexico City'),
+--        ('Sydney Suites', 14, '11 Sydney St, Sydney', 'Luxury suites in Sydney'),
+--        ('Tokyo Towers', 15, '12 Tokyo St, Tokyo', 'Beautiful hotel in Tokyo');
+-- -- Inserting RoomClassification
+-- INSERT INTO RoomClassification (name)
+-- VALUES ('Standard'),
+--        ('Deluxe'),
+--        ('Suite');
+--
+-- -- Inserting rooms
+-- INSERT INTO Room (hotel_id, capacity, number, room_classification_id, price, isAvailable)
+-- VALUES (1, 2, 101, 1, 100.00, 1),
+--        (1, 3, 102, 2, 150.00, 1),
+--        (2, 2, 201, 1, 120.00, 1),
+--        (2, 4, 202, 3, 200.00, 1),
+--        (4, 2, 301, 1, 110.00, 1),
+--        (4, 3, 302, 2, 160.00, 1),
+--        (5, 2, 401, 1, 120.00, 1),
+--        (5, 4, 402, 3, 210.00, 1),
+--        (6, 2, 501, 1, 130.00, 1),
+--        (6, 3, 502, 2, 170.00, 1),
+--        (7, 2, 601, 1, 140.00, 1),
+--        (7, 4, 602, 3, 220.00, 1),
+--        (8, 2, 701, 1, 150.00, 1),
+--        (8, 3, 702, 2, 180.00, 1),
+--        (9, 2, 801, 1, 160.00, 1),
+--        (9, 4, 802, 3, 230.00, 1),
+--        (10, 2, 901, 1, 170.00, 1),
+--        (10, 3, 902, 2, 190.00, 1),
+--        (11, 2, 1001, 1, 180.00, 1),
+--        (11, 4, 1002, 3, 240.00, 1),
+--        (12, 2, 1101, 1, 190.00, 1),
+--        (12, 3, 1102, 2, 200.00, 1),
+--        (13, 2, 1201, 1, 200.00, 1),
+--        (13, 4, 1202, 3, 250.00, 1),
+--        (14, 2, 1301, 1, 210.00, 1),
+--        (14, 3, 1302, 2, 210.00, 1),
+--        (3, 2, 1401, 1, 220.00, 1),
+--        (3, 4, 1402, 3, 260.00, 1);
+--
+-- -- Inserting bookings
+-- INSERT INTO Booking (user_id, hotel_id, start_date, end_date, numOfPeople, isActual)
+-- VALUES (4, 4, '2023-07-10', '2023-07-15', 2, 0),
+--        (5, 5, '2023-08-01', '2023-08-05', 1, 1),
+--        (6, 6, '2023-08-10', '2023-08-15', 2, 1),
+--        (7, 7, '2023-09-01', '2023-09-05', 1, 1),
+--        (8, 8, '2023-09-10', '2023-09-15', 2, 1),
+--        (9, 9, '2023-10-01', '2023-10-05', 1, 1),
+--        (10, 10, '2023-10-10', '2023-10-15', 2, 0),
+--        (11, 11, '2023-11-01', '2023-11-05', 1, 0),
+--        (12, 12, '2023-11-10', '2023-11-15', 2, 0);

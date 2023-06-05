@@ -12,10 +12,11 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int roomId;
-
     private int capacity;
     private int number;
-    private String type;
+    @ManyToOne
+    @JoinColumn(name = "room_classification_id")
+    private RoomClassification roomClassification;
     private double price;
     private boolean isAvailable;
 
@@ -23,6 +24,4 @@ public class Room {
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
-    @ManyToMany(mappedBy = "rooms")
-    private Set<Booking> bookings;
 }

@@ -28,11 +28,7 @@ public class Booking {
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
-    @ManyToMany
-    @JoinTable(
-            name = "BookingRoom",
-            joinColumns = @JoinColumn(name = "booking_id"),
-            inverseJoinColumns = @JoinColumn(name = "room_id")
-    )
+    @OneToMany
+    @JoinColumn(name = "booking_id")
     private Set<Room> rooms;
 }
