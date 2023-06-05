@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 public class BookingServiceImpl implements BookingService {
 
     private BookingDAO bookingDAO;
+
     @Autowired
     public BookingServiceImpl(BookingDAO bookingDAO) {
         this.bookingDAO = bookingDAO;

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 public class CityServiceImpl implements CityService {
 
     private CityDAO cityDAO;
+
     @Autowired
 
     public CityServiceImpl(CityDAO cityDAO) {

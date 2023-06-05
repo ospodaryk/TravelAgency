@@ -9,18 +9,19 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 @Service
 public class HotelServiceImpl implements HotelService {
 
     private HotelDAO hotelDAO;
+
     @Autowired
     public HotelServiceImpl(HotelDAO hotelDAO) {
         this.hotelDAO = hotelDAO;
     }
 
     @Override
-    @Transactional
-    public List<Hotel> findAll() {
+    public List<Hotel> getAllHotels() {
         return hotelDAO.getAll();
     }
 
