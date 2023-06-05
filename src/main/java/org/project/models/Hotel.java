@@ -1,7 +1,8 @@
 package org.project.models;
 
-import javax.persistence.*;
 import lombok.Data;
+
+import javax.persistence.*;
 
 @Data
 @Entity
