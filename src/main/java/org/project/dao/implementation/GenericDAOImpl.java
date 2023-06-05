@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+
 @Repository
 public abstract class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T, ID> {
 
