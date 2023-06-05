@@ -1,64 +1,183 @@
-/* Add a box-sizing rule for all elements */
-* {
-    box-sizing: border-box;
+:root {
+    --main-font: Georgia, serif;
+    --primary-color: #08415C;
+    --secondary-color: #6A2E35;
+    --accent-color: #FBF6A2;
+    --error-color: #ff3333;
+    --success-color: green;
+    --hover-color: #FAD188;
+    --button-hover: #53A78A;
+    --header-color: #83CEA5;
+    --body-color: #F7FFE0;
 }
 
-/* Improve the header styles */
+body {
+    font-family: var(--main-font);
+    background-color: var(--body-color);
+}
+
+.delete {
+    color: crimson;
+}
+
+.update {
+    color: blue;
+}
+
+.more {
+    color: black;
+}
+
+.clear {
+    border-radius: 5px;
+    margin-left: 1215px;
+    margin-bottom: 5px;
+    background-color: var(--accent-color);
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+    font-size: 35px;
+    width: 190px;
+    height: 60px;
+}
+
+.clear:hover{
+    background-color: var(--hover-color);
+}
+
+.add_task_formLine {
+    width: 350px;
+    margin: 20px 0;
+}
+
+.input input, textarea {
+    margin-left: 20px;
+    font-size: 25px;
+    border: 2px solid var(--primary-color);
+    width: 350px;
+}
+
+.add_task_select select {
+    margin-left: 20px;
+    font-size: 25px;
+    border: 2px solid var(--primary-color);
+    width: 350px;
+}
+
+.task_label {
+    margin-left: 20px;
+    padding: 1px;
+    font-size: 30px;
+    color: var(--secondary-color);
+}
+
+form {
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    border: 2px solid var(--primary-color);
+}
+
+.submit input {
+    font-size: 30px;
+    width: 50%;
+    height: 55px;
+    font-weight: bold;
+    background-color: var(--header-color);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.submit input:hover {
+    background-color: var(--button-hover);
+}
+
+.errors {
+    text-align: center;
+    font-size: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--error-color);
+    width: 650px;
+    height: 30px;
+    color: #eaeaea;
+    border: 2px solid black;
+    padding: 10px;
+}
+
 .header {
     margin-left: 15px;
     margin-right: 15px;
     overflow: hidden;
-    background-color: #83CEA5;
+    background-color: var(--header-color);
 }
 
 .header a {
     font-size: 25px;
     float: left;
     display: block;
-    color: #FBF6A2;
-    border: 2px solid #53A78A;
+    color: var(--accent-color);
+    border: 2px solid var(--button-hover);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    transition: background-color 0.3s, color 0.3s; /* Add a smooth transition effect */
 }
 
 .header a:hover {
-    background-color: #53A78A;
-    color: #FAD188;
+    background-color: var(--button-hover);
+    color: var(--hover-color);
 }
 
-/* Improve the body styles */
-body {
-    background-color: #F7FFE0;
-    font-family: Arial, sans-serif; /* Add a fallback font */
+h1, h2, h3 {
+    text-align: center;
+    color: var(--primary-color);
 }
 
-/* Improve the heading styles */
 h1 {
-    font-size: 45px;
+    font-size: 50px;
     text-decoration: underline;
-    font-family: Georgia, serif;
-    padding: 15px;
-    color: #08415C;
-    margin-top: 0; /* Remove default margin */
 }
 
-/* Improve the table styles */
+h2 {
+    font-size: 40px;
+}
+
+h3 {
+    margin-left: 15px;
+    font-size: 30px;
+}
+
+textarea {
+    resize: none;
+}
+
 table {
     margin-left: auto;
     margin-right: auto;
     font-size: 25px;
-    font-family: Georgia, serif;
-    padding: 8px;
-    color: #08415C;
-    border-collapse: collapse; /* Add border collapse to remove spacing between table cells */
+    padding: 5px;
+    color: var(--primary-color);
 }
 
-tr,
-td,
-th {
-    border: 2px solid #6A2E35;
+tr, td, th {
+    border: 2px solid var(--secondary-color);
     padding: 10px;
-    text-align: center; /* Center align the table content */
+}
+
+.delete_button {
+    width: 500px;
+    height: 500px;
+    background-image: url("../images/delete.png");
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+}
+
+.task_resolved {
+    color: var(--success-color);
+}
+
+.title_resolved {
+    text-decoration: line-through;
 }
