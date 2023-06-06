@@ -8,13 +8,8 @@
     </style>
 </head>
 <body>
-<button onclick="window.location.href='/user';">Go to User</button>
-<hr>
-<button onclick="window.location.href='/hotel';">Go to Hotel</button>
-<hr>
-
-<button onclick="window.location.href='/room';">Go to Room</button>
-<hr>
+<%@include file="header.html" %>
+<h1>Hello world its my oks-booking</h1>
 
 
 </body>

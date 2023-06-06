@@ -9,6 +9,7 @@
     </style>
 </head>
 <body>
+<%@include file="header.html" %>
 <div th:insert="header.html"></div>
 <h2>USER-info</h2>
 <h3>Login: ${user.login}</h3>

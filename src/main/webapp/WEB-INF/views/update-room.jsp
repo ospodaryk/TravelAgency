@@ -8,6 +8,8 @@
     </style>
 </head>
 <body>
+<%@include file="header.html" %>
+
 <h2>UPDATE ROOM</h2>
 <form action="<c:url value='/room/update/'/>${room.roomId}" method="post">
     <h3>ID: <span>${room.roomId}</span></h3>

@@ -8,6 +8,8 @@
     </style>
 </head>
 <body>
+<%@include file="header.html" %>
+
 <h1>All Rooms</h1>
 <table>
     <thead>

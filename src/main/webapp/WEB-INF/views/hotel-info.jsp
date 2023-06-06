@@ -8,6 +8,8 @@
     </style>
 </head>
 <body>
+<%@include file="header.html" %>
+
 <div th:insert="header.html"></div>
 <h2>HOTEL INFO</h2>
 <h3>Name: ${hotel.name}</h3>

@@ -8,9 +8,8 @@
     </style>
 </head>
 <body>
+<%@include file="header.html" %>
 <h1>Users</h1>
-
-
 <table>
     <thead>
     <tr>
@@ -33,7 +32,7 @@
             <td>${user.email}</td>
             <td>${user.role.roleName}</td>
             <td>
-                <a href="<c:url value='/user/${user.userId}'/>"class="more">View</a> |
+                <a href="<c:url value='/user/${user.userId}'/>" class="more">View</a> |
                 <a href="<c:url value='/user/update/${user.userId}'/>" class="update">Update</a> |
                 <a href="<c:url value='/user/delete/${user.userId}'/>" class="delete">Delete</a>
             </td>

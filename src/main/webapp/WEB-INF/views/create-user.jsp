@@ -9,21 +9,23 @@
     <title>Create New User</title>
     <style>
         <%@include file="../styles/main.css"%>
-    </style></head>
+    </style>
+</head>
 <body>
+<%@include file="header.html" %>
 
 <h2>CREATE USER</h2>
 <form:form method="POST" action="/user/create" modelAttribute="user">
-    <h3>First Name: <form:input path="name" /></h3>
+    <h3>First Name: <form:input path="name"/></h3>
     <ul>
         <form:errors path="name" cssClass="error"/>
     </ul>
-    <h3>Last Name: <form:input path="surname" /></h3>
+    <h3>Last Name: <form:input path="surname"/></h3>
     <ul>
         <form:errors path="surname" cssClass="error"/>
     </ul>
-    <h3>Email: <form:input path="email" /></h3>
-    <h3>Password: <form:password path="password" /></h3>
+    <h3>Email: <form:input path="email"/></h3>
+    <h3>Password: <form:password path="password"/></h3>
     <ul>
         <form:errors path="password" cssClass="error"/>
     </ul>

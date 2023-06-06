@@ -8,6 +8,8 @@
     </style>
 </head>
 <body>
+<%@include file="header.html" %>
+
 <h2>UPDATE ADMINISTRATOR</h2>
 <form action="<c:url value='/user/update/'/>${user.userId}" method="post">
     <h3>ID: <span>${user.userId}</span></h3>

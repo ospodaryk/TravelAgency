@@ -8,6 +8,8 @@
     </style>
 </head>
 <body>
+<%@include file="header.html" %>
+
 <h1>Rooms</h1>
 <button onclick="window.location.href='/room/create';">Create Room</button>
 <h1>Hotel</h1>
