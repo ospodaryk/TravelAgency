@@ -43,6 +43,8 @@ public class HotelServiceImpl implements HotelService {
         Hotel existingHotel = hotelDAO.findById(id);
 
         if (existingHotel != null) {
+
+
             existingHotel.setHotelId(id);
             existingHotel.setName(hotel.getName());
             existingHotel.setCity(hotel.getCity());

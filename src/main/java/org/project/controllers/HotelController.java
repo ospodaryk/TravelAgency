@@ -3,7 +3,7 @@ package org.project.controllers;
 import org.project.models.Country;
 import org.project.models.Hotel;
 import org.project.models.Role;
-import org.project.models.User;
+import org.project.models.City;
 import org.project.service.CityService;
 import org.project.service.CountryService;
 import org.project.service.HotelService;
@@ -36,11 +36,11 @@ public class HotelController {
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(Country.class, "country", new PropertyEditorSupport() {
+        binder.registerCustomEditor(City.class, "city", new PropertyEditorSupport() {
             @Override
             public void setAsText(String text) {
-                Country country = countryService.getCountryById(Long.parseLong(text));
-                setValue(country);
+                City city = cityService.getCityById(Long.parseLong(text));
+                setValue(city);
             }
         });
     }
@@ -48,12 +48,7 @@ public class HotelController {
     @GetMapping
     public String showAllHotels(Model model) {
         List<Hotel> hotels = hotelService.getAllHotels();
-        System.out.println("----------------------------------------------------------------");
-        System.out.println(hotels);
-        System.out.println("----------------------------------------------------------------");
-
         model.addAttribute("hotels", hotels);
-
         return "hotels";
     }
 
@@ -87,6 +82,9 @@ public class HotelController {
 
         Hotel hotel = hotelService.getHotelById(id);
         model.addAttribute("hotel", hotel);
+        model.addAttribute("countries", countryService.getAllCountries());
+        model.addAttribute("cities", cityService.getAllCities());
+
         return "update-hotel";
     }
 
@@ -94,6 +92,8 @@ public class HotelController {
     @PostMapping("/update/{id}")
     public String update(@PathVariable(name = "id") Long id, @ModelAttribute(name = "hotel") Hotel hotel, BindingResult result) {
         if (result.hasErrors()) {
+            System.out.println("\nERROR\n");
+            System.out.println(result.getAllErrors());
             return "update-hotel";
         }
         hotelService.updateHotel(id, hotel);
