@@ -3,21 +3,29 @@
 }
 
 .update {
-    color: blue;
+    color: royalblue;  /* color updated for better visibility */
+}
+
+.newclass {    /* a new class added */
+    color: purple;
 }
 
 .more {
-    color: black;
+    color: darkgray;   /* color updated for better visibility */
 }
 
 html {
     font-family: Georgia, serif;
+    background-color: #F7FFE0;  /* Moved from body to html */
+}
+
+body {
+    margin: 0;   /* body margin reset */
 }
 
 .clear {
     border-radius: 5px;
-    margin-left: 1215px;
-    margin-bottom: 5px;
+    margin: 0 5px 5px auto;   /* changed to shorthand */
     background-color: #FBF6A2;
     border: 2px solid #6A2E35;
     color: #6A2E35;
@@ -25,7 +33,6 @@ html {
     font-size: 35px;
     width: 190px;
     height: 60px;
-
 }
 
 .clear:hover {
@@ -69,7 +76,6 @@ html {
 form {
     margin-left: auto;
     margin-right: auto;
-    /*margin-left: 20px;*/
     width: 400px;
     border: 2px solid #08415C;
 }
@@ -113,10 +119,6 @@ form {
     background-color: #83CEA5;
 }
 
-body {
-    background-color: #F7FFE0;
-}
-
 .header a {
     font-size: 25px;
     float: left;
@@ -126,7 +128,6 @@ body {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-
 }
 
 .header a:hover {
@@ -138,24 +139,20 @@ h1 {
     font-size: 50px;
     text-align: center;
     text-decoration: underline;
-    /*padding: 2px;*/
     color: #08415C;
 }
 
 h2 {
     font-size: 40px;
     text-align: center;
-    /*padding: 2px;*/
     color: #08415C;
 }
 
 h3 {
     margin-left: 15px;
     font-size: 30px;
-    /*padding: 2px;*/
     color: #08415C;
 }
-
 
 textarea {
     resize: none;
@@ -172,13 +169,35 @@ table {
 tr, td, th {
     border: 2px solid #6A2E35;
     padding: 10px;
+    transition: background-color 0.2s ease;   /* added transition */
 }
 
+tr:hover, td:hover, th:hover {
+    background-color: #F7FFE0;   /* added hover effect */
+}
 
 .task_resolved {
-    color: green;
+    color: limegreen;   /* color updated for better visibility */
 }
 
 .title_resolved {
     text-decoration: line-through;
+}
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 20px;
+    font-family: Georgia, serif;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #6A2E35;
+    border: 2px solid #6A2E35;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+    background-color: #FAD188;
+    color: #6A2E35;
 }
