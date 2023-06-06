@@ -9,7 +9,13 @@
 </head>
 <body>
 <button onclick="window.location.href='/user';">Go to User</button>
+<hr>
 <button onclick="window.location.href='/hotel';">Go to Hotel</button>
+<hr>
+
+<button onclick="window.location.href='/room';">Go to Room</button>
+<hr>
+
 
 </body>
 </html>
