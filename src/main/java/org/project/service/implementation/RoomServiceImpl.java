@@ -54,7 +54,10 @@ public class RoomServiceImpl implements RoomService {
             roomDAO.update(existingRoom);
         }
     }
-
+    @Override
+    public List<Room> getRoomByHotelID(long id) {
+        return roomDAO.getRoomByHotelID(id);
+    }
 
     @Override
     public void deleteRoom(long id) {

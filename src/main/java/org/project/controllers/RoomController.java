@@ -31,6 +31,13 @@ public class RoomController {
         model.addAttribute("rooms", rooms);
         return "rooms";
     }
+    @GetMapping  ("/hotel/{id}")
+    public String showAllRoomsByHotel(@PathVariable(name = "id") Long id, Model model) {
+        List<Room> rooms = roomService.getRoomByHotelID(id);
+        model.addAttribute("rooms", rooms);
+        model.addAttribute("hotel", hotelService.getHotelById(id).getName());
+        return "rooms-hotel";
+    }
 
     @GetMapping("/create")
     public String create(Model model) {
