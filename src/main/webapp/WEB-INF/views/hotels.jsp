@@ -33,7 +33,8 @@
                 <a href="<c:url value='/hotel/${hotel.hotelId}'/>"class="more">View</a> |
                 <a href="<c:url value='/hotel/update/${hotel.hotelId}'/>" class="update">Update</a> |
                 <a href="<c:url value='/hotel/delete/${hotel.hotelId}'/>" class="delete">Delete</a>
-                <a href="<c:url value='/room/hotel/${hotel.hotelId}'/>">MORE</a> |
+                <a href="<c:url value='/room/hotel/${hotel.hotelId}'/>">Rooms</a> |
+                <a href="<c:url value='/room/create/${hotel.hotelId}'/>">Add room</a>
             </td>
         </tr>
     </c:forEach>

@@ -11,7 +11,7 @@
 <body>
 
 <h2>CREATE ROOM</h2>
-<form:form method="POST" action="/room/create" modelAttribute="room">
+<form:form method="POST" action="/room/create/${hotel.hotelId}" modelAttribute="room">
     <h3>Room Number: <form:input path="number" /></h3>
     <ul>
         <form:errors path="number" cssClass="error"/>

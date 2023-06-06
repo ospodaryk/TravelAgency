@@ -12,6 +12,7 @@
 <button onclick="window.location.href='/room/create';">Create Room</button>
 <h1>Hotel</h1>
 <h2>${hotel}</h2>
+<button onclick="window.location.href='/room/create';">Create Room</button>
 <table>
     <thead>
     <tr>
@@ -38,6 +39,7 @@
                 <c:if test="${room.available}">
                     <a href="<c:url value='/room/book/${room.roomId}'/>" class="book">Book</a>
                 </c:if>
+
             </td>
         </tr>
     </c:forEach>

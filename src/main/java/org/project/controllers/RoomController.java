@@ -39,18 +39,20 @@ public class RoomController {
         return "rooms-hotel";
     }
 
-    @GetMapping("/create")
-    public String create(Model model) {
+    @GetMapping("/create/{id}")
+    public String create(@PathVariable(name = "id") Long id,Model model) {
         model.addAttribute("room", new Room());
         model.addAttribute("hotels", hotelService.getAllHotels());
+        model.addAttribute("hotel", hotelService.getHotelById(id));
         return "create-room";
     }
 
-    @PostMapping("/create")
-    public String create(@Validated @ModelAttribute(name = "room") Room room, BindingResult result) {
+    @PostMapping("/create/{id}")
+    public String create(@PathVariable(name = "id") Long id,@Validated @ModelAttribute(name = "room") Room room, BindingResult result) {
         if (result.hasErrors()) {
             return "create-room";
         }
+        room.setHotel(hotelService.getHotelById(id));
         roomService.saveRoom(room);
         return "redirect:/room/" + room.getRoomId();
     }
