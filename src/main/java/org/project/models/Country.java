@@ -3,7 +3,6 @@ package org.project.models;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Data
 @Entity
@@ -13,10 +12,6 @@ public class Country {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long countryId;
 
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
-
-
-//    @OneToMany
-//    @JoinColumn(name = "country_id")
-//    private Set<City> cities;
 }

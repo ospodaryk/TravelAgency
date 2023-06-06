@@ -15,9 +15,11 @@ public class Booking {
     private Long bookingId;
 
     private Date start_date;
+
     private Date end_date;
 
     private int numOfPeople;
+
     private boolean isActual;
 
     @ManyToOne
