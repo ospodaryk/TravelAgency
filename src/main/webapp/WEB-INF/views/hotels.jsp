@@ -19,6 +19,7 @@
         <th>Description</th>
         <th>City</th>
         <th>Country</th>
+        <th>Action</th>
     </tr>
     <c:forEach var="hotel" items="${hotels}">
         <tr>
@@ -28,6 +29,11 @@
             <td>${hotel.description}</td>
             <td>${hotel.city.name}</td>
             <td>${hotel.city.country.name}</td>
+            <td>
+                <a href="<c:url value='/hotel/${hotel.hotelId}'/>"class="more">View</a> |
+                <a href="<c:url value='/hotel/update/${hotel.hotelId}'/>" class="update">Update</a> |
+                <a href="<c:url value='/hotel/delete/${hotel.hotelId}'/>" class="delete">Delete</a>
+            </td>
         </tr>
     </c:forEach>
 </table>
