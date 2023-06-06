@@ -9,6 +9,7 @@
 </head>
 <body>
 <h1>Rooms</h1>
+<button onclick="window.location.href='/room/create';">Create Room</button>
 
 <table>
     <thead>
