@@ -2,11 +2,13 @@ package org.project.service.implementation;
 
 import org.project.dao.CountryDAO;
 import org.project.models.Country;
+import org.project.models.Hotel;
 import org.project.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 
@@ -19,6 +21,12 @@ public class CountryServiceImpl implements CountryService {
     public CountryServiceImpl(CountryDAO countryDAO) {
         this.countryDAO = countryDAO;
     }
+
+    @Override
+    public List<Country> getAllCountries() {
+        return countryDAO.getAll();
+    }
+
 
     @Override
     public Country getCountryById(long id) {

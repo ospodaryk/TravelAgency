@@ -1,21 +1,49 @@
 package org.project.controllers;
 
+import org.project.models.Country;
 import org.project.models.Hotel;
+import org.project.models.Role;
+import org.project.models.User;
+import org.project.service.CityService;
+import org.project.service.CountryService;
 import org.project.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
+import java.beans.PropertyEditorSupport;
 import java.util.List;
 
 @Controller
 @RequestMapping("/hotel")
 public class HotelController {
 
-    @Autowired
     private HotelService hotelService;
+    private CountryService countryService;
+    private CityService cityService;
+    @Autowired
+    public HotelController(HotelService hotelService, CountryService countryService, CityService cityService) {
+        this.hotelService = hotelService;
+        this.countryService = countryService;
+        this.cityService = cityService;
+    }
+
+
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(Country.class, "country", new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String text) {
+                Country country = countryService.getCountryById(Long.parseLong(text));
+                setValue(country);
+            }
+        });
+    }
 
     @GetMapping
     public String showAllHotels(Model model) {
@@ -28,4 +56,55 @@ public class HotelController {
 
         return "hotels";
     }
+
+    @GetMapping("/create")
+    public String create(Model model) {
+        model.addAttribute("hotel", new Hotel());
+        model.addAttribute("countries", countryService.getAllCountries());
+        model.addAttribute("cities", cityService.getAllCities());
+
+        return "create-hotel";
+    }
+
+    @PostMapping("/create")
+    public String create(@Validated @ModelAttribute(name = "hotel") Hotel hotel, BindingResult result) {
+        if (result.hasErrors()) {
+            return "create-hotel";
+        }
+        hotelService.saveHotel(hotel);
+        return "redirect:/hotel/" + hotel.getHotelId();
+    }
+
+    @GetMapping("/{id}")
+    public String read(@PathVariable(name = "id") Integer id, Model model) {
+        Hotel hotel = hotelService.getHotelById(id);
+        model.addAttribute("hotel", hotel);
+        return "hotel-info";
+    }
+
+    @GetMapping("/update/{id}")
+    public String update(@PathVariable(name = "id") Integer id, Model model) {
+
+        Hotel hotel = hotelService.getHotelById(id);
+        model.addAttribute("hotel", hotel);
+        return "update-hotel";
+    }
+
+
+    @PostMapping("/update/{id}")
+    public String update(@PathVariable(name = "id") Long id, @ModelAttribute(name = "hotel") Hotel hotel, BindingResult result) {
+        if (result.hasErrors()) {
+            return "update-hotel";
+        }
+        hotelService.updateHotel(id, hotel);
+        return "redirect:/hotel/";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable(name = "id") Integer id) {
+        hotelService.deleteHotel(id);
+        return "redirect:/";
+    }
+
+
 }

@@ -11,7 +11,7 @@ public interface HotelService {
 
     void saveHotel(Hotel hotel);
 
-    void updateHotel(Hotel hotel);
+    void updateHotel(long id,Hotel hotel);
 
-    void deleteHotel(Hotel hotel);
+    void deleteHotel(long id);
 }

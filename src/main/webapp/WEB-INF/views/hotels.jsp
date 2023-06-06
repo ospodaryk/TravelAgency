@@ -9,6 +9,7 @@
 </head> <!-- Here, I added the closing head tag -->
 <body>
 <h1>Hotels</h1>
+<button onclick="window.location.href='/hotel/create';">Create Hotel</button>
 
 <table>
     <tr>
