@@ -1,20 +1,30 @@
 package org.project.service.implementation;
 
+import org.project.dao.HotelDAO;
 import org.project.dao.RoomDAO;
 import org.project.models.Room;
 import org.project.service.RoomService;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
 public class RoomServiceImpl implements RoomService {
 
     private final RoomDAO roomDAO;
+    private final HotelDAO hotelDAO;
 
-    public RoomServiceImpl(RoomDAO roomDAO) {
+
+    public RoomServiceImpl(RoomDAO roomDAO, HotelDAO hotelDAO) {
         this.roomDAO = roomDAO;
+        this.hotelDAO = hotelDAO;
+    }
+
+    @Override
+    public List<Room> getAllRooms() {
+        return roomDAO.getAll();
     }
 
     @Override
@@ -28,12 +38,27 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public void updateRoom(Room room) {
-        roomDAO.update(room);
+    public void updateRoom(long id, Room room) {
+        Room existingRoom = roomDAO.findById(id);
+
+        if (existingRoom != null) {
+
+
+            existingRoom.setRoomId(id);
+            existingRoom.setAvailable(room.isAvailable());
+            existingRoom.setCapacity(room.getCapacity());
+            existingRoom.setPrice(room.getPrice());
+            existingRoom.setNumber(room.getNumber());
+            existingRoom.setHotel(room.getHotel());
+            existingRoom.setRoomClassification(room.getRoomClassification());
+            roomDAO.update(existingRoom);
+        }
     }
 
+
     @Override
-    public void deleteRoom(Room room) {
-        roomDAO.delete(room);
+    public void deleteRoom(long id) {
+//        hotelDAO.deleteByRoomId(id);
+        roomDAO.deleteByHotelId(id);
     }
 }
