@@ -58,7 +58,6 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public void deleteRoom(long id) {
-//        hotelDAO.deleteByRoomId(id);
-        roomDAO.deleteByHotelId(id);
+        roomDAO.delete(roomDAO.findById(id));
     }
 }
