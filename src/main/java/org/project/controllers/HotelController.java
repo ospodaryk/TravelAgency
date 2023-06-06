@@ -103,7 +103,7 @@ public class HotelController {
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable(name = "id") Integer id) {
         hotelService.deleteHotel(id);
-        return "redirect:/";
+        return "redirect:/hotel";
     }
 
 

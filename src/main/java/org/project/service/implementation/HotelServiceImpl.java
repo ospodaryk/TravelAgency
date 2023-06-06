@@ -1,6 +1,8 @@
 package org.project.service.implementation;
 
+import org.project.dao.BookingDAO;
 import org.project.dao.HotelDAO;
+import org.project.dao.RoomDAO;
 import org.project.models.Hotel;
 import org.project.models.Role;
 import org.project.models.User;
@@ -10,7 +12,9 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+
 import org.springframework.beans.BeanUtils;
+
 import javax.persistence.EntityNotFoundException;
 
 @Transactional
@@ -18,10 +22,16 @@ import javax.persistence.EntityNotFoundException;
 public class HotelServiceImpl implements HotelService {
 
     private HotelDAO hotelDAO;
+    private RoomDAO roomDAO;
+    private BookingDAO bookingDAO;
+
     @Autowired
-    public HotelServiceImpl(HotelDAO hotelDAO) {
+    public HotelServiceImpl(HotelDAO hotelDAO, RoomDAO roomDAO, BookingDAO bookingDAO) {
         this.hotelDAO = hotelDAO;
+        this.roomDAO = roomDAO;
+        this.bookingDAO = bookingDAO;
     }
+
 
     @Override
     public List<Hotel> getAllHotels() {
@@ -57,6 +67,8 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public void deleteHotel(long id) {
+        bookingDAO.deleteByHotelId(id);
+        roomDAO.deleteByHotelId(id);
         hotelDAO.delete(hotelDAO.findById(id));
     }
 }

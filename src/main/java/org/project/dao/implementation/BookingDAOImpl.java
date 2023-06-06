@@ -31,5 +31,18 @@ public class BookingDAOImpl extends GenericDAOImpl<Booking, Long> implements Boo
             // Handle any exceptions
         }
     }
+    @Override
+    public void deleteByHotelId(long hotelId) {
+        Session session = null;
+        try {
+            session = sessionFactory.getCurrentSession();
+            String hql = "DELETE FROM Booking WHERE hotel.id = :hotelId";
+            Query<?> query = session.createQuery(hql);
+            query.setParameter("hotelId", hotelId);
+            query.executeUpdate();
+        } catch (Exception e) {
+            // Handle any exceptions
+        }
+    }
 
 }
