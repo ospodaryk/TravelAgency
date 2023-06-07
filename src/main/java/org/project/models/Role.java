@@ -23,4 +23,8 @@ public class Role {
     @OneToMany(mappedBy = "role",cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @ToString.Exclude
     private Set<User> users = new HashSet<>();
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
 }

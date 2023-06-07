@@ -46,4 +46,8 @@ public class User {
     @OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @ToString.Exclude
     private Set<Booking> bookings = new HashSet<>();
+    @Override
+    public int hashCode() {
+        return userId != null ? userId.hashCode() : 0;
+    }
 }

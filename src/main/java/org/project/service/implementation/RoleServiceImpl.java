@@ -1,6 +1,7 @@
 package org.project.service.implementation;
 
 import org.project.dao.RoleDAO;
+import org.project.dao.UserDAO;
 import org.project.models.Role;
 import org.project.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,11 @@ import java.util.List;
 public class RoleServiceImpl implements RoleService {
 
     private final RoleDAO roleDAO;
-
+    private final UserDAO userDAO;
     @Autowired
-    public RoleServiceImpl(RoleDAO roleDAO) {
+    public RoleServiceImpl(RoleDAO roleDAO, UserDAO userDAO) {
         this.roleDAO = roleDAO;
+        this.userDAO = userDAO;
     }
 
     @Override
@@ -36,12 +38,14 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public void updateRole(Role role) {
+    public void updateRole(long id, Role role) {
+        role.setId(id);
         roleDAO.update(role);
     }
 
     @Override
-    public void deleteRole(Role role) {
-        roleDAO.delete(role);
+    public void deleteRole(long id) {
+        userDAO.deleteUserByRoleId(id);
+        roleDAO.delete(roleDAO.findById(id));
     }
 }
