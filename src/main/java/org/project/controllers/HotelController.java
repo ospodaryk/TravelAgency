@@ -49,6 +49,8 @@ public class HotelController {
     public String showAllHotels(Model model) {
         List<Hotel> hotels = hotelService.getAllHotels();
         model.addAttribute("hotels", hotels);
+        model.addAttribute("countries", countryService.getAllCountries());
+        model.addAttribute("cities", cityService.getAllCities());
         return "hotels";
     }
 
