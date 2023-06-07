@@ -183,21 +183,3 @@ tr:hover, td:hover, th:hover {
 .title_resolved {
     text-decoration: line-through;
 }
-button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 20px;
-    font-family: Georgia, serif;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
-    background-color: #6A2E35;
-    border: 2px solid #6A2E35;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-button:hover {
-    background-color: #FAD188;
-    color: #6A2E35;
-}
