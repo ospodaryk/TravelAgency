@@ -3,7 +3,10 @@ package org.project.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -14,10 +17,15 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookingId;
 
+    @NotNull(message = "Start date cannot be null")
+    @Temporal(TemporalType.DATE)
     private Date start_date;
 
+    @NotNull(message = "End date cannot be null")
+    @Temporal(TemporalType.DATE)
     private Date end_date;
 
+    @Min(value = 1, message = "Number of people should not be less than 1")
     private int numOfPeople;
 
     private boolean isActual;
@@ -30,7 +38,6 @@ public class Booking {
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
-    @OneToMany
-    @JoinColumn(name = "booking_id")
-    private Set<Room> rooms;
+    @OneToMany(mappedBy = "booking")
+    private Set<Room> rooms = new HashSet<>();
 }

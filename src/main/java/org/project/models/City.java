@@ -3,6 +3,7 @@ package org.project.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Data
 @Entity
@@ -12,7 +13,8 @@ public class City {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cityId;
 
-    @Column(name = "name", nullable = false, unique = true)
+    @NotBlank(message = "City name cannot be blank")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @ManyToOne

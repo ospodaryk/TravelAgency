@@ -3,6 +3,9 @@ package org.project.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -12,6 +15,10 @@ public class RoomClassification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Classification name cannot be blank")
     @Column(name = "name", nullable = false, unique = true)
     private String name;
+
+    @OneToMany(mappedBy = "roomClassification")
+    private Set<Room> rooms = new HashSet<>();
 }
