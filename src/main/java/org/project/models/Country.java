@@ -19,6 +19,6 @@ public class Country {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "country", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "country")
     private Set<City> cities = new HashSet<>();
 }

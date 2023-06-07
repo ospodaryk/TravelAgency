@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -30,6 +31,10 @@ public class Booking {
 
     private boolean isActual;
 
+    @Positive(message = "Price should be a positive value")
+    @Column(name = "totalPrice", nullable = false)
+    private double totalPrice;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -38,6 +43,6 @@ public class Booking {
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
-    @OneToMany(mappedBy = "booking", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "booking")
     private Set<Room> rooms = new HashSet<>();
 }
