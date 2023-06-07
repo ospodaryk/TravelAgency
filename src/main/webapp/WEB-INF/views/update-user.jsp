@@ -4,7 +4,7 @@
 <head>
     <title>UPDATE USER</title>
     <style>
-        <%@include file="../styles/main.css"%>
+        <%@include file="../styles/user.css"%>
     </style>
 </head>
 <body>
@@ -18,7 +18,6 @@
     <h3>Surname: <input type="text" name="surname" value="${user.surname}"></h3>
     <h3>Email: <input type="email" name="email" value="${user.email}"></h3>
     <h3>New Password: <input type="password" name="password"></h3>
-
     <button type="submit" class="update_but" style="margin-left: 30px">Update</button>
     <button type="reset" class="clear_but">Clear</button>
 </form>

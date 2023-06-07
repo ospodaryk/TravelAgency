@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Create New Hotel</title>
     <style>
-        <%@include file="../styles/main.css"%>
+        <%@include file="../styles/user.css"%>
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>

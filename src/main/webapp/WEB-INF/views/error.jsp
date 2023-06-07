@@ -6,7 +6,7 @@
     <title>Error Page</title>
 
     <style>
-        <%@include file="../styles/main.css"%>
+        <%@include file="../styles/user.css"%>
     </style>
 
 </head>

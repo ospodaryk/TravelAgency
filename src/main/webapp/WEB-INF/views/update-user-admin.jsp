@@ -4,7 +4,7 @@
 <head>
     <title>UPDATE USER</title>
     <style>
-        <%@include file="../styles/main.css"%>
+        <%@include file="../styles/user.css"%>
     </style>
 </head>
 <body>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Hotel Info</title>
     <style>
-        <%@include file="../styles/main.css"%>
+        <%@include file="../styles/user.css"%>
     </style>
 </head>
 <body>

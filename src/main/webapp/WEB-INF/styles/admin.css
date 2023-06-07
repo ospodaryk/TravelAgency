@@ -53,6 +53,7 @@
 
 /* Button styles */
 button {
+    margin-left:5px;
     font-family: Georgia, serif;
     font-size: 20px;
     padding: 10px 20px;
