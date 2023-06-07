@@ -1,0 +1,69 @@
+/* Styles */
+.delete {
+    color: darkred;
+}
+
+.update {
+    color: navy;
+}
+
+.newclass {
+    color: indigo;
+}
+
+.more {
+    color: gray;
+}
+
+.task_resolved {
+    color: darkgreen;
+}
+
+.title_resolved {
+    text-decoration: underline;
+    color: darkgreen;
+}
+
+.clear {
+    border-color: black;
+}
+
+.clear:hover {
+    background-color: #DAA520;
+}
+
+.submit input {
+    background-color: #DAA520;
+    color: white;
+    border-color: black;
+}
+
+.submit input:hover {
+    background-color: #B8860B;
+}
+
+.header a {
+    border: 2px solid black;
+}
+
+.header a:hover {
+    background-color: #B8860B;
+    color: white;
+}
+
+/* Button styles */
+button {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    padding: 10px 20px;
+    background-color: #53A78A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #83CEA5;
+}
