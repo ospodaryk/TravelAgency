@@ -3,65 +3,23 @@
 -- VALUES ('Administrator'),
 --        ('User');
 --
---
+-- -- Inserting users
 -- INSERT INTO User (login, name, surname, email, password, role_id)
--- VALUES ('michael.scott', 'Michael', 'Scott', 'michael.scott@example.com', 'bestboss123', 1),
---        ('jim.halpert', 'Jim', 'Halpert', 'jim.halpert@example.com', 'pranks123', 2),
---        ('pam.beesly', 'Pam', 'Beesly', 'pam.beesly@example.com', 'painting123', 2),
---        ('dwight.schrute', 'Dwight', 'Schrute', 'dwight.schrute@example.com', 'beets123', 2),
---        ('angela.martin', 'Angela', 'Martin', 'angela.martin@example.com', 'cats123', 2),
---        ('oscar.martinez', 'Oscar', 'Martinez', 'oscar.martinez@example.com', 'smart123', 2),
---        ('stanley.hudson', 'Stanley', 'Hudson', 'stanley.hudson@example.com', 'crossword123', 2),
---        ('phyllis.vance', 'Phyllis', 'Vance', 'phyllis.vance@example.com', 'knitting123', 2),
---        ('ryan.howard', 'Ryan', 'Howard', 'ryan.howard@example.com', 'fire123', 1),
---        ('andy.bernard', 'Andy', 'Bernard', 'andy.bernard@example.com', 'singing123', 2),
---        ('erin.hannon', 'Erin', 'Hannon', 'erin.hannon@example.com', 'cheerful123', 2),
---        ('kevin.malone', 'Kevin', 'Malone', 'kevin.malone@example.com', 'chili123', 2),
---        ('toby.flenderson', 'Toby', 'Flenderson', 'toby.flenderson@example.com', 'hr123', 2),
---        ('kelly.kapoor', 'Kelly', 'Kapoor', 'kelly.kapoor@example.com', 'fashion123', 2),
---        ('creed.brattom', 'Creed', 'Bratton', 'creed.bratton@example.com', 'mysterious123', 2);
---
--- -- Inserting countries
--- INSERT INTO Country (name)
--- VALUES ('Ukraine'),
---        ('USA'),
---        ('United Kingdom');
---
--- -- Inserting cities
--- INSERT INTO City (name, country_id)
--- VALUES ('Kyiv', 1),
---        ('Lviv', 1),
---        ('New York', 2),
---        ('London', 3);
---
--- -- Inserting hotels
--- INSERT INTO Hotel (name, city_id, location, description)
--- VALUES ('Grand Hotel', 1, '123 Main Street, Kyiv', 'Luxurious hotel located in the heart of Kyiv'),
---        ('Riviera Hotel', 2, '456 Elm Street, Lviv', 'Charming hotel offering scenic views of Lviv'),
---        ('The Plaza', 3, '789 Broadway, New York', 'Iconic hotel known for its elegance and luxury');
---
---
--- -- Inserting bookings
--- INSERT INTO Booking (user_id, hotel_id, start_date, end_date, numOfPeople, isActual)
--- VALUES (2, 1, '2023-06-10', '2023-06-15', 2, 0),
---        (3, 2, '2023-07-01', '2023-07-05', 1, 1);
---
--- INSERT INTO User (login, name, surname, email, password, role_id)
--- VALUES ('michael.scott', 'Michael', 'Scott', 'michael.scott@example.com', 'bestboss123', 1),
---        ('jim.halpert', 'Jim', 'Halpert', 'jim.halpert@example.com', 'pranks123', 2),
---        ('pam.beesly', 'Pam', 'Beesly', 'pam.beesly@example.com', 'painting123', 2),
---        ('dwight.schrute', 'Dwight', 'Schrute', 'dwight.schrute@example.com', 'beets123', 2),
---        ('angela.martin', 'Angela', 'Martin', 'angela.martin@example.com', 'cats123', 2),
---        ('oscar.martinez', 'Oscar', 'Martinez', 'oscar.martinez@example.com', 'smart123', 2),
---        ('stanley.hudson', 'Stanley', 'Hudson', 'stanley.hudson@example.com', 'crossword123', 2),
---        ('phyllis.vance', 'Phyllis', 'Vance', 'phyllis.vance@example.com', 'knitting123', 2),
---        ('ryan.howard', 'Ryan', 'Howard', 'ryan.howard@example.com', 'fire123', 1),
---        ('andy.bernard', 'Andy', 'Bernard', 'andy.bernard@example.com', 'singing123', 2),
---        ('erin.hannon', 'Erin', 'Hannon', 'erin.hannon@example.com', 'cheerful123', 2),
---        ('kevin.malone', 'Kevin', 'Malone', 'kevin.malone@example.com', 'chili123', 2),
---        ('toby.flenderson', 'Toby', 'Flenderson', 'toby.flenderson@example.com', 'hr123', 2),
---        ('kelly.kapoor', 'Kelly', 'Kapoor', 'kelly.kapoor@example.com', 'fashion123', 2),
---        ('creed.brattom', 'Creed', 'Bratton', 'creed.bratton@example.com', 'mysterious123', 2);
+-- VALUES ('michael.scott', 'Michael', 'Scott', 'michael.scott@example.com', 'Bestboss123', (SELECT id FROM Role WHERE name = 'Administrator')),
+--        ('jim.halpert', 'Jim', 'Halpert', 'jim.halpert@example.com', 'Pranks123', (SELECT id FROM Role WHERE name = 'User')),
+--        ('pam.beesly', 'Pam', 'Beesly', 'pam.beesly@example.com', 'Painting123', (SELECT id FROM Role WHERE name = 'User')),
+--        ('dwight.schrute', 'Dwight', 'Schrute', 'dwight.schrute@example.com', 'Beets123', (SELECT id FROM Role WHERE name = 'User')),
+--        ('angela.martin', 'Angela', 'Martin', 'angela.martin@example.com', 'Cats123', (SELECT id FROM Role WHERE name = 'User')),
+--        ('oscar.martinez', 'Oscar', 'Martinez', 'oscar.martinez@example.com', 'Smart123', (SELECT id FROM Role WHERE name = 'User')),
+--        ('stanley.hudson', 'Stanley', 'Hudson', 'stanley.hudson@example.com', 'Crossword123', (SELECT id FROM Role WHERE name = 'User')),
+--        ('phyllis.vance', 'Phyllis', 'Vance', 'phyllis.vance@example.com', 'Knitting123', (SELECT id FROM Role WHERE name = 'User')),
+--        ('ryan.howard', 'Ryan', 'Howard', 'ryan.howard@example.com', 'Fire123', (SELECT id FROM Role WHERE name = 'Administrator')),
+--        ('andy.bernard', 'Andy', 'Bernard', 'andy.bernard@example.com', 'Singing123', (SELECT id FROM Role WHERE name = 'User')),
+--        ('erin.hannon', 'Erin', 'Hannon', 'erin.hannon@example.com', 'Cheerful123', (SELECT id FROM Role WHERE name = 'User')),
+--        ('kevin.malone', 'Kevin', 'Malone', 'kevin.malone@example.com', 'Chili123', (SELECT id FROM Role WHERE name = 'User')),
+--        ('toby.flenderson', 'Toby', 'Flenderson', 'toby.flenderson@example.com', 'Hr123', (SELECT id FROM Role WHERE name = 'User')),
+--        ('kelly.kapoor', 'Kelly', 'Kapoor', 'kelly.kapoor@example.com', 'Fashion123', (SELECT id FROM Role WHERE name = 'User')),
+--        ('creed.brattom', 'Creed', 'Bratton', 'creed.bratton@example.com', 'Mysterious123', (SELECT id FROM Role WHERE name = 'User'));
 --
 -- -- Inserting countries
 -- INSERT INTO Country (name)
@@ -76,31 +34,34 @@
 --
 -- -- Inserting cities
 -- INSERT INTO City (name, country_id)
--- VALUES ('Berlin', 4),
---        ('Munich', 4),
---        ('Paris', 5),
---        ('Lyon', 5),
---        ('Rome', 6),
---        ('Madrid', 7),
---        ('Toronto', 8),
---        ('Vancouver', 8),
---        ('Mexico City', 9),
---        ('Sydney', 10),
---        ('Tokyo', 11);
+-- VALUES ('Berlin', (SELECT countryId FROM Country WHERE name = 'Germany')),
+--        ('Munich', (SELECT countryId FROM Country WHERE name = 'Germany')),
+--        ('Paris', (SELECT countryId FROM Country WHERE name = 'France')),
+--        ('Lyon', (SELECT countryId FROM Country WHERE name = 'France')),
+--        ('Rome', (SELECT countryId FROM Country WHERE name = 'Italy')),
+--        ('Venice', (SELECT countryId FROM Country WHERE name = 'Italy')),
+--        ('Barcelona', (SELECT countryId FROM Country WHERE name = 'Spain')),
+--        ('Madrid', (SELECT countryId FROM Country WHERE name = 'Spain')),
+--        ('Toronto', (SELECT countryId FROM Country WHERE name = 'Canada')),
+--        ('Vancouver', (SELECT countryId FROM Country WHERE name = 'Canada')),
+--        ('Mexico City', (SELECT countryId FROM Country WHERE name = 'Mexico')),
+--        ('Cancun', (SELECT countryId FROM Country WHERE name = 'Mexico')),
+--        ('Sydney', (SELECT countryId FROM Country WHERE name = 'Australia')),
+--        ('Melbourne', (SELECT countryId FROM Country WHERE name = 'Australia')),
+--        ('Tokyo', (SELECT countryId FROM Country WHERE name = 'Japan')),
+--        ('Osaka', (SELECT countryId FROM Country WHERE name = 'Japan'));
 --
 -- -- Inserting hotels
 -- INSERT INTO Hotel (name, city_id, location, description)
--- VALUES ('Berlin Grand', 5, '2 Berlin St, Berlin', 'Luxury hotel in Berlin'),
---        ('Munich Royal', 6, '3 Munich St, Munich', 'Royal hotel in Munich'),
---        ('Paris Plaza', 7, '4 Paris St, Paris', 'Stylish hotel in Paris'),
---        ('Lyon Luxury', 8, '5 Lyon St, Lyon', 'Luxury hotel in Lyon'),
---        ('Rome Palace', 9, '6 Rome St, Rome', 'Classic hotel in Rome'),
---        ('Madrid Inn', 10, '7 Madrid St, Madrid', 'Comfortable hotel in Madrid'),
---        ('Toronto Towers', 11, '8 Toronto St, Toronto', 'Elegant hotel in Toronto'),
---        ('Vancouver Views', 12, '9 Vancouver St, Vancouver', 'Hotel with the best views in Vancouver'),
---        ('Mexico City Marriott', 13, '10 Mexico City St, Mexico City', 'Best hotel in Mexico City'),
---        ('Sydney Suites', 14, '11 Sydney St, Sydney', 'Luxury suites in Sydney'),
---        ('Tokyo Towers', 15, '12 Tokyo St, Tokyo', 'Beautiful hotel in Tokyo');
+-- VALUES ('Berlin Grand', (SELECT city_id FROM City WHERE name = 'Berlin'), '2 Berlin St, Berlin', 'Luxury hotel in Berlin'),
+--        ('Paris Towers', (SELECT city_id FROM City WHERE name = 'Paris'), '22 Paris St, Paris', 'Historic hotel in Paris'),
+--        ('Rome Palazzo', (SELECT city_id FROM City WHERE name = 'Rome'), '45 Rome St, Rome', 'Beautiful hotel in Rome'),
+--        ('Barcelona Beach Hotel', (SELECT city_id FROM City WHERE name = 'Barcelona'), '12 Barcelona St, Barcelona', 'Beachfront hotel in Barcelona'),
+--        ('Toronto Suites', (SELECT city_id FROM City WHERE name = 'Toronto'), '67 Toronto St, Toronto', 'Modern hotel in Toronto'),
+--        ('Mexico City Inn', (SELECT city_id FROM City WHERE name = 'Mexico City'), '28 Mexico City St, Mexico City', 'Traditional hotel in Mexico City'),
+--        ('Sydney Harbour Hotel', (SELECT city_id FROM City WHERE name = 'Sydney'), '38 Sydney St, Sydney', 'Hotel with stunning harbour views'),
+--        ('Tokyo Towers', (SELECT city_id FROM City WHERE name = 'Tokyo'), '12 Tokyo St, Tokyo', 'Beautiful hotel in Tokyo');
+--
 -- -- Inserting RoomClassification
 -- INSERT INTO RoomClassification (name)
 -- VALUES ('Standard'),
@@ -108,44 +69,35 @@
 --        ('Suite');
 --
 -- -- Inserting rooms
+-- -- Let's suppose each hotel has 10 rooms: 4 Standard, 4 Deluxe, 2 Suite
+-- DECLARE @hotel_id INT = 1;
+-- WHILE @hotel_id <= 8
+-- BEGIN
+--     DECLARE @room_number INT = 100;
+-- DECLARE @classification_id INT;
+-- DECLARE @price DECIMAL(7,2);
+-- DECLARE @i INT = 1;
+-- WHILE @i <= 10
+-- BEGIN
+--     IF @i <= 4 -- Standard
+-- BEGIN
+-- SET @classification_id = (SELECT id FROM RoomClassification WHERE name = 'Standard');
+-- SET @price = 100.00;
+-- END
+-- ELSE IF @i <= 8 -- Deluxe
+-- BEGIN
+-- SET @classification_id = (SELECT id FROM RoomClassification WHERE name = 'Deluxe');
+-- SET @price = 200.00;
+-- END
+-- ELSE -- Suite
+-- BEGIN
+-- SET @classification_id = (SELECT id FROM RoomClassification WHERE name = 'Suite');
+-- SET @price = 300.00;
+-- END
 -- INSERT INTO Room (hotel_id, capacity, number, room_classification_id, price, isAvailable)
--- VALUES (1, 2, 101, 1, 100.00, 1),
---        (1, 3, 102, 2, 150.00, 1),
---        (2, 2, 201, 1, 120.00, 1),
---        (2, 4, 202, 3, 200.00, 1),
---        (4, 2, 301, 1, 110.00, 1),
---        (4, 3, 302, 2, 160.00, 1),
---        (5, 2, 401, 1, 120.00, 1),
---        (5, 4, 402, 3, 210.00, 1),
---        (6, 2, 501, 1, 130.00, 1),
---        (6, 3, 502, 2, 170.00, 1),
---        (7, 2, 601, 1, 140.00, 1),
---        (7, 4, 602, 3, 220.00, 1),
---        (8, 2, 701, 1, 150.00, 1),
---        (8, 3, 702, 2, 180.00, 1),
---        (9, 2, 801, 1, 160.00, 1),
---        (9, 4, 802, 3, 230.00, 1),
---        (10, 2, 901, 1, 170.00, 1),
---        (10, 3, 902, 2, 190.00, 1),
---        (11, 2, 1001, 1, 180.00, 1),
---        (11, 4, 1002, 3, 240.00, 1),
---        (12, 2, 1101, 1, 190.00, 1),
---        (12, 3, 1102, 2, 200.00, 1),
---        (13, 2, 1201, 1, 200.00, 1),
---        (13, 4, 1202, 3, 250.00, 1),
---        (14, 2, 1301, 1, 210.00, 1),
---        (14, 3, 1302, 2, 210.00, 1),
---        (3, 2, 1401, 1, 220.00, 1),
---        (3, 4, 1402, 3, 260.00, 1);
---
--- -- Inserting bookings
--- INSERT INTO Booking (user_id, hotel_id, start_date, end_date, numOfPeople, isActual)
--- VALUES (4, 4, '2023-07-10', '2023-07-15', 2, 0),
---        (5, 5, '2023-08-01', '2023-08-05', 1, 1),
---        (6, 6, '2023-08-10', '2023-08-15', 2, 1),
---        (7, 7, '2023-09-01', '2023-09-05', 1, 1),
---        (8, 8, '2023-09-10', '2023-09-15', 2, 1),
---        (9, 9, '2023-10-01', '2023-10-05', 1, 1),
---        (10, 10, '2023-10-10', '2023-10-15', 2, 0),
---        (11, 11, '2023-11-01', '2023-11-05', 1, 0),
---        (12, 12, '2023-11-10', '2023-11-15', 2, 0);
+-- VALUES (@hotel_id, 2, @room_number, @classification_id, @price, 1);
+-- SET @i = @i + 1;
+-- SET @room_number = @room_number + 1;
+-- END
+-- SET @hotel_id = @hotel_id + 1;
+-- END
