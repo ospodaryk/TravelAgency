@@ -1,7 +1,6 @@
 package org.project.models;
 
 import lombok.Data;
-import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -20,7 +19,6 @@ public class Country {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "country",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    @ToString.Exclude
+    @OneToMany(mappedBy = "country")
     private Set<City> cities = new HashSet<>();
 }

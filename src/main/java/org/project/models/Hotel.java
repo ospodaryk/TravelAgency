@@ -1,7 +1,6 @@
 package org.project.models;
 
 import lombok.Data;
-import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -31,11 +30,9 @@ public class Hotel {
     @JoinColumn(name = "city_id")
     private City city;
 
-    @OneToMany(mappedBy = "hotel",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    @ToString.Exclude
+    @OneToMany(mappedBy = "hotel")
     private Set<Room> rooms = new HashSet<>();
 
-    @OneToMany(mappedBy = "hotel",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    @ToString.Exclude
+    @OneToMany(mappedBy = "hotel")
     private Set<Booking> bookings = new HashSet<>();
 }
