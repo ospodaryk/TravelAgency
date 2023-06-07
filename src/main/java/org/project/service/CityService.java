@@ -15,7 +15,7 @@ public interface CityService {
 
     void saveCity(City city);
 
-    void updateCity(City city);
+    void updateCity(long id,City city);
 
-    void deleteCity(City city);
+    void deleteCity(long id);
 }

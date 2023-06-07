@@ -46,12 +46,14 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public void updateCity(City city) {
+    public void updateCity(long id,City city) {
+        city.setCityId(id);
         cityDAO.update(city);
     }
 
     @Override
-    public void deleteCity(City city) {
-        cityDAO.delete(city);
+    public void deleteCity(long id) {
+        cityDAO.deleteCityById(id);
+        cityDAO.delete(cityDAO.findById(id));
     }
 }
