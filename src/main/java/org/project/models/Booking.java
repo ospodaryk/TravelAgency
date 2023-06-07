@@ -38,6 +38,6 @@ public class Booking {
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
-    @OneToMany(mappedBy = "booking")
+    @OneToMany(mappedBy = "booking", cascade = CascadeType.REMOVE)
     private Set<Room> rooms = new HashSet<>();
 }

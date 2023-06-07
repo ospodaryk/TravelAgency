@@ -19,6 +19,6 @@ public class RoomClassification {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "roomClassification")
+    @OneToMany(mappedBy = "roomClassification", cascade = CascadeType.REMOVE)
     private Set<Room> rooms = new HashSet<>();
 }
