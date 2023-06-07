@@ -183,3 +183,20 @@ tr:hover, td:hover, th:hover {
 .title_resolved {
     text-decoration: line-through;
 }
+
+/* Button styles */
+button {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    padding: 10px 20px;
+    background-color: #53A78A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #83CEA5;
+}
