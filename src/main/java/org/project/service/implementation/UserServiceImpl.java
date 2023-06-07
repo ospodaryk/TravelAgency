@@ -15,7 +15,6 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Transactional
-
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -31,7 +30,7 @@ public class UserServiceImpl implements UserService {
         this.roleDAO = roleDAO;
         this.bookingDAO = bookingDAO;
     }
-
+    @Transactional
     @Override
     public List<User> getAllUsers() {
         return userDAO.getAll();
