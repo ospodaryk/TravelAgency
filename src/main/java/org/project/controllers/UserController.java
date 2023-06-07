@@ -35,7 +35,7 @@ public class UserController {
         System.out.println("----------------------------------------------------------------");
         System.out.println(users);
         System.out.println("----------------------------------------------------------------");
-        model.addAttribute("users", users);
+       model.addAttribute("users", users);
         return "users";
     }
 
@@ -69,7 +69,7 @@ public class UserController {
         System.out.println("BEFORE+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println(user);
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        model.addAttribute("user", user);
+       model.addAttribute("user", user);
         model.addAttribute("allRoles", roleService.getAllRoles());
         Long role_id = user.getRole().getId();
         if (role_id == 1) {

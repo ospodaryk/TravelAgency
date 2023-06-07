@@ -40,6 +40,21 @@ public class RoomDAOImpl extends GenericDAOImpl<Room, Long> implements RoomDAO {
     }
 
     @Override
+    public void deleteByClassificationId(long id) {
+        Session session = null;
+
+        try {
+            session = sessionFactory.getCurrentSession();
+            String hql = "DELETE FROM Room WHERE roomClassification.id = :id";
+            Query<?> query = session.createQuery(hql);
+            query.setParameter("id", id);
+            query.executeUpdate();
+        } catch (Exception e) {
+            // Handle any exceptions
+        }
+    }
+
+    @Override
     public void deleteByHotelId(long hotelId) {
         Session session = null;
 

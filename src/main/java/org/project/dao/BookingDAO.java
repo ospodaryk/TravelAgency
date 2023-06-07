@@ -4,6 +4,7 @@ import org.project.models.Booking;
 
 public interface BookingDAO extends GenericDAO<Booking, Long> {
     void deleteByUserId(long userId);
+
     void deleteByHotelId(long hotelId);
 
 }
