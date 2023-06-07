@@ -1,14 +1,8 @@
 # Compiled class files
 **/*.class
 
-# Log file
-log_file.log
-
-# BlueJ files
-**/*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+# Log files
+*.log
 
 # Package Files #
 **/*.jar
@@ -19,7 +13,18 @@ log_file.log
 **/*.tar.gz
 **/*.rar
 
-# IntelliJ IDEA
+# virtual machine crash logs
+hs_err_pid*
+replay_pid*
+
+# BlueJ files
+**/*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+### IDEs ###
+## IntelliJ IDEA ##
 .idea/
 *.iws
 *.iml
@@ -27,22 +32,19 @@ log_file.log
 .idea/compiler.xml
 .idea/misc.xml
 
-# NetBeans files
+## NetBeans ##
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
 
-# VS Code
+## VS Code ##
 .vscode/
 
-# STS
+## Spring Tool Suite ##
 .apt_generated
-.classpath
 .factorypath
-.project
-.settings
 .springBeans
 .sts4-cache
 
@@ -53,12 +55,18 @@ log_file.log
 target/
 !.mvn/wrapper/maven-wrapper.jar
 .mvn/
-mvn/
-mvnm/
-mvnm.cmd
+
+# Gradle
+.gradle/
+build/
 
 # Node.js
 node_modules/
+
+# Test and report files (JUnit, Jacoco etc.)
+test-results/
+*.test
+*.report
 
 # General
 HELP.md
