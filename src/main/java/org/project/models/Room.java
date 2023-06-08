@@ -39,4 +39,6 @@ public class Room {
     @ManyToOne
     @JoinColumn(name = "booking_id")
     private Booking booking;
+    private boolean isActual;
+
 }

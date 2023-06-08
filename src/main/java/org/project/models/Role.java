@@ -23,15 +23,19 @@ public class Role implements GrantedAuthority {
     @Column(name = "role_name", unique = true)
     private String roleName;
 
-    @OneToMany(mappedBy = "role",cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @ToString.Exclude
     private Set<User> users = new HashSet<>();
+    private boolean isActual;
+
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
     }
+
     @Override
     public String getAuthority() {
         return "ROLE_" + roleName;
     }
+
 }
