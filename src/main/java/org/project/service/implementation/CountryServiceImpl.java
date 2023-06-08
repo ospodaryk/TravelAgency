@@ -39,12 +39,13 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public void updateCountry(Country country) {
+    public void updateCountry(long id,Country country) {
+        country.setCountryId(id);
         countryDAO.update(country);
     }
 
     @Override
-    public void deleteCountry(Country country) {
-        countryDAO.delete(country);
+    public void deleteCountry(long id) {
+        countryDAO.deleteCountryById((id));
     }
 }
