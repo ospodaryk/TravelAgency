@@ -4,6 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -20,6 +22,9 @@ public class City {
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
+
     private boolean isActual;
 
+    @OneToMany(mappedBy = "city", cascade = CascadeType.REMOVE)
+    private Set<Hotel> hotels = new HashSet<>();
 }
