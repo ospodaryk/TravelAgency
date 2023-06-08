@@ -46,4 +46,17 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long> implements UserDAO {
         queryUser.setParameter("roleId", roleId);
         queryUser.executeUpdate();
     }
+
+    @Override
+    public User findByLogin(String login) {
+        Session session = sessionFactory.getCurrentSession();
+
+        String hqlUser = "FROM User WHERE login = :login";
+        Query<User> queryUser = session.createQuery(hqlUser, User.class);
+        queryUser.setParameter("login", login);
+
+        List<User> users = queryUser.getResultList();
+        return users.isEmpty() ? null : users.get(0);
+    }
+
 }

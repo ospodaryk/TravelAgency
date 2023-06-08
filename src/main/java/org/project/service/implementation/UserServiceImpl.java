@@ -30,6 +30,7 @@ public class UserServiceImpl implements UserService {
         this.roleDAO = roleDAO;
         this.bookingDAO = bookingDAO;
     }
+
     @Transactional
     @Override
     public List<User> getAllUsers() {
@@ -75,6 +76,11 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(long id) {
         bookingDAO.deleteByUserId(id);
         userDAO.delete(userDAO.findById(id));
+    }
+
+    @Override
+    public User findByLogin(String login) {
+       return userDAO.findByLogin(login);
     }
 
 }
