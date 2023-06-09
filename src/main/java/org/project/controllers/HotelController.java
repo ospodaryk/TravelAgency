@@ -53,6 +53,12 @@ public class HotelController {
         model.addAttribute("cities", cityService.getAllCities());
         return "hotels";
     }
+    @GetMapping("/user")
+    public String showAllHotelsUser(Model model) {
+        List<Hotel> hotels = hotelService.getAllHotels();
+        model.addAttribute("hotels", hotels);
+        return "user-hotels";
+    }
 
     @GetMapping("/create")
     public String create(Model model) {

@@ -31,12 +31,19 @@ public class RoomController {
         model.addAttribute("rooms", rooms);
         return "rooms";
     }
+    @GetMapping("/user-room")
+    public String showAllRoomsUser(Model model) {
+        List<Room> rooms = roomService.getAllRooms();
+        model.addAttribute("rooms", rooms);
+        return "user-rooms";
+    }
     @GetMapping  ("/hotel/{id}")
     public String showAllRoomsByHotel(@PathVariable(name = "id") Long id, Model model) {
         List<Room> rooms = roomService.getRoomByHotelID(id);
         model.addAttribute("rooms", rooms);
         model.addAttribute("hotel", hotelService.getHotelById(id).getName());
-        return "rooms-hotel";
+        //Todo : split by admin and user methods
+        return "user-rooms";
     }
 
     @GetMapping("/create/{id}")

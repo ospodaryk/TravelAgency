@@ -4,7 +4,7 @@
 <head>
     <title>Hotels</title>
     <style>
-        <%@include file="../styles/user.css"%>
+        <%@include file="../styles/admin.css"%>
     </style>
 </head> <!-- Here, I added the closing head tag -->
 <body>

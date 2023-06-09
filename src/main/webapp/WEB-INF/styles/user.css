@@ -22,6 +22,48 @@ html {
 body {
     margin: 0;   /* body margin reset */
 }
+.hotel-card {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #ccc; /* This creates a frame around your div */
+    padding: 10px;
+    margin: 10px;
+    box-sizing: border-box;
+    flex: 1 0 22%; /* This will make 4 divs fit per row */
+    max-width: 22%; /* This will make 4 divs fit per row */
+}
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.hotel-name {
+    text-align: center;
+}
+
+.hotel-location {
+    color: red; /* Change to the color you prefer */
+}
+
+.hotel-description,
+.more {
+    text-align: center;
+}
+
+/* You may also want to consider responsiveness. You can adjust the div width and max-width percentages inside a media query. For example: */
+@media (max-width: 800px) {
+    .hotel-card {
+        flex: 1 0 46%;
+        max-width: 46%;
+    }
+}
+@media (max-width: 500px) {
+    .hotel-card {
+        flex: 1 0 100%;
+        max-width: 100%;
+    }
+}
 
 .clear {
     border-radius: 5px;

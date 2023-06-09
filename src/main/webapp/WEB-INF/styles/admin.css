@@ -1,54 +1,228 @@
-/* Styles */
 .delete {
-    color: darkred;
+    color: crimson;
 }
 
 .update {
-    color: navy;
+    color: royalblue;  /* color updated for better visibility */
 }
 
-.newclass {
-    color: indigo;
+.newclass {    /* a new class added */
+    color: purple;
 }
 
 .more {
-    color: gray;
+    color: darkgray;   /* color updated for better visibility */
 }
 
-.task_resolved {
-    color: darkgreen;
+html {
+    font-family: Georgia, serif;
+    background-color: #F7FFE0;  /* Moved from body to html */
 }
 
-.title_resolved {
-    text-decoration: underline;
-    color: darkgreen;
+body {
+    margin: 0;   /* body margin reset */
+}
+.hotel-card {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #ccc; /* This creates a frame around your div */
+    padding: 10px;
+    margin: 10px;
+    box-sizing: border-box;
+    flex: 1 0 22%; /* This will make 4 divs fit per row */
+    max-width: 22%; /* This will make 4 divs fit per row */
+}
+.hotel-name {
+    text-align: center;
+}
+
+.hotel-location {
+    color: red; /* Change to the color you prefer */
+}
+
+.hotel-description,
+.more {
+    text-align: center;
+}
+
+/* You may also want to consider responsiveness. You can adjust the div width and max-width percentages inside a media query. For example: */
+@media (max-width: 800px) {
+    .hotel-card {
+        flex: 1 0 46%;
+        max-width: 46%;
+    }
+}
+@media (max-width: 500px) {
+    .hotel-card {
+        flex: 1 0 100%;
+        max-width: 100%;
+    }
 }
 
 .clear {
-    border-color: black;
+    border-radius: 5px;
+    margin: 0 5px 5px auto;   /* changed to shorthand */
+    background-color: #FBF6A2;
+    border: 2px solid #6A2E35;
+    color: #6A2E35;
+    font-family: Georgia, serif;
+    font-size: 35px;
+    width: 190px;
+    height: 60px;
 }
 
 .clear:hover {
-    background-color: #DAA520;
+    background-color: #FAD188;
+}
+
+.add_task_formLine {
+    width: 350px;
+    margin: 20px 0;
+}
+
+.add_task_label {
+    float: left;
+}
+
+.input input, textarea {
+    margin-left: 20px;
+    font-size: 25px;
+    font-family: Georgia, serif;
+    border: 2px solid #08415C;
+    size: 100px;
+    width: 350px;
+}
+
+.add_task_select select {
+    margin-left: 20px;
+    font-family: Georgia, serif;
+    font-size: 25px;
+    border: 2px solid #08415C;
+    size: 100px;
+    width: 350px;
+}
+
+.task_label {
+    margin-left: 20px;
+    padding: 1px;
+    font-size: 30px;
+    color: #6A2E35;
+}
+
+form {
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    border: 2px solid #08415C;
 }
 
 .submit input {
-    background-color: #DAA520;
-    color: white;
-    border-color: black;
+    font-family: Georgia, serif;
+    margin-left: 100px;
+    font-size: 30px;
+    width: 50%;
+    height: 55px;
+    font-weight: bold;
+    background-color: #83CEA5;
+    color: #08415C;
+    border-color: #08415C;
 }
 
 .submit input:hover {
-    background-color: #B8860B;
+    background-color: #53A78A;
+}
+
+.errors {
+    text-align: center;
+    font-size: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ff3333;
+    width: 650px;
+    height: 30px;
+    color: #eaeaea;
+    border: 2px solid black;
+    padding: 10px;
+}
+
+
+.header {
+    margin-left: 15px;
+    margin-right: 15px;
+    overflow: hidden;
+    background-color: #83CEA5;
 }
 
 .header a {
-    border: 2px solid black;
+    font-size: 25px;
+    float: left;
+    display: block;
+    color: #FBF6A2;
+    border: 2px solid #53A78A;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
 
 .header a:hover {
-    background-color: #B8860B;
-    color: white;
+    background-color: #53A78A;
+    color: #FAD188;
+}
+
+h1 {
+    font-size: 50px;
+    text-align: center;
+    text-decoration: underline;
+    color: #08415C;
+}
+
+h2 {
+    font-size: 40px;
+    text-align: center;
+    color: #08415C;
+}
+
+h3 {
+    margin-left: 15px;
+    font-size: 30px;
+    color: #08415C;
+}
+
+textarea {
+    resize: none;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 25px;
+    padding: 5px;
+    color: #08415C;
+}
+
+tr, td, th {
+    border: 2px solid #6A2E35;
+    padding: 10px;
+    transition: background-color 0.2s ease;   /* added transition */
+}
+
+tr:hover, td:hover, th:hover {
+    background-color: #F7FFE0;   /* added hover effect */
+}
+
+.task_resolved {
+    color: limegreen;   /* color updated for better visibility */
+}
+
+.title_resolved {
+    text-decoration: line-through;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 /* Button styles */

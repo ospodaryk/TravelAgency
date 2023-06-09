@@ -25,23 +25,14 @@
                     $("#end_date").val("");
                 }
             });
-
-            $("#numOfPeople").change(function() {
-                var numOfPeople = parseInt($(this).val());
-                var roomCapacity = parseInt($("#roomCapacity").text());
-
-                if (numOfPeople > roomCapacity) {
-                    alert("Number of people cannot exceed the room capacity.");
-                    $(this).val(roomCapacity);
-                }
-            });
         });
+
     </script>
 </head>
 <body>
 <%@include file="header.html" %>
 <h2>CREATE BOOKING</h2>
-<form:form method="POST" action="/booking/create" modelAttribute="booking">
+<form:form method="POST" action="/booking/create/${room.roomId}" modelAttribute="booking">
     <h3>Start Date: <input type="text" id="start_date" name="start_date"/></h3>
     <ul>
         <form:errors path="start_date" cssClass="error"/>
@@ -54,7 +45,8 @@
     <ul>
         <form:errors path="numOfPeople" cssClass="error"/>
     </ul>
-    <h3>Room Capacity: <span id="roomCapacity">${roomCapacity}</span></h3>
+    <h3>Room Capacity: <span id="roomCapacity">${room.capacity}</span></h3>
+
     <button type="submit" class="update_but" style="margin-left: 30px">Register</button>
     <button type="reset" class="clear_but">Clear</button>
 </form:form>
