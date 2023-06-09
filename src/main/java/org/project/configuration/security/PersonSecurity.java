@@ -8,8 +8,6 @@ import lombok.ToString;
 import org.project.models.Booking;
 import org.project.models.Role;
 import org.project.models.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,7 +27,6 @@ import javax.validation.constraints.Pattern;
 @Getter
 @Setter
 public class PersonSecurity implements UserDetails {
-    private static final Logger logger = LoggerFactory.getLogger(PersonSecurity.class);
 
     private long id;
     private Long userId;
