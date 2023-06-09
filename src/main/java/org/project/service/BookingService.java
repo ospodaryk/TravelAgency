@@ -10,7 +10,7 @@ public interface BookingService {
 
     Booking getBookingById(long id);
 
-    void saveBooking(Booking booking);
+    void saveBooking(long room_id,Booking booking);
 
     void updateBooking(long id,Booking booking);
 

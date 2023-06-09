@@ -1,7 +1,9 @@
 package org.project.service.implementation;
 
 import org.project.dao.BookingDAO;
+import org.project.dao.RoomDAO;
 import org.project.models.Booking;
+import org.project.models.Room;
 import org.project.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,11 +17,14 @@ import java.util.List;
 public class BookingServiceImpl implements BookingService {
 
     private BookingDAO bookingDAO;
+    private RoomDAO roomDAO;
 
     @Autowired
-    public BookingServiceImpl(BookingDAO bookingDAO) {
+    public BookingServiceImpl(BookingDAO bookingDAO, RoomDAO roomDAO) {
         this.bookingDAO = bookingDAO;
+        this.roomDAO = roomDAO;
     }
+
 
     @Override
     public List<Booking> getAllBookings() {
@@ -32,7 +37,10 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public void saveBooking(Booking booking) {
+    public void saveBooking(long room_id,Booking booking) {
+        Room room= roomDAO.findById(room_id);
+        room.setBooking(booking);
+        roomDAO.save(room);
         bookingDAO.save(booking);
     }
 

@@ -60,12 +60,16 @@ public class BookingController {
         booking.getRooms().add(roomService.getRoomById(room_id));
         booking.setHotel(roomService.getRoomById(room_id).getHotel());
         model.addAttribute("room", roomService.getRoomById(room_id));
-        double sum=0;
-        for (Iterator<Room> it =  booking.getRooms().iterator(); it.hasNext(); ) {
-            sum+=it.next().getPrice();
+        double sum = 0;
+        for (Iterator<Room> it = booking.getRooms().iterator(); it.hasNext(); ) {
+            sum += it.next().getPrice();
         }
         booking.setTotalPrice(sum);
-        bookingService.saveBooking(booking);
+        Room room = roomService.getRoomById(room_id);
+        room.setAvailable(false);
+        roomService.updateRoom(room_id, room);
+//        System.out.println("\n\n\nROOOM:" + room_id + " | " + room.getBooking() + " | " + room.isAvailable() + "\n\n\n");
+        bookingService.saveBooking(room_id, booking);
         return "redirect:/booking/" + booking.getBookingId();
     }
 
