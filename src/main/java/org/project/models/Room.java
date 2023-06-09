@@ -39,6 +39,12 @@ public class Room {
     @ManyToOne
     @JoinColumn(name = "booking_id")
     private Booking booking;
+    @Column(name = "isActual", columnDefinition = "true")
     private boolean isActual;
+    @Override
+    public int hashCode() {
+        return roomId != null ? roomId.hashCode() : 0;
+    }
+
 
 }

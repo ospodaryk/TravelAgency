@@ -53,7 +53,7 @@ public class RoomClassificationServiceImpl implements RoomClassificationService 
 
     @Override
     public void deleteRoomClassification(long id) {
-        roomDAO.deleteByClassificationId(id);
+//        roomDAO.deleteByClassificationId(id);
         roomClassificationDAO.delete(roomClassificationDAO.findById(id));
     }
 }

@@ -71,4 +71,8 @@ public class CountryDAOImpl extends GenericDAOImpl<Country, Long> implements Cou
         queryDeleteCountry.executeUpdate();
     }
 
+    @Override
+    public void delete(Country entity) {
+        getSession().delete(entity);
+    }
 }

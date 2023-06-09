@@ -45,7 +45,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void deleteRole(long id) {
-        userDAO.deleteUserByRoleId(id);
+//        userDAO.deleteUserByRoleId(id);
         roleDAO.delete(roleDAO.findById(id));
     }
 }

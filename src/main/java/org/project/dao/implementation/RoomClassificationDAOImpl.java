@@ -15,4 +15,17 @@ public class RoomClassificationDAOImpl extends GenericDAOImpl<RoomClassification
         super(sessionFactory);
     }
 
+    @Override
+    public void delete(RoomClassification entity) {
+//        RoomClassification roomClassification = findById(entity.getId());
+//        if(roomClassification != null) {
+//            if(roomClassification.getRooms().isEmpty()) {
+        getSession().delete(entity);
+//            } else {
+//                throw new RuntimeException("Can't delete room classification with references to rooms.");
+//            }
+//        } else {
+//            throw new RuntimeException("Room Classification not found.");
+//        }
+    }
 }

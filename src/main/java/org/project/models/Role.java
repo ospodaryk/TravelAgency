@@ -26,6 +26,8 @@ public class Role implements GrantedAuthority {
     @OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @ToString.Exclude
     private Set<User> users = new HashSet<>();
+
+    @Column(name = "isActual", columnDefinition = "true")
     private boolean isActual;
 
     @Override

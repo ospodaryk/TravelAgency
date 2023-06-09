@@ -68,4 +68,31 @@ public class RoomDAOImpl extends GenericDAOImpl<Room, Long> implements RoomDAO {
             // Handle any exceptions
         }
     }
+    public void deleteRoomIfNoBooking(Long roomId) {
+        Room room = findById(roomId);
+        if(room != null) {
+            if(room.getBooking() == null) {
+                delete(room);
+            } else {
+                throw new RuntimeException("Can't delete room with booking.");
+            }
+        } else {
+            throw new RuntimeException("Room not found.");
+        }
+    }
+
+    @Override
+    public void delete(Room entity) {
+//        long roomId=entity.getRoomId();
+//        Room room = findById(roomId);
+//        if(room != null) {
+//            if(room.getBooking() == null) {
+        getSession().delete(entity);
+//            } else {
+//                throw new RuntimeException("Can't delete room with booking.");
+//            }
+//        } else {
+//            throw new RuntimeException("Room not found.");
+//        }
+    }
 }

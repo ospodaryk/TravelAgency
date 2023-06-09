@@ -59,4 +59,23 @@ public class CityDAOImpl extends GenericDAOImpl<City, Long> implements CityDAO {
         queryHotel.executeUpdate();
 
     }
+
+    @Override
+    public void delete(City entity) {
+        getSession().delete(entity);
+//        City city = findById(entity.getCityId());
+//        if(city != null) {
+//            boolean hasHotelReference = city.getHotels().stream()
+//                    .anyMatch(hotel -> !hotel.getBookings().isEmpty());
+//
+//            if(!hasHotelReference) {
+//                delete(city);
+//            } else {
+//                city.setActual(false);
+//                throw new RuntimeException("Can't delete city with hotels that have bookings.");
+//            }
+//        } else {
+//            throw new RuntimeException("City not found.");
+//        }
+    }
 }

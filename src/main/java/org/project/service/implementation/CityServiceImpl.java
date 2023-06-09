@@ -53,7 +53,7 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public void deleteCity(long id) {
-        cityDAO.deleteCityById(id);
+//        cityDAO.deleteCityById(id);
         cityDAO.delete(cityDAO.findById(id));
     }
 }

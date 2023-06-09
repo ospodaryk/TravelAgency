@@ -51,6 +51,7 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @ToString.Exclude
     private Set<Booking> bookings = new HashSet<>();
+    @Column(name = "isActual", columnDefinition = "true")
     private boolean isActual;
 
     @Override

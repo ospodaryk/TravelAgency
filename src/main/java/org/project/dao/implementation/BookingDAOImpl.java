@@ -45,4 +45,9 @@ public class BookingDAOImpl extends GenericDAOImpl<Booking, Long> implements Boo
         }
     }
 
+    @Override
+    public void delete(Booking entity) {
+        getSession().delete(entity);
+        entity.setActual(false);
+    }
 }

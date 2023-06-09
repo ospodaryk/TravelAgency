@@ -30,11 +30,17 @@ public class Hotel {
     @JoinColumn(name = "city_id")
     private City city;
 
-    @OneToMany(mappedBy = "hotel",cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "hotel",cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private Set<Room> rooms = new HashSet<>();
 
-    @OneToMany(mappedBy = "hotel",cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "hotel",cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private Set<Booking> bookings = new HashSet<>();
+    @Column(name = "isActual", columnDefinition = "true")
     private boolean isActual;
+    @Override
+    public int hashCode() {
+        return hotelId != null ? hotelId.hashCode() : 0;
+    }
+
 
 }

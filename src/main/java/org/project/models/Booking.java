@@ -30,7 +30,6 @@ public class Booking {
     @Min(value = 1, message = "Number of people should not be less than 1")
     private int numOfPeople;
 
-    private boolean isActual;
 
     @Positive(message = "Price should be a positive value")
     @Column(name = "totalPrice", nullable = false)
@@ -47,5 +46,13 @@ public class Booking {
     @OneToMany(mappedBy = "booking", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @ToString.Exclude
     private Set<Room> rooms = new HashSet<>();
-    private boolean open;
+
+    @Column(name = "isActual", columnDefinition = "true")
+    private boolean isActual;
+
+    @Override
+    public int hashCode() {
+        return bookingId != null ? bookingId.hashCode() : 0;
+    }
+
 }

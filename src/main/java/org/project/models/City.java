@@ -23,8 +23,15 @@ public class City {
     @JoinColumn(name = "country_id")
     private Country country;
 
+    @OneToMany(mappedBy = "city", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private Set<Hotel> hotels = new HashSet<>();
+
+    @Column(name = "isActual", columnDefinition = "true")
     private boolean isActual;
 
-    @OneToMany(mappedBy = "city", cascade = CascadeType.REMOVE)
-    private Set<Hotel> hotels = new HashSet<>();
+    @Override
+    public int hashCode() {
+        return cityId != null ? cityId.hashCode() : 0;
+    }
+
 }

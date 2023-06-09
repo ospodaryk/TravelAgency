@@ -67,8 +67,8 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public void deleteHotel(long id) {
-        bookingDAO.deleteByHotelId(id);
-        roomDAO.deleteByHotelId(id);
+//        bookingDAO.deleteByHotelId(id);
+//        roomDAO.deleteByHotelId(id);
         hotelDAO.delete(hotelDAO.findById(id));
     }
 }
