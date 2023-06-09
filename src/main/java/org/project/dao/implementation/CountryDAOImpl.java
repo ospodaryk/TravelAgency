@@ -17,6 +17,7 @@ import java.util.List;
 @Transactional
 public class CountryDAOImpl extends GenericDAOImpl<Country, Long> implements CountryDAO {
     private final SessionFactory sessionFactory;
+
     public CountryDAOImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
         this.sessionFactory = sessionFactory;
@@ -31,6 +32,7 @@ public class CountryDAOImpl extends GenericDAOImpl<Country, Long> implements Cou
 
         return queryCity.getResultList();
     }
+
     public void deleteCountryById(long countryId) {
         Session session = sessionFactory.getCurrentSession();
 
@@ -73,6 +75,36 @@ public class CountryDAOImpl extends GenericDAOImpl<Country, Long> implements Cou
 
     @Override
     public void delete(Country entity) {
-        getSession().delete(entity);
+        Long countryId = entity.getCountryId();
+        Country country = findById(countryId);
+        if (country != null) {
+            boolean isCountryUsed = false;
+            for (City city : country.getCities()) {
+                for (Hotel hotel : city.getHotels()) {
+                    if (!hotel.getBookings().isEmpty()) {
+                        isCountryUsed = true;
+                        break;
+                    }
+                }
+                if (isCountryUsed) {
+                    break;
+                }
+            }
+            if (!isCountryUsed) {
+                getSession().delete(entity);
+            } else {
+                country.setActual(false);
+                for (City city : country.getCities()) {
+                    for (Hotel hotel : city.getHotels()) {
+                        hotel.setActual(false);
+                    }
+                    city.setActual(false);
+                }
+            }
+        } else {
+            throw new RuntimeException("Country not found.");
+        }
+
+
     }
 }
