@@ -3,8 +3,11 @@ package org.project.dao.implementation;
 import org.hibernate.SessionFactory;
 import org.project.dao.HotelDAO;
 import org.project.models.Hotel;
+import org.project.models.Room;
 import org.project.models.User;
 import org.springframework.stereotype.Repository;
+
+import java.util.Iterator;
 
 @Repository
 public class HotelDAOImpl extends GenericDAOImpl<Hotel, Long> implements HotelDAO {
@@ -22,7 +25,11 @@ public class HotelDAOImpl extends GenericDAOImpl<Hotel, Long> implements HotelDA
                 getSession().delete(entity);
             } else {
                 hotel.setActual(false);
-//                throw new RuntimeException("Can't delete user with references.");
+                for (Iterator<Room> it = hotel.getRooms().iterator(); it.hasNext(); ) {
+                   Room room=it.next();
+                   room.setActual(false);
+                   room.setAvailable(false);
+                }
             }
         } else {
             throw new RuntimeException("User not found.");
