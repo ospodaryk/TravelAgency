@@ -61,17 +61,17 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long> implements UserDAO {
 
     @Override
     public void delete(User entity) {
-//        Long userId=entity.getUserId();
-//        User user = findById(userId);
-//        if(user != null) {
-//            if(user.getBookings().isEmpty()) {
-        getSession().delete(entity);
-//            } else {
-//                user.setActual(false);
+        Long userId=entity.getUserId();
+        User user = findById(userId);
+        if(user != null) {
+            if(user.getBookings().isEmpty()) {
+                getSession().delete(entity);
+            } else {
+                user.setActual(false);
 //                throw new RuntimeException("Can't delete user with references.");
-//            }
-//        } else {
-//            throw new RuntimeException("User not found.");
-//        }
+            }
+        } else {
+            throw new RuntimeException("User not found.");
+        }
     }
 }
