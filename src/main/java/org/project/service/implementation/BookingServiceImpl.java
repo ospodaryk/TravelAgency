@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 
@@ -21,6 +22,11 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
+    public List<Booking> getAllBookings() {
+        return bookingDAO.getAll();
+    }
+
+    @Override
     public Booking getBookingById(long id) {
         return bookingDAO.findById(id);
     }
@@ -31,12 +37,13 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public void updateBooking(Booking booking) {
+    public void updateBooking(long id, Booking booking) {
+        booking.setBookingId(id);
         bookingDAO.update(booking);
     }
 
     @Override
-    public void deleteBooking(Booking booking) {
-        bookingDAO.delete(booking);
+    public void deleteBooking(long id) {
+        bookingDAO.delete(bookingDAO.findById(id));
     }
 }
