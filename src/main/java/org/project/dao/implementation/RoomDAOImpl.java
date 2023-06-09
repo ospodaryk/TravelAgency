@@ -4,6 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.project.dao.RoomDAO;
+import org.project.models.Booking;
+import org.project.models.Hotel;
 import org.project.models.Room;
 import org.springframework.stereotype.Repository;
 
@@ -68,10 +70,11 @@ public class RoomDAOImpl extends GenericDAOImpl<Room, Long> implements RoomDAO {
             // Handle any exceptions
         }
     }
+
     public void deleteRoomIfNoBooking(Long roomId) {
         Room room = findById(roomId);
-        if(room != null) {
-            if(room.getBooking() == null) {
+        if (room != null) {
+            if (room.getBooking() == null) {
                 delete(room);
             } else {
                 throw new RuntimeException("Can't delete room with booking.");
@@ -83,16 +86,18 @@ public class RoomDAOImpl extends GenericDAOImpl<Room, Long> implements RoomDAO {
 
     @Override
     public void delete(Room entity) {
-//        long roomId=entity.getRoomId();
-//        Room room = findById(roomId);
-//        if(room != null) {
-//            if(room.getBooking() == null) {
-        getSession().delete(entity);
-//            } else {
-//                throw new RuntimeException("Can't delete room with booking.");
-//            }
-//        } else {
-//            throw new RuntimeException("Room not found.");
-//        }
+        Room room = findById(entity.getRoomId());
+        if (room != null) {
+            if (room.getBooking() == null) {
+                getSession().delete(entity);
+            } else {
+                room.setActual(false);
+                room.getBooking().setActual(false);
+            }
+        } else {
+            throw new RuntimeException("Room not found.");
+        }
+
+
     }
 }
