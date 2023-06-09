@@ -1,6 +1,7 @@
 package org.project.models;
 
 import lombok.Data;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -21,7 +22,7 @@ public class Country {
 
     @OneToMany(mappedBy = "country",cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private Set<City> cities = new HashSet<>();
-    @Column(name = "isActual", columnDefinition = "true")
+    @ColumnDefault("true")
     private boolean isActual;
     @Override
     public int hashCode() {

@@ -2,6 +2,7 @@ package org.project.models;
 
 import lombok.Data;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -47,7 +48,7 @@ public class Booking {
     @ToString.Exclude
     private Set<Room> rooms = new HashSet<>();
 
-    @Column(name = "isActual", columnDefinition = "true")
+    @ColumnDefault("true")
     private boolean isActual;
 
     @Override

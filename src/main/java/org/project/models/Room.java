@@ -1,6 +1,7 @@
 package org.project.models;
 
 import lombok.Data;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -39,7 +40,7 @@ public class Room {
     @ManyToOne
     @JoinColumn(name = "booking_id")
     private Booking booking;
-    @Column(name = "isActual", columnDefinition = "true")
+    @ColumnDefault("true")
     private boolean isActual;
     @Override
     public int hashCode() {

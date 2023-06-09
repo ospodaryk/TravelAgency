@@ -2,6 +2,7 @@ package org.project.models;
 
 import lombok.Data;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -27,7 +28,7 @@ public class Role implements GrantedAuthority {
     @ToString.Exclude
     private Set<User> users = new HashSet<>();
 
-    @Column(name = "isActual", columnDefinition = "true")
+    @ColumnDefault("true")
     private boolean isActual;
 
     @Override
