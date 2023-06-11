@@ -1,4 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,7 +17,9 @@
 </head>
 <body>
 <h1>Ooooops... Something went wrong</h1>
-${errors }
+
+<h1 style="margin: 0 auto; width: max-content" th:text="${code}"></h1>
+<h2 style="margin: 0 auto; width: max-content" th:text="${message}"></h2>
 
 </body>
 </html>
