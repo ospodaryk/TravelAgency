@@ -13,11 +13,55 @@
 .more {
     color: darkgray;   /* color updated for better visibility */
 }
+.submit-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #53A78A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #83CEA5;
+}
 
 html {
     font-family: Georgia, serif;
     background-color: #F7FFE0;  /* Moved from body to html */
 }
+.container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.right-button {
+    margin-left: 10px;
+}
+
+.right-button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.logout-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #53A78A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #83CEA5;
+}
+
 
 body {
     margin: 0;   /* body margin reset */
@@ -115,12 +159,12 @@ body {
     color: #6A2E35;
 }
 
-form {
-    margin-left: auto;
-    margin-right: auto;
-    width: 400px;
-    border: 2px solid #08415C;
-}
+/*form {*/
+/*    margin-left: auto;*/
+/*    margin-right: auto;*/
+/*    width: 400px;*/
+/*    !*border: 2px solid #08415C;*!*/
+/*}*/
 
 .submit input {
     font-family: Georgia, serif;

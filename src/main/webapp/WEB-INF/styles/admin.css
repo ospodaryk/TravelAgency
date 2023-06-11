@@ -18,6 +18,14 @@ html {
     font-family: Georgia, serif;
     background-color: #fcfcfd;
 }
+.container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.right-button {
+    margin-left: 10px;
+}
 
 body {
     margin: 0;
@@ -244,4 +252,33 @@ button {
 
 button:hover {
     background-color: #8ab4f8;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.right-button {
+    margin-left: 10px;
+}
+
+.right-button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.logout-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #53A78A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #83CEA5;
 }

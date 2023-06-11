@@ -1,100 +1,46 @@
-/* Global styles */
-html {
-    font-family: Georgia, serif;
-    background-color: #F7FFE0;
-}
-
 body {
+    font-family: Arial, sans-serif;
+    background-color: #F7F7F7;
+    text-align: center;
     margin: 0;
-}
-
-/* Header styles */
-.header {
-    margin-left: 15px;
-    margin-right: 15px;
-    overflow: hidden;
-    background-color: #83CEA5;
-}
-
-.header a {
-    font-size: 25px;
-    float: left;
-    display: block;
-    color: #FBF6A2;
-    border: 2px solid #53A78A;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.header a:hover {
-    background-color: #53A78A;
-    color: #FAD188;
-}
-
-/* Login form styles */
-form {
-    margin-left: auto;
-    margin-right: auto;
-    width: 400px;
-    border: 2px solid #08415C;
-    padding: 20px;
-}
-
-.submit input {
-    font-family: Georgia, serif;
-    margin-left: 100px;
-    font-size: 30px;
-    width: 50%;
-    height: 55px;
-    font-weight: bold;
-    background-color: #83CEA5;
-    color: #08415C;
-    border-color: #08415C;
-}
-
-.submit input:hover {
-    background-color: #53A78A;
-}
-
-.errors {
-    text-align: center;
-    font-size: 30px;
-    margin: 5px auto;
-    background-color: #ff3333;
-    width: 650px;
-    height: 30px;
-    color: #eaeaea;
-    border: 2px solid black;
-    padding: 10px;
-}
-
-/* Other styles */
-h1 {
-    font-size: 50px;
-    text-align: center;
-    text-decoration: underline;
-    color: #08415C;
+    padding: 0;
 }
 
 h2 {
-    font-size: 40px;
-    text-align: center;
-    color: #08415C;
+    color: #333;
+    margin-top: 20px;
 }
 
 h3 {
-    margin-left: 15px;
-    font-size: 30px;
-    color: #08415C;
+    color: #555;
 }
 
-/* Button styles */
-button {
-    margin-left: 5px;
-    font-family: Georgia, serif;
-    font-size: 20px;
+hr {
+    border: none;
+    height: 1px;
+    background-color: #999;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+form {
+    margin-top: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 250px;
+    margin-bottom: 10px;
+}
+
+input[type="submit"] {
     padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
     background-color: #53A78A;
     color: white;
     border: none;
@@ -103,6 +49,15 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+input[type="submit"]:hover {
     background-color: #83CEA5;
+}
+
+a {
+    color: #53A78A;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }

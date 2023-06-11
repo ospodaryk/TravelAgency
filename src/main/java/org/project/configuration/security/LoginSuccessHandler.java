@@ -16,7 +16,13 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
-        Security userDetails = (Security) authentication.getPrincipal();
+        Object principal = authentication.getPrincipal();
+
+        if (!(principal instanceof Security)) {
+            throw new IllegalArgumentException("Principal can not be null!");
+        }
+
+        Security userDetails = (Security) principal;
 
         String redirectURL = request.getContextPath();
 
@@ -27,4 +33,5 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
         }
         getRedirectStrategy().sendRedirect(request, response, redirectURL);
     }
+
 }

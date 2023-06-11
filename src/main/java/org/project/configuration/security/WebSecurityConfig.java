@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -29,23 +31,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // Configure your security rules
-        http.authorizeRequests()
-                .antMatchers("/form-login", "/user/create", "/error").permitAll()
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/form-login", "/users/create", "/error").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/form-login")
-                .successHandler(loginSuccessHandler())
+                .successHandler(new LoginSuccessHandler())
                 .failureUrl("/form-login?error=true")
                 .permitAll()
                 .and()
                 .logout()
                 .logoutSuccessUrl("/form-login?logout=true")
-                .deleteCookies("JSESSIONID")
-                .and()
-                .csrf().disable();
+                .deleteCookies("JSESSIONID");
+//                .logout()
+//                .logoutSuccessUrl("/form-login?logout=true")
+//                .deleteCookies("JSESSIONID")
+
     }
+
 
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
