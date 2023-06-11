@@ -7,6 +7,7 @@ import org.project.models.Role;
 import org.project.models.User;
 import org.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -20,6 +21,7 @@ public class UserServiceImpl implements UserService {
     private final UserDAO userDAO;
     private final RoleDAO roleDAO;
     private final BookingDAO bookingDAO;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(10);
 
     @Autowired
     public UserServiceImpl(UserDAO userDAO, RoleDAO roleDAO, BookingDAO bookingDAO) {
@@ -41,6 +43,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userDAO.save(user);
     }
 

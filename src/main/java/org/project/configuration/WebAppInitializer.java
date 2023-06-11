@@ -1,12 +1,11 @@
 package org.project.configuration;
 
-import org.project.configuration.security.SecurityConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[] { SecurityConfig.class, HibernateConfig.class };
+        return new Class[] { HibernateConfig.class };
     }
 
     @Override

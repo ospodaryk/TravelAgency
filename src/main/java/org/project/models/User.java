@@ -21,7 +21,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "User")
-public class User implements UserDetails {
+public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
@@ -56,42 +56,22 @@ public class User implements UserDetails {
 
     @ColumnDefault("true")
     private boolean isActual;
+    @Column(name = "account_non_expired", nullable = false)
+    private boolean isAccountNonExpired;
 
-    @Override
-    public int hashCode() {
-        return userId != null ? userId.hashCode() : 0;
-    }
+    @Column(name = "account_non_locked", nullable = false)
+    private boolean isAccountNonLocked;
 
+    @Column(name = "credentials_non_expired", nullable = false)
+    private boolean isCredentialsNonExpired;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(role);
-    }
+    @Column(name = "enabled", nullable = false)
+    private boolean isEnabled;
 
-    @Override
     public String getUsername() {
         return email;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 
     @Override
     public boolean equals(Object o) {

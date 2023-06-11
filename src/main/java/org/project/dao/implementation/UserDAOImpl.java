@@ -8,6 +8,8 @@ import org.project.models.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -20,6 +22,7 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long> implements UserDAO {
         this.sessionFactory = sessionFactory;
     }
 
+
     public List<User> getUserWithThatRole(long roleId) {
         Session session = sessionFactory.getCurrentSession();
 
@@ -28,6 +31,17 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long> implements UserDAO {
         queryUser.setParameter("roleId", roleId);
 
         return queryUser.getResultList();
+    }
+
+    @Override
+    public User findByLoginAndPassword(String username, String password) {
+        Session session = sessionFactory.getCurrentSession();
+        String query = "SELECT u FROM User u WHERE u.login = :username AND u.password = :password";
+        TypedQuery<User> typedQuery = session.createQuery(query, User.class);
+        typedQuery.setParameter("username", username);
+        typedQuery.setParameter("password", password);
+        List<User> users = typedQuery.getResultList();
+        return users.isEmpty() ? null : users.get(0);
     }
 
     public void deleteUserByRoleId(long roleId) {
@@ -61,10 +75,10 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long> implements UserDAO {
 
     @Override
     public void delete(User entity) {
-        Long userId=entity.getUserId();
+        Long userId = entity.getUserId();
         User user = findById(userId);
-        if(user != null) {
-            if(user.getBookings().isEmpty()) {
+        if (user != null) {
+            if (user.getBookings().isEmpty()) {
                 getSession().delete(entity);
             } else {
                 user.setActual(false);
