@@ -4,24 +4,19 @@
 
             <div class="container-fluid">
                 <div class="header">
-                    <br>
-                    <button onclick="window.location.href='/user';">Users</button>
-                    <button onclick="window.location.href='/role';">Roles</button>
-                    <button onclick="window.location.href='/hotel';">Hotels</button>
-                    <button onclick="window.location.href='/room';">Rooms</button>
-                    <button onclick="window.location.href='/roomClassification';">Room Classifications</button>
-                    <button onclick="window.location.href='/country';">Countries</button>
-                    <button onclick="window.location.href='/city';">Cities</button>
-                    <button onclick="window.location.href='/booking';">Bookings</button>
-
                     <form th:action="@{/logout}" method="post">
-                        <a href="<c:url value='/user/${SPRING_SECURITY_CONTEXT.authentication.principal.id}'/>" class="more">hello </a> |
-                        <h2>${SPRING_SECURITY_CONTEXT.authentication.firstName}</h2>
 
-                        Hello, <a th:href="@{|/user/${SPRING_SECURITY_CONTEXT.authentication.principal.id}/|}">
-                        <span sec:authentication="SPRING_SECURITY_CONTEXT.authentication.firstName"></span>
-                    </a>
-                        <button type="submit" class="btn btn-default">Logout</button>
+                        <br>
+                        <button onclick="window.location.href='/user';">Users</button>
+                        <button onclick="window.location.href='/role';">Roles</button>
+                        <button onclick="window.location.href='/hotel';">Hotels</button>
+                        <button onclick="window.location.href='/room';">Rooms</button>
+                        <button onclick="window.location.href='/roomClassification';">Room Classifications</button>
+                        <button onclick="window.location.href='/country';">Countries</button>
+                        <button onclick="window.location.href='/city';">Cities</button>
+                        <button onclick="window.location.href='/booking';">Bookings</button>
+
+                        <button type="submit" class="right">Logout</button>
                     </form>
                     <br>
                 </div>
