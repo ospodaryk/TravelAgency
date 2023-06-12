@@ -31,10 +31,10 @@ public class Hotel {
     @JoinColumn(name = "city_id")
     private City city;
 
-    @OneToMany(mappedBy = "hotel",cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "hotel",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private Set<Room> rooms = new HashSet<>();
 
-    @OneToMany(mappedBy = "hotel",cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "hotel",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private Set<Booking> bookings = new HashSet<>();
     @ColumnDefault("true")
     private boolean isActual;
@@ -43,5 +43,14 @@ public class Hotel {
         return hotelId != null ? hotelId.hashCode() : 0;
     }
 
-
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "hotelId=" + hotelId +
+                ", name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", description='" + description + '\'' +
+                ", city=" + city +
+                '}';
+    }
 }

@@ -20,7 +20,7 @@ public class Country {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "country",cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "country",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private Set<City> cities = new HashSet<>();
     @ColumnDefault("true")
     private boolean isActual;
@@ -29,5 +29,12 @@ public class Country {
         return countryId != null ? countryId.hashCode() : 0;
     }
 
-
+    @Override
+    public String toString() {
+        return "Country{" +
+                "countryId=" + countryId +
+                ", name='" + name + '\'' +
+                ", isActual=" + isActual +
+                '}';
+    }
 }

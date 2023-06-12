@@ -20,7 +20,7 @@ public class RoomClassification {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "roomClassification", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "roomClassification", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private Set<Room> rooms = new HashSet<>();
     @ColumnDefault("true")
     private boolean isActual;
@@ -29,5 +29,11 @@ public class RoomClassification {
         return id != null ? id.hashCode() : 0;
     }
 
-
+    @Override
+    public String toString() {
+        return "RoomClassification{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
