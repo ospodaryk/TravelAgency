@@ -4,17 +4,17 @@
 
             <div class="container-fluid">
                 <div class="header">
-                    <form th:action="@{/logout}" method="post">
 
-                        <br>
-                        <button onclick="window.location.href='/user';">Users</button>
-                        <button onclick="window.location.href='/role';">Roles</button>
-                        <button onclick="window.location.href='/hotel';">Hotels</button>
-                        <button onclick="window.location.href='/room';">Rooms</button>
-                        <button onclick="window.location.href='/roomClassification';">Room Classifications</button>
-                        <button onclick="window.location.href='/country';">Countries</button>
-                        <button onclick="window.location.href='/city';">Cities</button>
-                        <button onclick="window.location.href='/booking';">Bookings</button>
+                    <br>
+                    <button onclick="window.location.href='/user';">Users</button>
+                    <button onclick="window.location.href='/role';">Roles</button>
+                    <button onclick="window.location.href='/hotel';">Hotels</button>
+                    <button onclick="window.location.href='/room';">Rooms</button>
+                    <button onclick="window.location.href='/roomClassification';">Room Classifications</button>
+                    <button onclick="window.location.href='/country';">Countries</button>
+                    <button onclick="window.location.href='/city';">Cities</button>
+                    <button onclick="window.location.href='/booking';">Bookings</button>
+                    <form th:action="@{/logout}" method="post">
 
                         <button type="submit" class="right">Logout</button>
                     </form>
