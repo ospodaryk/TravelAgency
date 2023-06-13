@@ -1,10 +1,11 @@
-package org.project.controllers;
+package org.project.controllers.staff;
 
 import org.project.models.Role;
 import org.project.models.User;
 import org.project.service.RoleService;
 import org.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,8 +28,7 @@ public class UserController {
         this.userService = userService;
         this.roleService = roleService;
     }
-
-
+    @PreAuthorize("hasAuthority('STAFF')")
     @GetMapping
     public String showAllUsers(Model model) {
         List<User> users = userService.getAllUsers();
@@ -38,13 +38,12 @@ public class UserController {
        model.addAttribute("users", users);
         return "users";
     }
-
+    @PreAuthorize("hasAuthority('STAFF')")
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("user", new User());
         return "create-user";
     }
-
     @PostMapping("/create")
     public String create(@Validated @ModelAttribute(name = "user") User user, BindingResult result) {
         if (result.hasErrors()) {
@@ -54,14 +53,13 @@ public class UserController {
         userService.saveUser(user);
         return "redirect:/";
     }
-
+    @PreAuthorize("hasRole('STAFF')")
     @GetMapping("/{id}")
     public String read(@PathVariable(name = "id") Integer id, Model model) {
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
         return "user-info";
     }
-
     @GetMapping("/update/{id}")
     public String update(@PathVariable(name = "id") Integer id, Model model) {
 

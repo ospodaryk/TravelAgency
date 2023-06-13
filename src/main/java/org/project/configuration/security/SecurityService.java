@@ -27,7 +27,7 @@ public class SecurityService implements UserDetailsService {
         logger.info("_____We are loadUserByUsername()");
         System.out.println("\n\n_____We are loadUserByUsername()\n\n");
         User user = userRepository.findByLogin(username);
-        if(user==null) {
+        if (user == null) {
             logger.error("_____user==null");
             System.out.println("\n\n__________user==null\n\n");
 

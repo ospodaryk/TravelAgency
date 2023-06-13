@@ -30,7 +30,7 @@ public class Security implements UserDetails {
     private String email;
     private List<GrantedAuthority> authorities;
     private String password;
-    private Set<Booking> mybookings ;
+    private Set<Booking> mybookings;
 
     public Security(User user) {
         this.userId = user.getUserId();
@@ -42,6 +42,7 @@ public class Security implements UserDetails {
         this.mybookings = user.getBookings();
         this.authorities = List.of(new SimpleGrantedAuthority(user.getRole().getRoleName()));
     }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
