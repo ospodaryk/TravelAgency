@@ -62,9 +62,8 @@
             <h2 class="room-name">${room.roomClassification.name}</h2>
             <h3 class="room-capacity">Capacity: ${room.capacity}</h3>
             <h4 class="room-price">Price: ${room.price}</h4>
-            <c:if test="${room.available}">
-                <a href="<c:url value='/booking/create/${room.roomId}'/>" class="book">Book</a>
-            </c:if>
+            <button onclick="window.location.href='/booking/create/${room.roomId}';">Book</button>
+
         </div>
     </c:forEach>
 </div>

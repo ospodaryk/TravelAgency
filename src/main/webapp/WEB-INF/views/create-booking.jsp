@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Create New Booking</title>
     <style>
-        <%@include file="../styles/admin.css"%>
+        <%@include file="../styles/user.css"%>
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

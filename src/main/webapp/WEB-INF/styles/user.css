@@ -1,216 +1,125 @@
-.delete {
-    color: crimson;
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap');
 
-.update {
-    color: royalblue; /* color updated for better visibility */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Georgia', serif;
 }
-
-.newclass { /* a new class added */
-    color: purple;
-}
-
-.more {
-    color: darkgray; /* color updated for better visibility */
-}
-
-.submit-button {
-    padding: 10px 20px;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: #53A78A;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.submit-button:hover {
-    background-color: #83CEA5;
-}
-
-html {
-    font-family: Georgia, serif;
-    background-color: #F7FFE0; /* Moved from body to html */
-}
-
-.container {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.right-button {
-    margin-left: 10px;
-}
-
-.right-button {
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.logout-button {
-    padding: 10px 20px;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: #53A78A;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.logout-button:hover {
-    background-color: #83CEA5;
-}
-
 
 body {
-    margin: 0; /* body margin reset */
-}
-
-.hotel-card {
-    display: flex;
-    flex-direction: column;
-    border: 2px solid #ccc; /* This creates a frame around your div */
-    padding: 10px;
-    margin: 10px;
-    box-sizing: border-box;
-    flex: 1 0 22%; /* This will make 4 divs fit per row */
-    max-width: 22%; /* This will make 4 divs fit per row */
+    background-color: #F7FFE0;
+    color: #3c4042;
+    line-height: 1.6;
+    font-size: 18px;
+    margin: 0;
 }
 
 .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     flex-wrap: wrap;
 }
 
-.hotel-name {
+.room-card, .hotel-card {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    transition: transform .3s ease-in-out;
+    flex: 1 0 22%;
+    max-width: 22%;
+}
+
+.room-card:hover, .hotel-card:hover {
+    transform: translateY(-10px);
+}
+
+h1, h2 {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 20px;
     text-align: center;
+    color: #08415C;
 }
 
-.hotel-location {
-    color: red; /* Change to the color you prefer */
+h1 {
+    font-size: 50px;
+    text-decoration: underline;
 }
 
-.hotel-description,
-.more {
-    text-align: center;
+h2 {
+    font-size: 40px;
 }
 
-/* You may also want to consider responsiveness. You can adjust the div width and max-width percentages inside a media query. For example: */
-@media (max-width: 800px) {
-    .hotel-card {
-        flex: 1 0 46%;
-        max-width: 46%;
-    }
+h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 20px;
+    color: #08415C;
 }
 
-@media (max-width: 500px) {
-    .hotel-card {
-        flex: 1 0 100%;
-        max-width: 100%;
-    }
+h3 {
+    font-size: 30px;
+}
+
+button, .submit-button, .logout-button {
+    margin-top: auto;
+    background-color: #53A78A;
+    color: white;
+    border: none;
+    padding: 20px 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform .3s ease-in-out;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+button:hover, .submit-button:hover, .logout-button:hover {
+    background-color: #83CEA5;
 }
 
 .clear {
-    border-radius: 5px;
-    margin: 0 5px 5px auto; /* changed to shorthand */
     background-color: #FBF6A2;
     border: 2px solid #6A2E35;
     color: #6A2E35;
-    font-family: Georgia, serif;
+    transition: background .3s ease-in-out;
     font-size: 35px;
     width: 190px;
     height: 60px;
+    margin: 0 5px 5px auto;
 }
 
 .clear:hover {
     background-color: #FAD188;
 }
 
-.add_task_formLine {
-    width: 350px;
-    margin: 20px 0;
-}
-
-.add_task_label {
-    float: left;
-}
-
-.input input, textarea {
-    margin-left: 20px;
-    font-size: 25px;
-    font-family: Georgia, serif;
-    border: 2px solid #08415C;
-    size: 100px;
-    width: 350px;
-}
-
-.add_task_select select {
-    margin-left: 20px;
-    font-family: Georgia, serif;
-    font-size: 25px;
-    border: 2px solid #08415C;
-    size: 100px;
-    width: 350px;
-}
-
-.task_label {
-    margin-left: 20px;
-    padding: 1px;
-    font-size: 30px;
-    color: #6A2E35;
-}
-
-/*form {*/
-/*    margin-left: auto;*/
-/*    margin-right: auto;*/
-/*    width: 400px;*/
-/*    !*border: 2px solid #08415C;*!*/
-/*}*/
-
-.submit input {
-    font-family: Georgia, serif;
-    margin-left: 100px;
-    font-size: 30px;
-    width: 50%;
-    height: 55px;
-    font-weight: bold;
-    background-color: #83CEA5;
-    color: #08415C;
-    border-color: #08415C;
-}
-
-.right {
-    /*align-self: flex-end;*/
-    /*margin-left: 95%;*/
-    float: right;
-
-    /*cursor: pointer;*/
-}
-
-.submit input:hover {
-    background-color: #53A78A;
-}
-
 .errors {
+    padding: 20px;
+    background: #ff3333;
+    color: white;
+    margin-bottom: 40px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     font-size: 30px;
     margin-top: 5px;
     margin-bottom: 5px;
     margin-left: auto;
     margin-right: auto;
-    background-color: #ff3333;
     width: 650px;
     height: 30px;
     color: #eaeaea;
     border: 2px solid black;
     padding: 10px;
 }
-
 
 .header {
     margin-left: 15px;
@@ -235,69 +144,4 @@ body {
     color: #FAD188;
 }
 
-h1 {
-    font-size: 50px;
-    text-align: center;
-    text-decoration: underline;
-    color: #08415C;
-}
-
-h2 {
-    font-size: 40px;
-    text-align: center;
-    color: #08415C;
-}
-
-h3 {
-    margin-left: 15px;
-    font-size: 30px;
-    color: #08415C;
-}
-
-textarea {
-    resize: none;
-}
-
-table {
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 25px;
-    padding: 5px;
-    color: #08415C;
-}
-
-tr, td, th {
-    border: 2px solid #6A2E35;
-    padding: 10px;
-    transition: background-color 0.2s ease; /* added transition */
-}
-
-tr:hover, td:hover, th:hover {
-    background-color: #F7FFE0; /* added hover effect */
-}
-
-.task_resolved {
-    color: limegreen; /* color updated for better visibility */
-}
-
-.title_resolved {
-    text-decoration: line-through;
-}
-
-/* Button styles */
-button {
-    margin-left: 5px;
-    font-family: Georgia, serif;
-    font-size: 20px;
-    padding: 10px 20px;
-    background-color: #53A78A;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #83CEA5;
-}
+/* More styles from the second file have been merged into the first one. */
