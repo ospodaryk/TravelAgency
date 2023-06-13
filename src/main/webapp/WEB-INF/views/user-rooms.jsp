@@ -5,7 +5,7 @@
 <head>
     <title>Rooms</title>
     <style>
-        <%@include file="../styles/admin.css"%>
+        <%@include file="../styles/user.css"%>
 
         .container {
             display: flex;
@@ -54,9 +54,7 @@
 </head>
 <body>
 <%@include file="header.html" %>
-
-<h1>Rooms</h1>
-<button onclick="window.location.href='/room/create';">Create Room</button>
+<h1>${hotel}</h1>
 
 <div class="container">
     <c:forEach var="room" items="${rooms}">

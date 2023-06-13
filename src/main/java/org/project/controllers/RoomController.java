@@ -41,11 +41,20 @@ public class RoomController {
     public String showAllRoomsByHotel(@PathVariable(name = "id") Long id, Model model) {
         List<Room> rooms = roomService.getRoomByHotelID(id);
         model.addAttribute("rooms", rooms);
+
         model.addAttribute("hotel", hotelService.getHotelById(id).getName());
         //Todo : split by admin and user methods
+
         return "user-rooms";
     }
-
+    @GetMapping  ("/adm/hotel/{id}")
+    public String showAllRoomsByHotelAdmin(@PathVariable(name = "id") Long id, Model model) {
+        List<Room> rooms = roomService.getRoomByHotelID(id);
+        model.addAttribute("rooms", rooms);
+        model.addAttribute("hotel", hotelService.getHotelById(id).getName());
+        //Todo : split by admin and user methods
+        return "rooms";
+    }
     @GetMapping("/create/{id}")
     public String create(@PathVariable(name = "id") Long id,Model model) {
         model.addAttribute("room", new Room());

@@ -22,7 +22,6 @@ public class HomeController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    //    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/home")
     public String home(Model model) {
         return "home";
@@ -30,7 +29,6 @@ public class HomeController {
 
     @PostMapping("/home")
     public String homePage(Model model) {
-        // Your logic here
         return "redirect:/form-login?logout=true";
     }
 }

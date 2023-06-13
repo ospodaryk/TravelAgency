@@ -45,7 +45,7 @@ public class HotelController {
         });
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public String showAllHotels(Model model) {
         List<Hotel> hotels = hotelService.getAllHotels();
         model.addAttribute("hotels", hotels);
@@ -53,7 +53,8 @@ public class HotelController {
         model.addAttribute("cities", cityService.getAllCities());
         return "hotels";
     }
-    @GetMapping("/user")
+
+    @GetMapping
     public String showAllHotelsUser(Model model) {
         List<Hotel> hotels = hotelService.getAllHotels();
         model.addAttribute("hotels", hotels);
