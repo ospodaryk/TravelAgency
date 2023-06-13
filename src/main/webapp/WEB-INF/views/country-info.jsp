@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Country Info</title>
     <style>
-        <%@include file="../styles/user.css"%>
+        <%@include file="../styles/admin.css"%>
     </style>
 </head>
 <body>

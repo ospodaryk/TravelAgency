@@ -4,7 +4,7 @@
 <head>
     <title>Room Classifications</title>
     <style>
-        <%@include file="../styles/user.css"%>
+        <%@include file="../styles/admin.css"%>
     </style>
 </head>
 <body>
