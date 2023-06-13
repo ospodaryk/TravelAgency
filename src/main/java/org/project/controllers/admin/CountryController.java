@@ -1,8 +1,9 @@
-package org.project.controllers;
+package org.project.controllers.admin;
 
 import org.project.models.Country;
 import org.project.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @RequestMapping("/country")
 @Controller
+@PreAuthorize("hasAuthority('ADMIN')")
 public class CountryController {
 
     private CountryService countryService;
@@ -22,6 +24,7 @@ public class CountryController {
         this.countryService = countryService;
     }
 
+    @PreAuthorize("hasAuthority('STAFF')")
     @GetMapping
     public String showAllCountries(Model model) {
         List<Country> countries = countryService.getAllCountries();
@@ -44,6 +47,7 @@ public class CountryController {
         return "redirect:/country/" + country.getCountryId();
     }
 
+    @PreAuthorize("hasAuthority('STAFF')")
     @GetMapping("/{id}")
     public String read(@PathVariable(name = "id") Long id, Model model) {
         Country country = countryService.getCountryById(id);
@@ -72,4 +76,5 @@ public class CountryController {
         countryService.deleteCountry(id);
         return "redirect:/";
     }
+
 }
