@@ -42,7 +42,6 @@ public class SecurityController {
     }
     @PostMapping("/logout")
     public String logout(HttpServletRequest request) throws ServletException {
-        // Custom logic here...
         request.logout();
         return "redirect:/form-login?logout=true";
     }
