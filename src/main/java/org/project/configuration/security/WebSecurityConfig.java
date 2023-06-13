@@ -43,13 +43,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
+                .logoutUrl("/custom-logout")
                 .logoutSuccessUrl("/form-login?logout=true")
-                .deleteCookies("JSESSIONID");
-//                .logout()
-//                .logoutSuccessUrl("/form-login?logout=true")
-//                .deleteCookies("JSESSIONID")
-
+                .deleteCookies("JSESSIONID")
+                .permitAll();
     }
+
 
 
     @Bean

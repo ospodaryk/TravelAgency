@@ -14,10 +14,13 @@
                     <button onclick="window.location.href='/country';">Countries</button>
                     <button onclick="window.location.href='/city';">Cities</button>
                     <button onclick="window.location.href='/booking';">Bookings</button>
-                    <form th:action="@{/logout}" method="post">
-
-                        <button type="submit" class="right">Logout</button>
+                    <!-- Logout button -->
+                    <form th:action="@{/custom-logout}" method="post" style="display: inline;">
+                        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+                        <button type="submit">Logout</button>
                     </form>
+
+
                     <br>
                 </div>
             </div>

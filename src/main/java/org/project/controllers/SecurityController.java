@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-
 @Controller
 public class SecurityController {
 
@@ -28,6 +27,7 @@ public class SecurityController {
         }
         return "login";
     }
+
     @PostMapping("/form-login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
         try {
@@ -40,9 +40,5 @@ public class SecurityController {
             return "redirect:/form-login?error=true";
         }
     }
-    @PostMapping("/logout")
-    public String logout(HttpServletRequest request) throws ServletException {
-        request.logout();
-        return "redirect:/form-login?logout=true";
-    }
+
 }
