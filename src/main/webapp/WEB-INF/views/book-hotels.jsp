@@ -8,6 +8,10 @@
     </style>
 </head>
 <body>
+
+<%@include file="header.html" %>
+
+<div th:insert="header.html"></div>
 <h1>Available Hotels</h1>
 <form method="POST" action="/hotel/book" >
     <label for="startDate">Start Date:</label>
@@ -20,9 +24,6 @@
 </form>
 
 <h2>Results:</h2>
-<h1>BOOOK:${booking.start_date}</h1>
-<h1>BOOOK:${booking.end_date}</h1>
-
 <c:forEach items="${hotels}" var="entry">
     <div>
         <h3>${entry.key.name}</h3>

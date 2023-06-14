@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
 import javax.transaction.Transactional;
+
 @Controller
 @RequestMapping("/booking")
 @Transactional
@@ -87,6 +88,7 @@ public class BookingController {
         model.addAttribute("room", roomService.getRoomById(room_id));
         return "create-booking-date";
     }
+
     @PostMapping("/{booking_id}/create/{room_id}")
     @Transactional
     public String createBookingFORDATE(@PathVariable("booking_id") Long booking_id, @PathVariable("room_id") Long room_id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
@@ -108,11 +110,11 @@ public class BookingController {
         Room room = roomService.getRoomById(room_id);
         room.setAvailable(false);
         roomService.updateRoom(room_id, room);
+        existingBooking.setNumOfPeople(room.getCapacity());
         existingBooking.getRooms().add(roomService.getRoomById(room_id));
         bookingService.updateBooking(booking_id, existingBooking);
         return "redirect:/booking/" + existingBooking.getBookingId();
     }
-
 
 
     @GetMapping("/{id}")
@@ -133,8 +135,7 @@ public class BookingController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateBooking(@PathVariable("id") Long id, @Validated @ModelAttribute("booking") Booking booking,
-                                BindingResult result, Model model) {
+    public String updateBooking(@PathVariable("id") Long id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
         if (result.hasErrors()) {
             List<User> users = userService.getAllUsers();
             model.addAttribute("users", users);
