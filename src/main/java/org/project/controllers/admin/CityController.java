@@ -1,9 +1,8 @@
 package org.project.controllers.admin;
 
-import org.project.models.Country;
 import org.project.models.City;
-import org.project.service.CountryService;
 import org.project.service.CityService;
+import org.project.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -13,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @RequestMapping("/city")
 @Controller
 @PreAuthorize("hasAuthority('ADMIN')")
@@ -36,13 +36,13 @@ public class CityController {
     }
 
     @GetMapping("/create/{id}")
-    public String create(@PathVariable(name = "id") Long id,Model model) {
+    public String create(@PathVariable(name = "id") Long id, Model model) {
         model.addAttribute("city", new City());
         return "create-city";
     }
 
     @PostMapping("/create/{id}")
-    public String create(@PathVariable(name = "id") Long id,@Validated @ModelAttribute(name = "city") City city, BindingResult result) {
+    public String create(@PathVariable(name = "id") Long id, @Validated @ModelAttribute(name = "city") City city, BindingResult result) {
         if (result.hasErrors()) {
             return "create-city";
         }

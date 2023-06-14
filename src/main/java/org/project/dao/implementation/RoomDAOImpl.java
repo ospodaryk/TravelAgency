@@ -4,8 +4,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.project.dao.RoomDAO;
-import org.project.models.Booking;
-import org.project.models.Hotel;
 import org.project.models.Room;
 import org.springframework.stereotype.Repository;
 

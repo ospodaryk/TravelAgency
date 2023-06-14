@@ -1,5 +1,4 @@
-
-<div xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<div xmlns:th="http://www.thymeleaf.org">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
 
@@ -16,8 +15,8 @@
                     <button onclick="window.location.href='/city';">Cities</button>
                     <button onclick="window.location.href='/booking';">Bookings</button>
                     <!-- Logout button -->
-                    <form th:action="@{/custom-logout}" method="post" style="display: inline;">
-                        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+                    <form method="post" style="display: inline;" th:action="@{/custom-logout}">
+                        <input name="_csrf" th:value="${_csrf.token}" type="hidden"/>
                         <button type="submit">Logout</button>
                     </form>
 

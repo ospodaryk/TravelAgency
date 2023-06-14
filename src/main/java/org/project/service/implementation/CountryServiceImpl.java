@@ -2,7 +2,6 @@ package org.project.service.implementation;
 
 import org.project.dao.CountryDAO;
 import org.project.models.Country;
-import org.project.models.Hotel;
 import org.project.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +38,7 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public void updateCountry(long id,Country country) {
+    public void updateCountry(long id, Country country) {
         country.setCountryId(id);
         countryDAO.update(country);
     }

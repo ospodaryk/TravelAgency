@@ -1,12 +1,10 @@
 package org.project.dao.implementation;
 
 import org.hibernate.SessionFactory;
-import org.project.dao.RoleDAO;
 import org.project.dao.RoomClassificationDAO;
-import org.project.models.*;
+import org.project.models.Room;
+import org.project.models.RoomClassification;
 import org.springframework.stereotype.Repository;
-
-import java.util.Iterator;
 
 @Repository
 

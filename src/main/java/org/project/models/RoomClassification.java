@@ -24,6 +24,7 @@ public class RoomClassification {
     private Set<Room> rooms = new HashSet<>();
     @ColumnDefault("true")
     private boolean isActual;
+
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;

@@ -18,6 +18,7 @@ html {
     font-family: Georgia, serif;
     background-color: #fcfcfd;
 }
+
 .container {
     display: flex;
     justify-content: flex-end;
@@ -238,7 +239,7 @@ tr:hover, td:hover, th:hover {
 
 /* Button styles */
 button {
-    margin-left:5px;
+    margin-left: 5px;
     font-family: Georgia, serif;
     font-size: 20px;
     padding: 10px 20px;
@@ -267,6 +268,7 @@ button:hover {
     margin-left: 10px;
     margin-right: 10px;
 }
+
 .logout-button {
     padding: 10px 20px;
     font-size: 18px;

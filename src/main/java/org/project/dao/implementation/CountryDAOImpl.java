@@ -3,7 +3,6 @@ package org.project.dao.implementation;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import org.project.dao.CityDAO;
 import org.project.dao.CountryDAO;
 import org.project.models.City;
 import org.project.models.Country;

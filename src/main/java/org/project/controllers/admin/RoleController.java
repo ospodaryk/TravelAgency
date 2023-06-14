@@ -1,9 +1,7 @@
 package org.project.controllers.admin;
 
 import org.project.models.Role;
-import org.project.models.User;
 import org.project.service.RoleService;
-import org.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -12,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.beans.PropertyEditorSupport;
 import java.util.List;
 
 @RequestMapping("/role")

@@ -33,7 +33,7 @@
             <input type="password" name="password"/></h2>
     </div>
     <div>
-        <input  type="submit" value="LogIn"/>
+        <input type="submit" value="LogIn"/>
     </div>
 </form>
 <br>

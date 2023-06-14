@@ -31,6 +31,7 @@ public class BookingDAOImpl extends GenericDAOImpl<Booking, Long> implements Boo
             // Handle any exceptions
         }
     }
+
     @Override
     public void deleteByHotelId(long hotelId) {
         Session session = null;

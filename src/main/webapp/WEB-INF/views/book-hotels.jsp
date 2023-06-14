@@ -13,7 +13,7 @@
 
 <div th:insert="header-admin.html"></div>
 <h1>Available Hotels</h1>
-<form method="POST" action="/hotel/book/${user_id}" >
+<form method="POST" action="/hotel/book/${user_id}">
     <label for="startDate">Start Date:</label>
     <input type="date" id="startDate" name="startDate" required>
 
@@ -37,8 +37,8 @@
                     <h3 class="room-capacity">Capacity: ${room.capacity}</h3>
                     <h4 class="room-price">Price: ${room.price}</h4>
                     <form action="/booking/${booking.bookingId}/create/${room.roomId}/${user_id}" method="POST">
-                        <input type="hidden" name="startDate" value="${searchForm.startDate}" />
-                        <input type="hidden" name="endDate" value="${searchForm.endDate}" />
+                        <input type="hidden" name="startDate" value="${searchForm.startDate}"/>
+                        <input type="hidden" name="endDate" value="${searchForm.endDate}"/>
                         <button type="submit">Book</button>
                     </form>
                 </div>

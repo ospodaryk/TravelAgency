@@ -39,7 +39,7 @@ public class RoomClassificationServiceImpl implements RoomClassificationService 
     }
 
     @Override
-    public void updateRoomClassification(long id,RoomClassification roomClassification) {
+    public void updateRoomClassification(long id, RoomClassification roomClassification) {
         RoomClassification existingRoomClassification = roomClassificationDAO.findById(id);
 
         if (existingRoomClassification != null) {

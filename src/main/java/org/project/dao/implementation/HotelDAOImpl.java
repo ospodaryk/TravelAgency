@@ -5,7 +5,6 @@ import org.project.configuration.security.StringToLocalDateConverter;
 import org.project.dao.HotelDAO;
 import org.project.models.Hotel;
 import org.project.models.Room;
-import org.project.models.User;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;

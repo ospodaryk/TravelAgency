@@ -42,6 +42,7 @@ public class Room {
     private Booking booking;
     @ColumnDefault("true")
     private boolean isActual;
+
     @Override
     public int hashCode() {
         return roomId != null ? roomId.hashCode() : 0;

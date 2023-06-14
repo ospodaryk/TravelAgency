@@ -29,19 +29,22 @@ public class UserController {
         this.userService = userService;
         this.roleService = roleService;
     }
+
     @PreAuthorize("hasAuthority('STAFF')")
     @GetMapping
     public String showAllUsers(Model model) {
         List<User> users = userService.getAllUsers();
-       model.addAttribute("users", users);
+        model.addAttribute("users", users);
         return "users";
     }
+
     @PreAuthorize("hasAuthority('STAFF')")
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("user", new User());
         return "create-user";
     }
+
     @PostMapping("/create")
     public String create(@Validated @ModelAttribute(name = "user") User user, BindingResult result) {
         if (result.hasErrors()) {
@@ -51,6 +54,7 @@ public class UserController {
         userService.saveUser(user);
         return "redirect:/";
     }
+
     @PreAuthorize("hasRole('STAFF')")
     @GetMapping("/{id}")
     public String read(@PathVariable(name = "id") Integer id, Model model) {
@@ -58,6 +62,7 @@ public class UserController {
         model.addAttribute("user", user);
         return "user-info";
     }
+
     @GetMapping("/update/{id}")
     public String update(@PathVariable(name = "id") Integer id, Model model) {
 
@@ -65,7 +70,7 @@ public class UserController {
         System.out.println("BEFORE+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println(user);
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-       model.addAttribute("user", user);
+        model.addAttribute("user", user);
         model.addAttribute("allRoles", roleService.getAllRoles());
         Long role_id = user.getRole().getId();
         if (role_id == 1) {

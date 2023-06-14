@@ -1,9 +1,9 @@
 package org.project.service;
 
-import org.project.models.Role;
 import org.project.models.RoomClassification;
 
 import java.util.List;
+
 public interface RoomClassificationService {
     List<RoomClassification> getAllRoomClassifications();
 
@@ -11,7 +11,7 @@ public interface RoomClassificationService {
 
     void saveRoomClassification(RoomClassification roomClassification);
 
-    void updateRoomClassification(long id,RoomClassification roomClassification);
+    void updateRoomClassification(long id, RoomClassification roomClassification);
 
     void deleteRoomClassification(long id);
 }

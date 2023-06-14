@@ -1,26 +1,10 @@
 package org.project.dao.implementation;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.project.dao.RoleDAO;
 import org.project.models.Role;
 import org.project.models.User;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
-import org.project.dao.CityDAO;
-import org.project.dao.CountryDAO;
-import org.project.models.City;
-import org.project.models.Country;
-import org.project.models.Hotel;
-import org.springframework.stereotype.Repository;
-
-import javax.transaction.Transactional;
-import java.util.List;
 
 @Repository
 
@@ -49,7 +33,7 @@ public class RoleDAOImpl extends GenericDAOImpl<Role, Long> implements RoleDAO {
             } else {
                 role.setActual(false);
                 for (User user : role.getUsers()) {
-                   user.setActual(false);
+                    user.setActual(false);
                 }
             }
         } else {

@@ -3,7 +3,6 @@ package org.project.models;
 import lombok.Data;
 import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
-import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

@@ -22,6 +22,7 @@ public class WebConfig implements WebMvcConfigurer {
         viewResolver.setSuffix(".jsp");
         return viewResolver;
     }
+
     @Override
     public void addFormatters(FormatterRegistry registry) { //to fix issue with dates
         registry.addConverter(new StringToLocalDateConverter());

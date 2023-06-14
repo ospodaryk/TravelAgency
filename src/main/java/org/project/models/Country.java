@@ -20,10 +20,11 @@ public class Country {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "country",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "country", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private Set<City> cities = new HashSet<>();
     @ColumnDefault("true")
     private boolean isActual;
+
     @Override
     public int hashCode() {
         return countryId != null ? countryId.hashCode() : 0;

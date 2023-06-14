@@ -12,11 +12,11 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("#start_date").datepicker();
             $("#end_date").datepicker();
 
-            $("#end_date").change(function() {
+            $("#end_date").change(function () {
                 var startDate = $("#start_date").datepicker("getDate");
                 var endDate = $("#end_date").datepicker("getDate");
 

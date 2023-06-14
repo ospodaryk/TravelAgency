@@ -26,7 +26,8 @@
             <td>${roomClassification.name}</td>
             <td>
                 <a href="<c:url value='/roomClassification/${roomClassification.id}'/>" class="more">View</a> |
-                <a href="<c:url value='/roomClassification/update/${roomClassification.id}'/>" class="update">Update</a> |
+                <a href="<c:url value='/roomClassification/update/${roomClassification.id}'/>" class="update">Update</a>
+                |
                 <a href="<c:url value='/roomClassification/delete/${roomClassification.id}'/>" class="delete">Delete</a>
             </td>
         </tr>

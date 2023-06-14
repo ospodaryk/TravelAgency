@@ -3,14 +3,12 @@ package org.project.service.implementation;
 import org.project.dao.CityDAO;
 import org.project.dao.CountryDAO;
 import org.project.models.City;
-import org.project.models.Country;
 import org.project.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Set;
 
 @Transactional
 
@@ -19,6 +17,7 @@ public class CityServiceImpl implements CityService {
 
     private CityDAO cityDAO;
     private CountryDAO countryDAO;
+
     @Autowired
     public CityServiceImpl(CityDAO cityDAO, CountryDAO countryDAO) {
         this.cityDAO = cityDAO;
@@ -26,7 +25,7 @@ public class CityServiceImpl implements CityService {
     }
 
 
-//    @Override
+    //    @Override
 //    public Set<City> getCitiesByCountryId(long countryId) {
 //        return countryDAO.findById(countryId).getCities();
 //    }
@@ -46,7 +45,7 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public void updateCity(long id,City city) {
+    public void updateCity(long id, City city) {
         city.setCityId(id);
         cityDAO.update(city);
     }

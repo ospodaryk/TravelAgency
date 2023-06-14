@@ -1,15 +1,11 @@
 package org.project.dao.implementation;
 
-import org.hibernate.SessionFactory;
-import org.project.dao.CityDAO;
-import org.project.models.City;
-import org.springframework.stereotype.Repository;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.project.dao.CityDAO;
 import org.project.models.Booking;
+import org.project.models.City;
 import org.project.models.Hotel;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

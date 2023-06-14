@@ -14,10 +14,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import javax.transaction.Transactional;
 import java.util.Iterator;
 import java.util.List;
-import javax.transaction.Transactional;
 
 @Controller
 @RequestMapping("/booking")

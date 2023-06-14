@@ -1,7 +1,6 @@
 package org.project.service;
 
 import org.project.models.Booking;
-import org.project.models.Room;
 
 import java.util.List;
 

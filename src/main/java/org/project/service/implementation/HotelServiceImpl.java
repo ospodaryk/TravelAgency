@@ -4,18 +4,12 @@ import org.project.dao.BookingDAO;
 import org.project.dao.HotelDAO;
 import org.project.dao.RoomDAO;
 import org.project.models.Hotel;
-import org.project.models.Role;
-import org.project.models.User;
 import org.project.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-
-import org.springframework.beans.BeanUtils;
-
-import javax.persistence.EntityNotFoundException;
 
 @Transactional
 @Service
@@ -74,6 +68,6 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public List<Hotel> getAvailableHotels(String startDate, String endDate) {
-        return hotelDAO.getAvailableHotels(startDate,endDate);
+        return hotelDAO.getAvailableHotels(startDate, endDate);
     }
 }

@@ -24,19 +24,19 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    @ResponseStatus(value= HttpStatus.NOT_FOUND)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public ModelAndView entityNotFoundExceptionHandler(HttpServletRequest request, EntityNotFoundException exception) {
         return getModelAndView(request, HttpStatus.NOT_FOUND, exception);
     }
 
     @ExceptionHandler(AccessDeniedException.class)
-    @ResponseStatus(value= HttpStatus.FORBIDDEN)
+    @ResponseStatus(value = HttpStatus.FORBIDDEN)
     public ModelAndView accessDeniedExceptionHandler(HttpServletRequest request, AccessDeniedException exception) {
         return getModelAndView(request, HttpStatus.FORBIDDEN, exception);
     }
 
     @ExceptionHandler(Exception.class)
-    @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ModelAndView internalServerErrorHandler(HttpServletRequest request, Exception exception) {
         return getModelAndView(request, HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }

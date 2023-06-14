@@ -31,13 +31,14 @@ public class Hotel {
     @JoinColumn(name = "city_id")
     private City city;
 
-    @OneToMany(mappedBy = "hotel",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private Set<Room> rooms = new HashSet<>();
 
-    @OneToMany(mappedBy = "hotel",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private Set<Booking> bookings = new HashSet<>();
     @ColumnDefault("true")
     private boolean isActual;
+
     @Override
     public int hashCode() {
         return hotelId != null ? hotelId.hashCode() : 0;
