@@ -16,7 +16,7 @@
 <body>
 <%@include file="header.html" %>
 <h2>CREATE BOOKING</h2>
-<form:form method="POST" action="/booking/create/${room.roomId}" modelAttribute="booking">
+<form:form method="POST" action="/booking/${user_id}/create/${room.roomId}" modelAttribute="booking">
     <h3>Start Date: <input type="date" id="start_date" name="start_date"/></h3>
     <ul>
         <form:errors path="start_date" cssClass="error"/>

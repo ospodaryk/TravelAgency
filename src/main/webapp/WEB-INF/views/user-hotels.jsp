@@ -75,7 +75,7 @@
             <h2 class="hotel-name">${hotel.name}</h2> <!-- added the class here -->
             <h4 class="hotel-description">${hotel.description}</h4>
             <h3 class="hotel-location">${hotel.location}</h3> <!-- added the class here -->
-            <button onclick="window.location.href='/room/hotel/${hotel.hotelId}';">Rooms</button>
+            <button onclick="window.location.href='/room/${user_id}/hotel/${hotel.hotelId}';">Rooms</button>
 
         </div>
     </c:forEach>

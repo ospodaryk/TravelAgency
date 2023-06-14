@@ -44,9 +44,10 @@ public class BookingController {
     }
 
     @GetMapping("/{user_id}/create/{room_id}")
-    public String createBookingForm(@PathVariable("room_id") Long room_id, Model model) {
+    public String createBookingForm(@PathVariable("user_id") Long user_id, @PathVariable("room_id") Long room_id, Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
+        model.addAttribute("user_id", user_id);
         model.addAttribute("booking", new Booking());
         model.addAttribute("room", roomService.getRoomById(room_id));
         return "create-booking";
@@ -59,6 +60,7 @@ public class BookingController {
             model.addAttribute("users", users);
             return "create-booking";
         }
+        model.addAttribute("user_id", user_id);
         booking.setUser(userService.getUserById(user_id));
         booking.getRooms().add(roomService.getRoomById(room_id));
         booking.setHotel(roomService.getRoomById(room_id).getHotel());

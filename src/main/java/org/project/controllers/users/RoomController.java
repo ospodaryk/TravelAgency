@@ -31,23 +31,26 @@ public class RoomController {
         model.addAttribute("rooms", rooms);
         return "rooms";
     }
+
     @GetMapping("/user-room")
     public String showAllRoomsUser(Model model) {
         List<Room> rooms = roomService.getAllRooms();
         model.addAttribute("rooms", rooms);
         return "user-rooms";
     }
-    @GetMapping  ("/hotel/{id}")
-    public String showAllRoomsByHotel(@PathVariable(name = "id") Long id, Model model) {
+
+    @GetMapping("/{user_id}/hotel/{id}")
+    public String showAllRoomsByHotel(@PathVariable(name = "user_id") Long user_id, @PathVariable(name = "id") Long id, Model model) {
         List<Room> rooms = roomService.getRoomByHotelID(id);
         model.addAttribute("rooms", rooms);
-
+        model.addAttribute("user_id", user_id);
         model.addAttribute("hotel", hotelService.getHotelById(id).getName());
         //Todo : split by admin and user methods
 
         return "user-rooms";
     }
-    @GetMapping  ("/adm/hotel/{id}")
+
+    @GetMapping("/adm/hotel/{id}")
     public String showAllRoomsByHotelAdmin(@PathVariable(name = "id") Long id, Model model) {
         List<Room> rooms = roomService.getRoomByHotelID(id);
         model.addAttribute("rooms", rooms);
@@ -55,8 +58,9 @@ public class RoomController {
         //Todo : split by admin and user methods
         return "rooms";
     }
+
     @GetMapping("/create/{id}")
-    public String create(@PathVariable(name = "id") Long id,Model model) {
+    public String create(@PathVariable(name = "id") Long id, Model model) {
         model.addAttribute("room", new Room());
         model.addAttribute("hotels", hotelService.getAllHotels());
         model.addAttribute("hotel", hotelService.getHotelById(id));
@@ -64,7 +68,7 @@ public class RoomController {
     }
 
     @PostMapping("/create/{id}")
-    public String create(@PathVariable(name = "id") Long id,@Validated @ModelAttribute(name = "room") Room room, BindingResult result) {
+    public String create(@PathVariable(name = "id") Long id, @Validated @ModelAttribute(name = "room") Room room, BindingResult result) {
         if (result.hasErrors()) {
             return "create-room";
         }
