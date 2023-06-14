@@ -10,7 +10,7 @@
 <body>
 <%@include file="header.html" %>
 
-<div th:insert="header.html"></div>
+<div th:insert="header-admin.html"></div>
 <h2>BOOKING INFO</h2>
 <h3>Hotel: ${booking.hotel.name}</h3>
 <h3>Start Date: ${booking.start_date}</h3>

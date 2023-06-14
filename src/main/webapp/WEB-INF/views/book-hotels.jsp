@@ -11,7 +11,7 @@
 
 <%@include file="header.html" %>
 
-<div th:insert="header.html"></div>
+<div th:insert="header-admin.html"></div>
 <h1>Available Hotels</h1>
 <form method="POST" action="/hotel/book/${user_id}" >
     <label for="startDate">Start Date:</label>

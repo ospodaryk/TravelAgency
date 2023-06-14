@@ -53,7 +53,7 @@
     </style>
 </head>
 <body>
-<%@include file="header.html" %>
+<%@include file="header-admin.html" %>
 <h1>${hotel}</h1>
 
 <div class="container">

@@ -4,23 +4,10 @@
 
             <div class="container-fluid">
                 <div class="header">
-
                     <br>
-                    <button onclick="window.location.href='/user';">Users</button>
-                    <button onclick="window.location.href='/role';">Roles</button>
-                    <button onclick="window.location.href='/hotel';">Hotels</button>
-                    <button onclick="window.location.href='/room';">Rooms</button>
-                    <button onclick="window.location.href='/roomClassification';">Room Classifications</button>
-                    <button onclick="window.location.href='/country';">Countries</button>
-                    <button onclick="window.location.href='/city';">Cities</button>
-                    <button onclick="window.location.href='/booking';">Bookings</button>
-                    <!-- Logout button -->
-                    <form th:action="@{/custom-logout}" method="post" style="display: inline;">
-                        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
-                        <button type="submit">Logout</button>
-                    </form>
-
-
+                    <button class="headbut" onclick="window.location.href='/hotel';">All Hotels</button>
+                    <button class="headbut" onclick="window.location.href='/hotel/book';">Book by Date</button>
+                    <br>
                     <br>
                 </div>
             </div>
