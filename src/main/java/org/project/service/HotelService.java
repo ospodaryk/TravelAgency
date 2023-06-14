@@ -14,4 +14,6 @@ public interface HotelService {
     void updateHotel(long id,Hotel hotel);
 
     void deleteHotel(long id);
+
+    List<Hotel> getAvailableHotels(String startDate, String endDate);
 }

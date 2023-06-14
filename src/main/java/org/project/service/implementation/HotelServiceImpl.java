@@ -71,4 +71,9 @@ public class HotelServiceImpl implements HotelService {
 //        roomDAO.deleteByHotelId(id);
         hotelDAO.delete(hotelDAO.findById(id));
     }
+
+    @Override
+    public List<Hotel> getAvailableHotels(String startDate, String endDate) {
+        return hotelDAO.getAvailableHotels(startDate,endDate);
+    }
 }

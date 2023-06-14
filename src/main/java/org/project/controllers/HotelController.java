@@ -1,9 +1,6 @@
 package org.project.controllers;
 
-import org.project.models.Country;
-import org.project.models.Hotel;
-import org.project.models.Role;
-import org.project.models.City;
+import org.project.models.*;
 import org.project.service.CityService;
 import org.project.service.CountryService;
 import org.project.service.HotelService;
@@ -16,7 +13,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.beans.PropertyEditorSupport;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/hotel")
@@ -43,6 +40,42 @@ public class HotelController {
                 setValue(city);
             }
         });
+    }
+
+
+
+
+    @GetMapping("/book")
+    public String showHotelSearchForm(Model model) {
+        model.addAttribute("searchForm", new HotelSearchForm());
+        return "book-hotels";
+    }
+
+    @PostMapping("/book")
+    public String searchHotels(@ModelAttribute("searchForm") HotelSearchForm searchForm, Model model) {
+        String startDate = searchForm.getStartDate();
+        String endDate = searchForm.getEndDate();
+
+        List<Hotel> hotels = hotelService.getAvailableHotels(startDate, endDate);
+
+        // create a map where the key is the Hotel object and the value is a List of unique Room objects
+        Map<Hotel, List<Room>> uniqueRoomHotels = new HashMap<>();
+
+        for (Hotel hotel : hotels) {
+            Set<RoomClassification> classificationsSeen = new HashSet<>();
+            List<Room> uniqueRooms = new ArrayList<>();
+
+            for (Room room : hotel.getRooms()) {
+                if (classificationsSeen.add(room.getRoomClassification())) {
+                    uniqueRooms.add(room);
+                }
+            }
+
+            uniqueRoomHotels.put(hotel, uniqueRooms);
+        }
+
+        model.addAttribute("hotels", uniqueRoomHotels);
+        return "book-hotels";
     }
 
     @GetMapping("/all")
