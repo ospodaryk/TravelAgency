@@ -43,7 +43,7 @@ public class BookingController {
         return "bookings";
     }
 
-    @GetMapping("/create/{room_id}")
+    @GetMapping("/{user_id}/create/{room_id}")
     public String createBookingForm(@PathVariable("room_id") Long room_id, Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
@@ -52,14 +52,14 @@ public class BookingController {
         return "create-booking";
     }
 
-    @PostMapping("/create/{room_id}")
-    public String createBooking(@PathVariable("room_id") Long room_id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
+    @PostMapping("/{user_id}/create/{room_id}")
+    public String createBooking(@PathVariable("user_id") Long user_id, @PathVariable("room_id") Long room_id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
         if (result.hasErrors()) {
             List<User> users = userService.getAllUsers();
             model.addAttribute("users", users);
             return "create-booking";
         }
-        booking.setUser(userService.getUserById(1));
+        booking.setUser(userService.getUserById(user_id));
         booking.getRooms().add(roomService.getRoomById(room_id));
         booking.setHotel(roomService.getRoomById(room_id).getHotel());
         model.addAttribute("room", roomService.getRoomById(room_id));
@@ -75,30 +75,34 @@ public class BookingController {
         return "redirect:/booking/" + booking.getBookingId();
     }
 
-    @GetMapping("/{booking_id}/create/{room_id}")
-    public String createBookingFormFORDATE(@PathVariable("booking_id") Long booking_id, @PathVariable("room_id") Long room_id, Model model) {
+    @GetMapping("/{booking_id}/create/{room_id}/{user_id}")
+    public String createBookingFormFORDATE(@PathVariable(name = "user_id") Integer user_id, @PathVariable("booking_id") Long booking_id, @PathVariable("room_id") Long room_id, Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
         Booking booking = bookingService.getBookingById(booking_id);
+        booking.setUser(userService.getUserById(user_id));
         model.addAttribute("booking", booking);
         String startDate = booking.getStart_date().toString();
         String endDate = booking.getEnd_date().toString();
         model.addAttribute("startDate", startDate);
         model.addAttribute("endDate", endDate);
         model.addAttribute("room", roomService.getRoomById(room_id));
+        userService.getUserById(user_id).getBookings().add(booking);
+        bookingService.updateBooking(booking_id, booking);
+
         return "create-booking-date";
     }
 
-    @PostMapping("/{booking_id}/create/{room_id}")
+    @PostMapping("/{booking_id}/create/{room_id}/{user_id}")
     @Transactional
-    public String createBookingFORDATE(@PathVariable("booking_id") Long booking_id, @PathVariable("room_id") Long room_id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
+    public String createBookingFORDATE(@PathVariable("user_id") Long user_id, @PathVariable("booking_id") Long booking_id, @PathVariable("room_id") Long room_id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
         if (result.hasErrors()) {
             List<User> users = userService.getAllUsers();
             model.addAttribute("users", users);
             return "create-booking-date";
         }
         Booking existingBooking = bookingService.getBookingById(booking_id);
-        existingBooking.setUser(userService.getUserById(1));
+        existingBooking.setUser(userService.getUserById(user_id));
         existingBooking.getRooms().add(roomService.getRoomById(room_id));
         existingBooking.setHotel(roomService.getRoomById(room_id).getHotel());
         model.addAttribute("room", roomService.getRoomById(room_id));

@@ -53,8 +53,21 @@
     </style>
 </head>
 <body>
-<%@include file="header.html" %>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
 
+        <div class="container-fluid">
+            <div class="header">
+                <br>
+                <button class="headbut" onclick="window.location.href='/hotel';">All Hotels</button>
+                <button class="headbut" onclick="window.location.href='/hotel/book/${user_id}';">Book by Date</button>
+                <br>
+                <br>
+            </div>
+        </div>
+
+    </div>
+</nav>
 <h1>Hotels</h1>
 <div class="container"> <!-- added the class here -->
     <c:forEach var="hotel" items="${hotels}">
