@@ -1,4 +1,4 @@
-package org.project.controllers;
+package org.project.controllers.users;
 
 import org.project.models.Room;
 import org.project.models.Hotel;

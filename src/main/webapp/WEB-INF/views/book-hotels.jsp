@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>Available Hotels</h1>
-<form method="POST" action="/hotel/book">
+<form method="POST" action="/hotel/book" >
     <label for="startDate">Start Date:</label>
     <input type="date" id="startDate" name="startDate" required>
 
@@ -20,6 +20,9 @@
 </form>
 
 <h2>Results:</h2>
+<h1>BOOOK:${booking.start_date}</h1>
+<h1>BOOOK:${booking.end_date}</h1>
+
 <c:forEach items="${hotels}" var="entry">
     <div>
         <h3>${entry.key.name}</h3>
@@ -32,14 +35,15 @@
                     <h2 class="room-name">${room.roomClassification.name}</h2>
                     <h3 class="room-capacity">Capacity: ${room.capacity}</h3>
                     <h4 class="room-price">Price: ${room.price}</h4>
-                    <button onclick="window.location.href='/booking/create/${room.roomId}';">Book</button>
+                    <form action="/booking/${booking.bookingId}/create/${room.roomId}" method="POST">
+                        <input type="hidden" name="startDate" value="${searchForm.startDate}" />
+                        <input type="hidden" name="endDate" value="${searchForm.endDate}" />
+                        <button type="submit">Book</button>
+                    </form>
                 </div>
-
             </c:forEach>
         </div>
     </div>
-    <br>
-    <hr>
 </c:forEach>
 </body>
 </html>

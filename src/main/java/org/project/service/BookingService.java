@@ -10,9 +10,11 @@ public interface BookingService {
 
     Booking getBookingById(long id);
 
-    void saveBooking(long room_id,Booking booking);
+    void saveBooking(long room_id, Booking booking);
 
-    void updateBooking(long id,Booking booking);
+    void updateBooking(long id, Booking booking);
 
     void deleteBooking(long id);
+
+    void saveBookingWithoutRoom(Booking booking);
 }

@@ -1,4 +1,4 @@
-package org.project.controllers;
+package org.project.controllers.staff;
 
 import org.project.models.Booking;
 import org.project.models.Room;
@@ -7,17 +7,20 @@ import org.project.service.BookingService;
 import org.project.service.RoomService;
 import org.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
-
+import javax.transaction.Transactional;
 @Controller
 @RequestMapping("/booking")
+@Transactional
 public class BookingController {
 
     private BookingService bookingService;
@@ -31,7 +34,7 @@ public class BookingController {
         this.roomService = roomService;
     }
 
-
+    @PreAuthorize("hasAuthority('STAFF')")
     @GetMapping
     public String showAllBookings(Model model) {
         List<Booking> bookings = bookingService.getAllBookings();
@@ -48,7 +51,6 @@ public class BookingController {
         return "create-booking";
     }
 
-    //TODO: ADD USER
     @PostMapping("/create/{room_id}")
     public String createBooking(@PathVariable("room_id") Long room_id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
         if (result.hasErrors()) {
@@ -68,10 +70,50 @@ public class BookingController {
         Room room = roomService.getRoomById(room_id);
         room.setAvailable(false);
         roomService.updateRoom(room_id, room);
-//        System.out.println("\n\n\nROOOM:" + room_id + " | " + room.getBooking() + " | " + room.isAvailable() + "\n\n\n");
         bookingService.saveBooking(room_id, booking);
         return "redirect:/booking/" + booking.getBookingId();
     }
+
+    @GetMapping("/{booking_id}/create/{room_id}")
+    public String createBookingFormFORDATE(@PathVariable("booking_id") Long booking_id, @PathVariable("room_id") Long room_id, Model model) {
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+        Booking booking = bookingService.getBookingById(booking_id);
+        model.addAttribute("booking", booking);
+        String startDate = booking.getStart_date().toString();
+        String endDate = booking.getEnd_date().toString();
+        model.addAttribute("startDate", startDate);
+        model.addAttribute("endDate", endDate);
+        model.addAttribute("room", roomService.getRoomById(room_id));
+        return "create-booking-date";
+    }
+    @PostMapping("/{booking_id}/create/{room_id}")
+    @Transactional
+    public String createBookingFORDATE(@PathVariable("booking_id") Long booking_id, @PathVariable("room_id") Long room_id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            List<User> users = userService.getAllUsers();
+            model.addAttribute("users", users);
+            return "create-booking-date";
+        }
+        Booking existingBooking = bookingService.getBookingById(booking_id);
+        existingBooking.setUser(userService.getUserById(1));
+        existingBooking.getRooms().add(roomService.getRoomById(room_id));
+        existingBooking.setHotel(roomService.getRoomById(room_id).getHotel());
+        model.addAttribute("room", roomService.getRoomById(room_id));
+        double sum = 0;
+        for (Iterator<Room> it = existingBooking.getRooms().iterator(); it.hasNext(); ) {
+            sum += it.next().getPrice();
+        }
+        existingBooking.setTotalPrice(sum);
+        Room room = roomService.getRoomById(room_id);
+        room.setAvailable(false);
+        roomService.updateRoom(room_id, room);
+        existingBooking.getRooms().add(roomService.getRoomById(room_id));
+        bookingService.updateBooking(booking_id, existingBooking);
+        return "redirect:/booking/" + existingBooking.getBookingId();
+    }
+
+
 
     @GetMapping("/{id}")
     public String viewBooking(@PathVariable("id") Long id, Model model) {
@@ -80,6 +122,7 @@ public class BookingController {
         return "booking-info";
     }
 
+    @PreAuthorize("hasAuthority('STAFF')")
     @GetMapping("/update/{id}")
     public String updateBookingForm(@PathVariable("id") Long id, Model model) {
         Booking booking = bookingService.getBookingById(id);
@@ -101,6 +144,7 @@ public class BookingController {
         return "redirect:/booking/" + id;
     }
 
+    @PreAuthorize("hasAuthority('STAFF')")
     @GetMapping("/delete/{id}")
     public String deleteBooking(@PathVariable("id") Long id) {
         bookingService.deleteBooking(id);

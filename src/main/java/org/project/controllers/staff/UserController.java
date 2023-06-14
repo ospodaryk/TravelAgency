@@ -18,6 +18,7 @@ import java.util.List;
 
 @RequestMapping("/user")
 @Controller
+@PreAuthorize("hasAuthority('STAFF')")
 public class UserController {
 
     private UserService userService;
@@ -32,9 +33,6 @@ public class UserController {
     @GetMapping
     public String showAllUsers(Model model) {
         List<User> users = userService.getAllUsers();
-        System.out.println("----------------------------------------------------------------");
-        System.out.println(users);
-        System.out.println("----------------------------------------------------------------");
        model.addAttribute("users", users);
         return "users";
     }

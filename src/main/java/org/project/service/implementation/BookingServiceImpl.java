@@ -12,7 +12,6 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Transactional
-
 @Service
 public class BookingServiceImpl implements BookingService {
 
@@ -25,7 +24,6 @@ public class BookingServiceImpl implements BookingService {
         this.roomDAO = roomDAO;
     }
 
-
     @Override
     public List<Booking> getAllBookings() {
         return bookingDAO.getAll();
@@ -37,10 +35,15 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public void saveBooking(long room_id,Booking booking) {
-        Room room= roomDAO.findById(room_id);
+    public void saveBooking(long room_id, Booking booking) {
+        Room room = roomDAO.findById(room_id);
         room.setBooking(booking);
         roomDAO.save(room);
+        bookingDAO.save(booking);
+    }
+
+    @Override
+    public void saveBookingWithoutRoom(Booking booking) {
         bookingDAO.save(booking);
     }
 
