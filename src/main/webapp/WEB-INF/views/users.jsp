@@ -32,7 +32,7 @@
             <td>${user.email}</td>
             <td>${user.role.roleName}</td>
             <td>
-                <a href="<c:url value='/user/${user.userId}'/>" class="more">View</a> |
+                <a href="<c:url value='/user/read/${user.userId}'/>" class="more">View</a> |
                 <a href="<c:url value='/user/update/${user.userId}'/>" class="update">Update</a> |
                 <a href="<c:url value='/user/delete/${user.userId}'/>" class="delete">Delete</a>
             </td>

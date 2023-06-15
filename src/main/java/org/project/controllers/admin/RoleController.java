@@ -79,13 +79,13 @@ public class RoleController {
         }
         roleService.updateRole(id, role);
         logger.info("Role updated with id: {}", id);
-        return "redirect:/";
+        return "redirect:/role";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteRole(@PathVariable(name = "id") Long id) {
         roleService.deleteRole(id);
         logger.info("Role deleted with id: {}", id);
-        return "redirect:/";
+        return "redirect:/role";
     }
 }

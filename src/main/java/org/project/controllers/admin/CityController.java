@@ -86,13 +86,13 @@ public class CityController {
         }
         cityService.updateCity(id, city);
         logger.info("City updated with id: {}", id);
-        return "redirect:/";
+        return "redirect:/city";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteCity(@PathVariable(name = "id") Long id) {
         cityService.deleteCity(id);
         logger.info("City deleted with id: {}", id);
-        return "redirect:/";
+        return "redirect:/city";
     }
 }

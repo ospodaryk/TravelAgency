@@ -25,7 +25,7 @@
 </c:if>
 <form method="POST" id="form-login" action="${pageContext.request.contextPath}/form-login">
     <div>
-        <h2>Username:
+        <h2>Email:
             <input type="text" name="username"/></h2>
     </div>
     <div>

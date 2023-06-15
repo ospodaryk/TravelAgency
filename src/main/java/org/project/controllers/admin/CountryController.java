@@ -81,14 +81,14 @@ public class CountryController {
         }
         countryService.updateCountry(id, country);
         logger.info("Country updated with id: {}", id);
-        return "redirect:/";
+        return "redirect:/country";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteCountry(@PathVariable(name = "id") Long id) {
         countryService.deleteCountry(id);
         logger.info("Country deleted with id: {}", id);
-        return "redirect:/";
+        return "redirect:/country";
     }
 
 }

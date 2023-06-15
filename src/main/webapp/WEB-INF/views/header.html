@@ -4,7 +4,6 @@
 
             <div class="container-fluid">
                 <div class="header">
-
                     <br>
                     <button onclick="window.location.href='/user';">Users</button>
                     <button onclick="window.location.href='/role';">Roles</button>
@@ -14,13 +13,7 @@
                     <button onclick="window.location.href='/country';">Countries</button>
                     <button onclick="window.location.href='/city';">Cities</button>
                     <button onclick="window.location.href='/booking';">Bookings</button>
-                    <!-- Logout button -->
-                    <form method="post" style="display: inline;" th:action="@{/custom-logout}">
-                        <input name="_csrf" th:value="${_csrf.token}" type="hidden"/>
-                        <button type="submit">Logout</button>
-                    </form>
-
-
+                    <br>
                     <br>
                 </div>
             </div>

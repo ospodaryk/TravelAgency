@@ -29,6 +29,8 @@
 <h3>Surname: ${user.surname}</h3>
 <h3>Email: ${user.email}</h3>
 <hr>
+<button onclick="window.location.href='/booking/user';" class="update">My bookings</button>
+
 <button onclick="window.location.href='/user/update';" class="update">Update</button>
 <br><br>
 <button onclick="window.location.href='/user/delete';" class="delete">Delete</button>

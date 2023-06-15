@@ -29,14 +29,11 @@
             <td>${room.number}</td>
             <td>${room.capacity}</td>
             <td>${room.price}</td>
-            <td>${room.available ? "Yes" : "No"}</td>
+            <td>${room.actual ? "Yes" : "No"}</td>
             <td>
                 <a href="<c:url value='/room/${room.roomId}'/>" class="more">View</a> |
                 <a href="<c:url value='/room/update/${room.roomId}'/>" class="update">Update</a> |
                 <a href="<c:url value='/room/delete/${room.roomId}'/>" class="delete">Delete</a> |
-                <c:if test="${room.available}">
-                    <a href="<c:url value='/room/book/${room.roomId}'/>" class="book">Book</a>
-                </c:if>
             </td>
         </tr>
     </c:forEach>
