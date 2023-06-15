@@ -21,21 +21,16 @@ public class SecurityService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        logger.info("_____We are loadUserByUsername()");
-        System.out.println("\n\n_____We are loadUserByUsername()\n\n");
+        logger.info("Loading user by username: {}", username);
         User user = userRepository.findByLogin(username);
         if (user == null) {
-            logger.error("_____user==null");
-            System.out.println("\n\n__________user==null\n\n");
-
-            throw new UsernameNotFoundException("User with this email does not exists");
+            logger.error("User with username {} not found", username);
+            throw new UsernameNotFoundException("User with this email does not exist");
         }
-        System.out.println("\n\n_______________Everything fine\n\n");
 
-        logger.info("_____Everything fine");
+        logger.info("User {} loaded successfully", username);
         return new Security(user);
     }
 }
