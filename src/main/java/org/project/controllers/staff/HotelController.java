@@ -3,6 +3,7 @@ package org.project.controllers.staff;
 import org.project.models.*;
 import org.project.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,9 +12,12 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.beans.PropertyEditorSupport;
+import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import org.project.configuration.security.Security;
 
 @Controller
 @RequestMapping("/hotel")
@@ -109,9 +113,11 @@ public class HotelController {
     }
 
     @GetMapping("/{user_id}")
-    public String showAllHotelsUser(@PathVariable(name = "user_id") Integer user_id, Model model) {
+    public String showAllHotelsUser(@PathVariable(name = "user_id") Integer user_id, Model model, Principal principal) {
         List<Hotel> hotels = hotelService.getAllHotels();
-        model.addAttribute("user_id", user_id);
+        Security userDetails = (Security) ((Authentication) principal).getPrincipal();
+        model.addAttribute("userId", userDetails.getUserId());
+//        model.addAttribute("user_id", user_id);
         model.addAttribute("hotels", hotels);
         return "user-hotels";
     }

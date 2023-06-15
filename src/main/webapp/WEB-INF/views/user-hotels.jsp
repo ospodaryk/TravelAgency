@@ -60,8 +60,11 @@
             <div class="header">
                 <br>
                 <button class="headbut" onclick="window.location.href='/hotel';">All Hotels</button>
-                <button class="headbut" onclick="window.location.href='/hotel/book/${user_id}';">Book by Date</button>
+                <button class="headbut" onclick="window.location.href='/hotel/book/${userId}';">Book by Date</button>
                 <br>
+                <button className="headbut"
+                        onclick="window.location.href='/user/${userId}';">My profile
+                </button>
                 <br>
             </div>
         </div>

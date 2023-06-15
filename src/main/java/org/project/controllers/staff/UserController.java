@@ -14,11 +14,12 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.beans.PropertyEditorSupport;
+import java.security.Principal;
 import java.util.List;
 
 @RequestMapping("/user")
 @Controller
-@PreAuthorize("hasAuthority('STAFF')")
+//@PreAuthorize("hasAuthority('STAFF')")
 public class UserController {
 
     private UserService userService;
@@ -55,9 +56,10 @@ public class UserController {
         return "redirect:/";
     }
 
-    @PreAuthorize("hasRole('STAFF')")
+    @PreAuthorize("#id==authentication.principal.getUserId()")
     @GetMapping("/{id}")
-    public String read(@PathVariable(name = "id") Integer id, Model model) {
+    public String read(@PathVariable(name = "id") long id, Model model, Principal principal) {
+        System.out.println("\n\n"+id+"!="+principal.getName()+"\n\n");
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
         return "user-info";

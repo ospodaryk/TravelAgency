@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<%@include file="header.html" %>
+<%@include file="header-admin.html" %>
 
 <div th:insert="header-admin.html"></div>
 <h1>Available Hotels</h1>

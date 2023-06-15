@@ -21,7 +21,7 @@ public class Role {
     @Column(name = "role_name", unique = true)
     private String roleName;
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @ToString.Exclude
     private Set<User> users = new HashSet<>();
 

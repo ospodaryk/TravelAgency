@@ -1,6 +1,7 @@
 package org.project.configuration.security;
 
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -17,13 +18,12 @@ import java.util.List;
 import java.util.Set;
 
 @RequiredArgsConstructor
-@Getter
-@Setter
+@Data
 public class Security implements UserDetails {
     private static final Logger logger = LoggerFactory.getLogger(Security.class);
 
     private long id;
-    private Long userId;
+    private long userId;
     private String login;
     private String name;
     private String surname;
