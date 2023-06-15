@@ -31,8 +31,6 @@ public class Room {
     @Column(name = "price", nullable = false)
     private double price;
 
-    private boolean isAvailable;
-
     @ManyToOne
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
@@ -40,6 +38,7 @@ public class Room {
     @ManyToOne
     @JoinColumn(name = "booking_id")
     private Booking booking;
+
     @ColumnDefault("true")
     private boolean isActual;
 
@@ -47,6 +46,4 @@ public class Room {
     public int hashCode() {
         return roomId != null ? roomId.hashCode() : 0;
     }
-
-
 }

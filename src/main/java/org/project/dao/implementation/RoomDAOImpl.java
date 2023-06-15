@@ -6,9 +6,8 @@ import org.hibernate.query.Query;
 import org.project.dao.RoomDAO;
 import org.project.models.Room;
 import org.springframework.stereotype.Repository;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 
@@ -27,7 +26,7 @@ public class RoomDAOImpl extends GenericDAOImpl<Room, Long> implements RoomDAO {
 
         try {
             session = sessionFactory.getCurrentSession();
-            String hql = "FROM Room WHERE hotel.id = :hotelId";
+            String hql = "FROM Room WHERE hotel.id = :hotelId AND isActual = true";
             Query<Room> query = session.createQuery(hql, Room.class);
             query.setParameter("hotelId", id);
             rooms = query.getResultList();
@@ -36,8 +35,17 @@ public class RoomDAOImpl extends GenericDAOImpl<Room, Long> implements RoomDAO {
             e.printStackTrace();
         }
 
-        return rooms;
+        Map<Long, Room> roomMap = rooms.stream()
+                .collect(Collectors.toMap(
+                        room -> room.getRoomClassification().getId(),
+                        room -> room,
+                        (oldValue, newValue) -> oldValue)
+                );
+
+        // Return a new list of rooms, without duplicate roomClassification
+        return new ArrayList<>(roomMap.values());
     }
+
 
     @Override
     public void deleteByClassificationId(long id) {

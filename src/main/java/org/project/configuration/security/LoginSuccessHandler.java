@@ -28,7 +28,7 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
         if (userDetails.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("STAFF"))) {
             redirectURL += "/user/";
         } else {
-            redirectURL += "/hotel/" + userDetails.getUserId();
+            redirectURL += "/hotel/";
         }
         getRedirectStrategy().sendRedirect(request, response, redirectURL);
     }

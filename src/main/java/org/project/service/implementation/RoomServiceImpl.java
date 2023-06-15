@@ -42,10 +42,8 @@ public class RoomServiceImpl implements RoomService {
         Room existingRoom = roomDAO.findById(id);
 
         if (existingRoom != null) {
-
-
             existingRoom.setRoomId(id);
-            existingRoom.setAvailable(room.isAvailable());
+            existingRoom.setActual(room.isActual());
             existingRoom.setCapacity(room.getCapacity());
             existingRoom.setPrice(room.getPrice());
             existingRoom.setNumber(room.getNumber());

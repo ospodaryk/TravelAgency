@@ -1,11 +1,13 @@
 package org.project.controllers.staff;
 
+import org.project.configuration.security.Security;
 import org.project.models.Role;
 import org.project.models.User;
 import org.project.service.RoleService;
 import org.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -56,18 +58,26 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/read")
+    public String read( Model model, Principal principal) {
+        Security userDetails = (Security) ((Authentication) principal).getPrincipal();
+        long id=userDetails.getUserId();
+        User user = userService.getUserById(id);
+        model.addAttribute("user", user);
+        return "user-more";
+    }
     @PreAuthorize("#id==authentication.principal.getUserId()")
     @GetMapping("/{id}")
-    public String read(@PathVariable(name = "id") long id, Model model, Principal principal) {
+    public String readByID(@PathVariable(name = "id") long id, Model model, Principal principal) {
         System.out.println("\n\n"+id+"!="+principal.getName()+"\n\n");
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
         return "user-more";
     }
-
-    @GetMapping("/update/{id}")
-    public String update(@PathVariable(name = "id") Integer id, Model model) {
-
+    @GetMapping("/update")
+    public String update( Model model, Principal principal) {
+        Security userDetails = (Security) ((Authentication) principal).getPrincipal();
+        long id=userDetails.getUserId();
         User user = userService.getUserById(id);
         System.out.println("BEFORE+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println(user);
@@ -92,8 +102,10 @@ public class UserController {
         });
     }
 
-    @PostMapping("/update/{id}")
-    public String update(@PathVariable(name = "id") Long id, @ModelAttribute(name = "user") User user, BindingResult result) {
+    @PostMapping("/update")
+    public String update( @ModelAttribute(name = "user") User user, BindingResult result, Principal principal) {
+        Security userDetails = (Security) ((Authentication) principal).getPrincipal();
+        long id=userDetails.getUserId();
         if (result.hasErrors()) {
             System.out.println("\n\n\n\nERROR:");
             System.out.println(result.getAllErrors());
@@ -107,8 +119,10 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable(name = "id") Integer id) {
+    @GetMapping("/delete")
+    public String delete( Principal principal) {
+        Security userDetails = (Security) ((Authentication) principal).getPrincipal();
+        long id=userDetails.getUserId();
         userService.deleteUser(id);
         return "redirect:/";
     }

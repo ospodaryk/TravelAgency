@@ -60,9 +60,9 @@
             <div class="header">
                 <br>
                 <button class="headbut" onclick="window.location.href='/hotel';">All Hotels</button>
-                <button class="headbut" onclick="window.location.href='/hotel/book/${userId}';">Book by Date</button>
+                <button class="headbut" onclick="window.location.href='/hotel/book';">Book by Date</button>
                 <button className="headbut" class="headbut right-button"
-                        onclick="window.location.href='/user/${userId}';">My profile
+                        onclick="window.location.href='/user/read';">My profile
                 </button>
                 <br>
             </div>
@@ -71,14 +71,13 @@
     </div>
 </nav>
 <h1>Hotels</h1>
-<div class="container"> <!-- added the class here -->
+<div class="container">
     <c:forEach var="hotel" items="${hotels}">
-        <div class="hotel-card"> <!-- added the class here -->
-            <h2 class="hotel-name">${hotel.name}</h2> <!-- added the class here -->
+        <div class="hotel-card">
+            <h2 class="hotel-name">${hotel.name}</h2>
             <h4 class="hotel-description">${hotel.description}</h4>
-            <h3 class="hotel-location">${hotel.location}</h3> <!-- added the class here -->
-            <button onclick="window.location.href='/room/${user_id}/hotel/${hotel.hotelId}';">Rooms</button>
-
+            <h3 class="hotel-location">${hotel.location}</h3>
+            <button onclick="window.location.href='/room/hotel/${hotel.hotelId}';">Rooms</button>
         </div>
     </c:forEach>
 </div>

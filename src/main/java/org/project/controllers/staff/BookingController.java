@@ -1,5 +1,6 @@
 package org.project.controllers.staff;
 
+import org.project.configuration.security.Security;
 import org.project.models.Booking;
 import org.project.models.Room;
 import org.project.models.User;
@@ -8,6 +9,7 @@ import org.project.service.RoomService;
 import org.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.security.Principal;
 import java.util.Iterator;
 import java.util.List;
 
@@ -42,8 +45,10 @@ public class BookingController {
         return "bookings";
     }
 
-    @GetMapping("/{user_id}/create/{room_id}")
-    public String createBookingForm(@PathVariable("user_id") Long user_id, @PathVariable("room_id") Long room_id, Model model) {
+    @GetMapping("/create/{room_id}")
+    public String createBookingForm( @PathVariable("room_id") Long room_id, Model model, Principal principal) {
+        Security userDetails = (Security) ((Authentication) principal).getPrincipal();
+        long user_id=userDetails.getUserId();
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
         model.addAttribute("user_id", user_id);
@@ -52,8 +57,10 @@ public class BookingController {
         return "create-booking";
     }
 
-    @PostMapping("/{user_id}/create/{room_id}")
-    public String createBooking(@PathVariable("user_id") Long user_id, @PathVariable("room_id") Long room_id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
+    @PostMapping("/create/{room_id}")
+    public String createBooking(Principal principal, @PathVariable("room_id") Long room_id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
+        Security userDetails = (Security) ((Authentication) principal).getPrincipal();
+        long user_id=userDetails.getUserId();
         if (result.hasErrors()) {
             List<User> users = userService.getAllUsers();
             model.addAttribute("users", users);
@@ -70,14 +77,15 @@ public class BookingController {
         }
         booking.setTotalPrice(sum);
         Room room = roomService.getRoomById(room_id);
-        room.setAvailable(false);
         roomService.updateRoom(room_id, room);
         bookingService.saveBooking(room_id, booking);
         return "redirect:/booking/" + booking.getBookingId();
     }
 
-    @GetMapping("/{booking_id}/create/{room_id}/{user_id}")
-    public String createBookingFormFORDATE(@PathVariable(name = "user_id") Integer user_id, @PathVariable("booking_id") Long booking_id, @PathVariable("room_id") Long room_id, Model model) {
+    @GetMapping("/{booking_id}/create/{room_id}")
+    public String createBookingFormFORDATE(Principal principal, @PathVariable("booking_id") Long booking_id, @PathVariable("room_id") Long room_id, Model model) {
+        Security userDetails = (Security) ((Authentication) principal).getPrincipal();
+        long user_id=userDetails.getUserId();
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
         Booking booking = bookingService.getBookingById(booking_id);
@@ -94,9 +102,11 @@ public class BookingController {
         return "create-booking-date";
     }
 
-    @PostMapping("/{booking_id}/create/{room_id}/{user_id}")
+    @PostMapping("/{booking_id}/create/{room_id}")
     @Transactional
-    public String createBookingFORDATE(@PathVariable("user_id") Long user_id, @PathVariable("booking_id") Long booking_id, @PathVariable("room_id") Long room_id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
+    public String createBookingFORDATE(Principal principal, @PathVariable("booking_id") Long booking_id, @PathVariable("room_id") Long room_id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
+        Security userDetails = (Security) ((Authentication) principal).getPrincipal();
+        long user_id=userDetails.getUserId();
         if (result.hasErrors()) {
             List<User> users = userService.getAllUsers();
             model.addAttribute("users", users);
@@ -113,7 +123,7 @@ public class BookingController {
         }
         existingBooking.setTotalPrice(sum);
         Room room = roomService.getRoomById(room_id);
-        room.setAvailable(false);
+//        room.setAvailable(false);
         roomService.updateRoom(room_id, room);
         existingBooking.setNumOfPeople(room.getCapacity());
         existingBooking.getRooms().add(roomService.getRoomById(room_id));

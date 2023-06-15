@@ -31,7 +31,6 @@ public class HotelDAOImpl extends GenericDAOImpl<Hotel, Long> implements HotelDA
                 for (Iterator<Room> it = hotel.getRooms().iterator(); it.hasNext(); ) {
                     Room room = it.next();
                     room.setActual(false);
-                    room.setAvailable(false);
                 }
             }
         } else {
@@ -53,7 +52,7 @@ public class HotelDAOImpl extends GenericDAOImpl<Hotel, Long> implements HotelDA
                 "LEFT JOIN r.booking b " +
                 "WHERE (b IS NULL OR (b.start_date NOT BETWEEN :startDate AND :endDate " +
                 "AND b.end_date NOT BETWEEN :startDate AND :endDate)) " +
-                "AND h.isActual = true AND r.isAvailable = true";
+                "AND h.isActual = true";
 
         return getSession().createQuery(query, Hotel.class)
                 .setParameter("startDate", start)

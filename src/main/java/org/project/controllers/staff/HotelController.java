@@ -51,15 +51,19 @@ public class HotelController {
     }
 
 
-    @GetMapping("/book/{user_id}")
-    public String showHotelSearchForm(@PathVariable(name = "user_id") Integer user_id, Model model) {
+    @GetMapping("/book")
+    public String showHotelSearchForm(Model model, Principal principal) {
+        Security userDetails = (Security) ((Authentication) principal).getPrincipal();
+        long user_id=userDetails.getUserId();
         model.addAttribute("searchForm", new HotelSearchForm());
         model.addAttribute("user_id", user_id);
         return "book-hotels";
     }
 
-    @PostMapping("/book/{user_id}")
-    public String searchHotels(@PathVariable(name = "user_id") Integer user_id, @ModelAttribute("searchForm") HotelSearchForm searchForm, Model model) {
+    @PostMapping("/book")
+    public String searchHotels(Principal principal,@ModelAttribute("searchForm") HotelSearchForm searchForm, Model model) {
+        Security userDetails = (Security) ((Authentication) principal).getPrincipal();
+        long user_id=userDetails.getUserId();
         model.addAttribute("user_id", user_id);
         String startDateStr = searchForm.getStartDate();
         String endDateStr = searchForm.getEndDate();
@@ -112,12 +116,11 @@ public class HotelController {
         return "hotels";
     }
 
-    @GetMapping("/{user_id}")
-    public String showAllHotelsUser(@PathVariable(name = "user_id") Integer user_id, Model model, Principal principal) {
+    @GetMapping
+    public String showAllHotelsUser(Model model, Principal principal) {
         List<Hotel> hotels = hotelService.getAllHotels();
         Security userDetails = (Security) ((Authentication) principal).getPrincipal();
         model.addAttribute("userId", userDetails.getUserId());
-//        model.addAttribute("user_id", user_id);
         model.addAttribute("hotels", hotels);
         return "user-hotels";
     }

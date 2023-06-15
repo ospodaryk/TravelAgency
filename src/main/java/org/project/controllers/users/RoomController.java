@@ -1,15 +1,18 @@
 package org.project.controllers.users;
 
+import org.project.configuration.security.Security;
 import org.project.models.Room;
 import org.project.service.HotelService;
 import org.project.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -38,14 +41,14 @@ public class RoomController {
         return "user-rooms";
     }
 
-    @GetMapping("/{user_id}/hotel/{id}")
-    public String showAllRoomsByHotel(@PathVariable(name = "user_id") Long user_id, @PathVariable(name = "id") Long id, Model model) {
+    @GetMapping("/hotel/{id}")
+    public String showAllRoomsByHotel(Principal principal, @PathVariable(name = "id") Long id, Model model) {
+        Security userDetails = (Security) ((Authentication) principal).getPrincipal();
+        long user_id=userDetails.getUserId();
         List<Room> rooms = roomService.getRoomByHotelID(id);
         model.addAttribute("rooms", rooms);
         model.addAttribute("user_id", user_id);
         model.addAttribute("hotel", hotelService.getHotelById(id).getName());
-        //Todo : split by admin and user methods
-
         return "user-rooms";
     }
 
