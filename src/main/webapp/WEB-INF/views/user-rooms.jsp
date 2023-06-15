@@ -53,7 +53,23 @@
     </style>
 </head>
 <body>
-<%@include file="header-admin.html" %>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+        <div class="container-fluid">
+            <div class="header">
+                <br>
+                <button class="headbut" onclick="window.location.href='/hotel';">All Hotels</button>
+                <button class="headbut" onclick="window.location.href='/hotel/book';">Book by Date</button>
+                <button className="headbut" class="headbut right-button" onclick="window.location.href='/user/read';">My
+                    profile
+                </button>
+                <br>
+            </div>
+        </div>
+
+    </div>
+</nav>
 <h1>${hotel}</h1>
 
 <div class="container">
