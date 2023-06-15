@@ -8,11 +8,11 @@
     </style>
 </head>
 <body>
-<%@include file="header.html" %>
+<%@include file="header-admin.html" %>
 
 <h2>UPDATE USER</h2>
 <form action="<c:url value='/user/update/'/>${user.userId}" method="post">
-    <h3>ID: <span>${user.userId}</span></h3>
+<%--    <h3>ID: <span>${user.userId}</span></h3>--%>
     <h3>Login: <input type="text" name="login" value="${user.login}"></h3>
     <h3>Name: <input type="text" name="name" value="${user.name}"></h3>
     <h3>Surname: <input type="text" name="surname" value="${user.surname}"></h3>

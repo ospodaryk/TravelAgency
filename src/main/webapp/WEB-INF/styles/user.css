@@ -144,4 +144,6 @@ button:hover, .submit-button:hover, .logout-button:hover {
     color: #FAD188;
 }
 
-/* More styles from the second file have been merged into the first one. */
+.right-button {
+    margin-left: 90%;
+}

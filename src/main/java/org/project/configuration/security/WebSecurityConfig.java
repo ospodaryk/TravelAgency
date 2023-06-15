@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                .logoutUrl("/custom-logout")
+                .logoutUrl("/logout")
                 .logoutSuccessUrl("/form-login?logout=true")
                 .deleteCookies("JSESSIONID")
                 .permitAll();
@@ -70,7 +70,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public LoginSuccessHandler loginSuccessHandler() {
         return new LoginSuccessHandler();
     }
-
-    // Other beans and configurations
 
 }

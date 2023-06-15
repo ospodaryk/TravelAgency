@@ -61,8 +61,7 @@
                 <br>
                 <button class="headbut" onclick="window.location.href='/hotel';">All Hotels</button>
                 <button class="headbut" onclick="window.location.href='/hotel/book/${userId}';">Book by Date</button>
-                <br>
-                <button className="headbut"
+                <button className="headbut" class="headbut right-button"
                         onclick="window.location.href='/user/${userId}';">My profile
                 </button>
                 <br>

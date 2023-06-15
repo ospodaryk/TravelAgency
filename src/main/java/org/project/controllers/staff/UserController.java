@@ -62,7 +62,7 @@ public class UserController {
         System.out.println("\n\n"+id+"!="+principal.getName()+"\n\n");
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
-        return "user-info";
+        return "user-more";
     }
 
     @GetMapping("/update/{id}")
