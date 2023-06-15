@@ -45,10 +45,18 @@ public class BookingController {
         return "bookings";
     }
 
-    @GetMapping("/create/{room_id}")
-    public String createBookingForm( @PathVariable("room_id") Long room_id, Model model, Principal principal) {
+    @GetMapping("/user")
+    public String getBookingByUSerID(Model model, Principal principal) {
         Security userDetails = (Security) ((Authentication) principal).getPrincipal();
-        long user_id=userDetails.getUserId();
+        long user_id = userDetails.getUserId();
+        model.addAttribute("bookings", bookingService.getAllBookingsByUserId(user_id));
+        return "user-bookings";
+    }
+
+    @GetMapping("/create/{room_id}")
+    public String createBookingForm(@PathVariable("room_id") Long room_id, Model model, Principal principal) {
+        Security userDetails = (Security) ((Authentication) principal).getPrincipal();
+        long user_id = userDetails.getUserId();
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
         model.addAttribute("user_id", user_id);
@@ -60,7 +68,7 @@ public class BookingController {
     @PostMapping("/create/{room_id}")
     public String createBooking(Principal principal, @PathVariable("room_id") Long room_id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
         Security userDetails = (Security) ((Authentication) principal).getPrincipal();
-        long user_id=userDetails.getUserId();
+        long user_id = userDetails.getUserId();
         if (result.hasErrors()) {
             List<User> users = userService.getAllUsers();
             model.addAttribute("users", users);
@@ -85,7 +93,7 @@ public class BookingController {
     @GetMapping("/{booking_id}/create/{room_id}")
     public String createBookingFormFORDATE(Principal principal, @PathVariable("booking_id") Long booking_id, @PathVariable("room_id") Long room_id, Model model) {
         Security userDetails = (Security) ((Authentication) principal).getPrincipal();
-        long user_id=userDetails.getUserId();
+        long user_id = userDetails.getUserId();
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
         Booking booking = bookingService.getBookingById(booking_id);
@@ -106,7 +114,7 @@ public class BookingController {
     @Transactional
     public String createBookingFORDATE(Principal principal, @PathVariable("booking_id") Long booking_id, @PathVariable("room_id") Long room_id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
         Security userDetails = (Security) ((Authentication) principal).getPrincipal();
-        long user_id=userDetails.getUserId();
+        long user_id = userDetails.getUserId();
         if (result.hasErrors()) {
             List<User> users = userService.getAllUsers();
             model.addAttribute("users", users);
@@ -123,7 +131,7 @@ public class BookingController {
         }
         existingBooking.setTotalPrice(sum);
         Room room = roomService.getRoomById(room_id);
-//        room.setAvailable(false);
+        room.setActual(false);
         roomService.updateRoom(room_id, room);
         existingBooking.setNumOfPeople(room.getCapacity());
         existingBooking.getRooms().add(roomService.getRoomById(room_id));
