@@ -4,7 +4,7 @@
 <head>
     <title>All Bookings</title>
     <style>
-        <%@include file="../styles/user.css"%>
+        <%@include file="../styles/admin.css"%>
     </style>
 </head>
 <body>
@@ -21,6 +21,10 @@
         <th>End Date</th>
         <th>Number of People</th>
         <th>Total Price</th>
+        <th>Hotel</th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Actual</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -32,9 +36,15 @@
             <td>${booking.end_date}</td>
             <td>${booking.numOfPeople}</td>
             <td>${booking.totalPrice}</td>
+            <td>${booking.hotel.name}</td>
+            <td>${booking.hotel.city.country.name}</td>
+            <td>${booking.hotel.city.name}</td>
+
+            <td>${booking.actual ? "Yes" : "No"}</td>
+
             <td>
                 <a href="<c:url value='/booking/${booking.bookingId}'/>" class="more">View</a> |
-                <a href="<c:url value='/booking/update/${booking.bookingId}'/>" class="update">Update</a> |
+<%--                <a href="<c:url value='/booking/update/${booking.bookingId}'/>" class="update">Update</a> |--%>
                 <a href="<c:url value='/booking/delete/${booking.bookingId}'/>" class="delete">Delete</a>
             </td>
         </tr>

@@ -29,7 +29,6 @@ public class CountryController {
         logger.info("CountryController initialized with services.");
     }
 
-    @PreAuthorize("hasAuthority('STAFF')")
     @GetMapping
     public String displayAllCountries(Model model) {
         List<Country> countries = countryService.getAllCountries();
@@ -56,7 +55,6 @@ public class CountryController {
         return "redirect:/country/" + country.getCountryId();
     }
 
-    @PreAuthorize("hasAuthority('STAFF')")
     @GetMapping("/{id}")
     public String displayCountryInfo(@PathVariable(name = "id") Long id, Model model) {
         Country country = countryService.getCountryById(id);

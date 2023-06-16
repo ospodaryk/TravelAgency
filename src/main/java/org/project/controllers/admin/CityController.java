@@ -32,7 +32,6 @@ public class CityController {
         logger.info("CityController initialized with services.");
     }
 
-    @PreAuthorize("hasAuthority('STAFF')")
     @GetMapping
     public String displayAllCities(Model model) {
         List<City> cities = cityService.getAllCities();
@@ -60,7 +59,6 @@ public class CityController {
         return "redirect:/city/" + city.getCityId();
     }
 
-    @PreAuthorize("hasAuthority('STAFF')")
     @GetMapping("/{id}")
     public String displayCityInfo(@PathVariable(name = "id") Long id, Model model) {
         City city = cityService.getCityById(id);

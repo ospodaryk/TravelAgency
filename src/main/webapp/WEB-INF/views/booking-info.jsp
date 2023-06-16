@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <title>Booking Info</title>
     <style>
-        <%@include file="../styles/user.css"%>
+        <%@include file="../styles/admin.css"%>
     </style>
 </head>
 <body>
 <%@include file="header.html" %>
 
-<div th:insert="header-admin.html"></div>
+<div th:insert="header.html"></div>
 <h2>BOOKING INFO</h2>
 <h3>Hotel: ${booking.hotel.name}</h3>
 <h3>Start Date: ${booking.start_date}</h3>
 <h3>End Date: ${booking.end_date}</h3>
 <h3>Total Price: ${booking.totalPrice}</h3>
 <hr>
-<button onclick="window.location.href='/bookings';">Return Back</button>
+<button onclick="window.location.href='/booking';">Return Back</button>
 
 </body>
 </html>

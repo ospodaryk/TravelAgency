@@ -16,6 +16,7 @@
     <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>Actual</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -24,6 +25,8 @@
         <tr>
             <td>${country.countryId}</td>
             <td>${country.name}</td>
+            <td>${country.actual ? "Yes" : "No"}</td>
+
             <td>
                 <a href="<c:url value='/country/${country.countryId}'/>" class="more">View</a> |
                 <a href="<c:url value='/country/update/${country.countryId}'/>" class="update">Update</a> |

@@ -50,7 +50,7 @@ public class BookingController {
         logger.info("BookingController initialized");
     }
 
-    @PreAuthorize("hasAuthority('STAFF')")
+    @PreAuthorize("hasAuthority('STAFF') or hasAuthority('ADMIN')")
     @GetMapping
     public String displayAllBookings(Model model) {
         logger.info("Entering displayAllBookings");
@@ -124,7 +124,7 @@ public class BookingController {
         return "booking-info";
     }
 
-    @PreAuthorize("hasAuthority('STAFF')")
+    @PreAuthorize("hasAuthority('STAFF') or hasAuthority('ADMIN')")
     @GetMapping("/update/{id}")
     public String showUpdateBookingForm(@PathVariable("id") Long id, Model model) {
         logger.info("Entering showUpdateBookingForm");
@@ -149,7 +149,7 @@ public class BookingController {
         return "redirect:/booking/" + id;
     }
 
-    @PreAuthorize("hasAuthority('STAFF')")
+    @PreAuthorize("hasAuthority('STAFF') or hasAuthority('ADMIN')")
     @GetMapping("/delete/{id}")
     public String deleteBookingRecord(@PathVariable("id") Long id) {
         logger.info("Entering deleteBookingRecord");

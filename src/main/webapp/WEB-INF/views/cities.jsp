@@ -16,6 +16,7 @@
     <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>Actual</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -24,6 +25,8 @@
         <tr>
             <td>${city.cityId}</td>
             <td>${city.name}</td>
+            <td>${city.actual ? "Yes" : "No"}</td>
+
             <td>
                 <a href="<c:url value='/city/${city.cityId}'/>" class="more">View</a> |
                 <a href="<c:url value='/city/update/${city.cityId}'/>" class="update">Update</a> |

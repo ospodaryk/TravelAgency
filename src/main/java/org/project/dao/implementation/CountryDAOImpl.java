@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.project.dao.CountryDAO;
+import org.project.models.Booking;
 import org.project.models.City;
 import org.project.models.Country;
 import org.project.models.Hotel;
@@ -96,6 +97,9 @@ public class CountryDAOImpl extends GenericDAOImpl<Country, Long> implements Cou
                 for (City city : country.getCities()) {
                     for (Hotel hotel : city.getHotels()) {
                         hotel.setActual(false);
+                        for (Booking booking : hotel.getBookings()) {
+                            booking.setActual(false);
+                        }
                     }
                     city.setActual(false);
                 }
