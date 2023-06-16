@@ -23,16 +23,16 @@ This project is a web application for a travel agency, allowing users to find an
     - Implement DAOs for each entity.
     - Implement Service layer for business logic.
 
-- [ ] **User Authentication and Authorization**:
+- [x] **User Authentication and Authorization**:
     - Implement user registration and login functionality using Spring Security.
     - Implement role-based access control (User vs Manager).
 
-- [ ] **Frontend Development**:
+- [x] **Frontend Development**:
     - Design and implement `Login` page.
     - Design and implement `Home` page for hotel search, room availability checking, and room booking.
     - Design and implement `Management` page for managers to manage hotels and bookings.
 
-- [ ] **Integration and Testing**:
+- [x] **Integration and Testing**:
     - Implement Controllers using Spring MVC.
     - Test application functionality.
     - Ensure all components work together as expected.
