@@ -21,40 +21,58 @@ import java.security.Principal;
 import java.util.Iterator;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
+import java.util.List;
+
 @Controller
 @RequestMapping("/booking")
 @Transactional
 public class BookingController {
 
-    private BookingService bookingService;
-    private UserService userService;
-    private RoomService roomService;
+    private static final Logger logger = LoggerFactory.getLogger(BookingController.class);
+
+    private final BookingService bookingService;
+    private final UserService userService;
+    private final RoomService roomService;
 
     @Autowired
     public BookingController(BookingService bookingService, UserService userService, RoomService roomService) {
         this.bookingService = bookingService;
         this.userService = userService;
         this.roomService = roomService;
+        logger.info("BookingController initialized");
     }
 
     @PreAuthorize("hasAuthority('STAFF')")
     @GetMapping
-    public String showAllBookings(Model model) {
+    public String displayAllBookings(Model model) {
+        logger.info("Entering displayAllBookings");
         List<Booking> bookings = bookingService.getAllBookings();
         model.addAttribute("bookings", bookings);
+        logger.info("Exiting displayAllBookings");
         return "bookings";
     }
 
     @GetMapping("/user")
-    public String getBookingByUSerID(Model model, Principal principal) {
+    public String fetchUserBookings(Model model, Principal principal) {
+        logger.info("Entering fetchUserBookings");
         Security userDetails = (Security) ((Authentication) principal).getPrincipal();
         long user_id = userDetails.getUserId();
         model.addAttribute("bookings", bookingService.getAllBookingsByUserId(user_id));
+        logger.info("Exiting fetchUserBookings");
         return "user-bookings";
     }
 
     @GetMapping("/create/{room_id}")
-    public String createBookingForm(@PathVariable("room_id") Long room_id, Model model, Principal principal) {
+    public String showCreateBookingForm(@PathVariable("room_id") Long room_id, Model model, Principal principal) {
+        logger.info("Entering showCreateBookingForm");
         Security userDetails = (Security) ((Authentication) principal).getPrincipal();
         long user_id = userDetails.getUserId();
         List<User> users = userService.getAllUsers();
@@ -62,116 +80,81 @@ public class BookingController {
         model.addAttribute("user_id", user_id);
         model.addAttribute("booking", new Booking());
         model.addAttribute("room", roomService.getRoomById(room_id));
+        logger.info("Exiting showCreateBookingForm");
         return "create-booking";
     }
 
     @PostMapping("/create/{room_id}")
-    public String createBooking(Principal principal, @PathVariable("room_id") Long room_id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
-        Security userDetails = (Security) ((Authentication) principal).getPrincipal();
-        long user_id = userDetails.getUserId();
+    public String createNewBooking(Principal principal, @PathVariable("room_id") Long room_id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
+        logger.info("Entering createNewBooking");
         if (result.hasErrors()) {
             List<User> users = userService.getAllUsers();
             model.addAttribute("users", users);
             return "create-booking";
         }
-        model.addAttribute("user_id", user_id);
-        booking.setUser(userService.getUserById(user_id));
-        booking.getRooms().add(roomService.getRoomById(room_id));
-        booking.setHotel(roomService.getRoomById(room_id).getHotel());
-        model.addAttribute("room", roomService.getRoomById(room_id));
-        double sum = 0;
-        for (Iterator<Room> it = booking.getRooms().iterator(); it.hasNext(); ) {
-            sum += it.next().getPrice();
-        }
-        booking.setTotalPrice(sum);
-        Room room = roomService.getRoomById(room_id);
-        roomService.updateRoom(room_id, room);
-        bookingService.saveBooking(room_id, booking);
-        return "redirect:/booking/" + booking.getBookingId();
-    }
-
-    @GetMapping("/{booking_id}/create/{room_id}")
-    public String createBookingFormFORDATE(Principal principal, @PathVariable("booking_id") Long booking_id, @PathVariable("room_id") Long room_id, Model model) {
         Security userDetails = (Security) ((Authentication) principal).getPrincipal();
         long user_id = userDetails.getUserId();
-        List<User> users = userService.getAllUsers();
-        model.addAttribute("users", users);
-        Booking booking = bookingService.getBookingById(booking_id);
-        booking.setUser(userService.getUserById(user_id));
-        model.addAttribute("booking", booking);
-        String startDate = booking.getStart_date().toString();
-        String endDate = booking.getEnd_date().toString();
-        model.addAttribute("startDate", startDate);
-        model.addAttribute("endDate", endDate);
-        model.addAttribute("room", roomService.getRoomById(room_id));
-        userService.getUserById(user_id).getBookings().add(booking);
-        bookingService.updateBooking(booking_id, booking);
-
-        return "create-booking-date";
+        Booking createdBooking = bookingService.prepareBookingWithRoom(user_id, room_id, booking);
+        logger.info("Exiting createNewBooking");
+        return "redirect:/booking/" + createdBooking.getBookingId();
     }
 
     @PostMapping("/{booking_id}/create/{room_id}")
     @Transactional
-    public String createBookingFORDATE(Principal principal, @PathVariable("booking_id") Long booking_id, @PathVariable("room_id") Long room_id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
-        Security userDetails = (Security) ((Authentication) principal).getPrincipal();
-        long user_id = userDetails.getUserId();
+    public String createBookingWithDate(Principal principal, @PathVariable("booking_id") Long booking_id, @PathVariable("room_id") Long room_id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
+        logger.info("Entering createBookingWithDate");
         if (result.hasErrors()) {
             List<User> users = userService.getAllUsers();
             model.addAttribute("users", users);
             return "create-booking-date";
         }
-        Booking existingBooking = bookingService.getBookingById(booking_id);
-        existingBooking.setUser(userService.getUserById(user_id));
-        existingBooking.getRooms().add(roomService.getRoomById(room_id));
-        existingBooking.setHotel(roomService.getRoomById(room_id).getHotel());
-        model.addAttribute("room", roomService.getRoomById(room_id));
-        double sum = 0;
-        for (Iterator<Room> it = existingBooking.getRooms().iterator(); it.hasNext(); ) {
-            sum += it.next().getPrice();
-        }
-        existingBooking.setTotalPrice(sum);
-        Room room = roomService.getRoomById(room_id);
-        room.setActual(false);
-        roomService.updateRoom(room_id, room);
-        existingBooking.setNumOfPeople(room.getCapacity());
-        existingBooking.getRooms().add(roomService.getRoomById(room_id));
-        bookingService.updateBooking(booking_id, existingBooking);
-        return "redirect:/booking/" + existingBooking.getBookingId();
+        Security userDetails = (Security) ((Authentication) principal).getPrincipal();
+        long user_id = userDetails.getUserId();
+        Booking updatedBooking = bookingService.prepareBookingForDate(user_id, room_id, booking_id, booking);
+        logger.info("Exiting createBookingWithDate");
+        return "redirect:/booking/" + updatedBooking.getBookingId();
     }
 
-
     @GetMapping("/{id}")
-    public String viewBooking(@PathVariable("id") Long id, Model model) {
+    public String viewBookingDetails(@PathVariable("id") Long id, Model model) {
+        logger.info("Entering viewBookingDetails");
         Booking booking = bookingService.getBookingById(id);
         model.addAttribute("booking", booking);
+        logger.info("Exiting viewBookingDetails");
         return "booking-info";
     }
 
     @PreAuthorize("hasAuthority('STAFF')")
     @GetMapping("/update/{id}")
-    public String updateBookingForm(@PathVariable("id") Long id, Model model) {
+    public String showUpdateBookingForm(@PathVariable("id") Long id, Model model) {
+        logger.info("Entering showUpdateBookingForm");
         Booking booking = bookingService.getBookingById(id);
         List<User> users = userService.getAllUsers();
         model.addAttribute("booking", booking);
         model.addAttribute("users", users);
+        logger.info("Exiting showUpdateBookingForm");
         return "update-booking";
     }
 
     @PostMapping("/update/{id}")
-    public String updateBooking(@PathVariable("id") Long id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
+    public String updateBookingInfo(@PathVariable("id") Long id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
+        logger.info("Entering updateBookingInfo");
         if (result.hasErrors()) {
             List<User> users = userService.getAllUsers();
             model.addAttribute("users", users);
             return "update-booking";
         }
         bookingService.updateBooking(id, booking);
+        logger.info("Exiting updateBookingInfo");
         return "redirect:/booking/" + id;
     }
 
     @PreAuthorize("hasAuthority('STAFF')")
     @GetMapping("/delete/{id}")
-    public String deleteBooking(@PathVariable("id") Long id) {
+    public String deleteBookingRecord(@PathVariable("id") Long id) {
+        logger.info("Entering deleteBookingRecord");
         bookingService.deleteBooking(id);
+        logger.info("Exiting deleteBookingRecord");
         return "redirect:/booking";
     }
 }

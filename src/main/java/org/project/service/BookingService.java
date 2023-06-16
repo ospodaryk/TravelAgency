@@ -18,4 +18,8 @@ public interface BookingService {
     void saveBookingWithoutRoom(Booking booking);
 
     List<Booking> getAllBookingsByUserId(Long userId);
+
+    Booking prepareBookingForDate(Long userId, Long roomId, Long bookingId, Booking booking);
+
+    Booking prepareBookingWithRoom(Long userId, Long roomId, Booking booking);
 }
