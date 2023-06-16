@@ -41,6 +41,6 @@
 
 
 <h3>Don't have an account?
-    <a href="${pageContext.request.contextPath}/user/create"> Register now!</a></h3>
+    <a href="/create"> Register now!</a></h3>
 </body>
 </html>

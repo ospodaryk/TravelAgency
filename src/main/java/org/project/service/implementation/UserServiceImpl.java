@@ -52,16 +52,14 @@ public class UserServiceImpl implements UserService {
         User existingUser = userDAO.findById(id);
 
         if (existingUser != null) {
-            System.out.println("ROLE______________________________" + user.getRole());
             Role role = user.getRole();
             if (role != null) {
                 existingUser.setRole(role);
             } else existingUser.setRole(roleDAO.findById(2L));
-
             existingUser.setUserId(id);
             existingUser.setName(user.getName());
             existingUser.setLogin(user.getLogin());
-            existingUser.setPassword(user.getPassword());
+            existingUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             existingUser.setSurname(user.getSurname());
             existingUser.setEmail(user.getEmail());
             userDAO.update(existingUser);

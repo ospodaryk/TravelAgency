@@ -24,11 +24,6 @@ public class CityServiceImpl implements CityService {
         this.countryDAO = countryDAO;
     }
 
-
-    //    @Override
-//    public Set<City> getCitiesByCountryId(long countryId) {
-//        return countryDAO.findById(countryId).getCities();
-//    }
     @Override
     public List<City> getAllCities() {
         return cityDAO.getAll();

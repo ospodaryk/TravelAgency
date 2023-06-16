@@ -89,19 +89,18 @@ public class UserController {
         model.addAttribute("allRoles", roleService.getAllRoles());
         Long role_id = user.getRole().getId();
         logger.info("Exiting updateADMIN");
-        if (role_id == 1) {
-            return "update-user-admin";
-        }
         return "admin-update-user";
     }
 
     @PreAuthorize("hasAuthority('STAFF')")
     @PostMapping("/update/{id}")
-    public String updateADMIN(@PathVariable(name = "id") Long id, @ModelAttribute(name = "user") User user, BindingResult result) {
+    public String updateADMIN(Model model, @PathVariable(name = "id") Long id, @ModelAttribute(name = "user") User user, BindingResult result) {
         logger.info("Entering updateADMIN with POST");
         if (result.hasErrors()) {
             logger.warn("Form validation errors occurred");
-            return "update-user";
+            model.addAttribute("code", result.getAllErrors().get(0).getCode());
+            model.addAttribute("message", result.getAllErrors());
+            return "error";
         }
         userService.updateUser(id, user);
         logger.info("Exiting updateADMIN with POST");
@@ -138,7 +137,7 @@ public class UserController {
         Long role_id = user.getRole().getId();
         logger.info("Exiting update");
         if (role_id == 1) {
-            return "update-user-admin";
+            return "admin-update-user";
         }
         return "update-user";
     }
@@ -157,13 +156,15 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute(name = "user") User user, BindingResult result, Principal principal) {
+    public String update(Model model, @ModelAttribute(name = "user") User user, BindingResult result, Principal principal) {
         logger.info("Entering update with POST");
         Security userDetails = (Security) ((Authentication) principal).getPrincipal();
         long id = userDetails.getUserId();
         if (result.hasErrors()) {
             logger.warn("Form validation errors occurred");
-            return "update-user";
+            model.addAttribute("code", result.getAllErrors().get(0).getCode());
+            model.addAttribute("message", result.getAllErrors());
+            return "error";
         }
         userService.updateUser(id, user);
         logger.info("Exiting update with POST");
@@ -179,4 +180,5 @@ public class UserController {
         logger.info("Exiting delete");
         return "redirect:/user";
     }
+
 }

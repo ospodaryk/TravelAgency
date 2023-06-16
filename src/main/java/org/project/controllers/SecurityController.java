@@ -1,5 +1,9 @@
 package org.project.controllers;
 
+import org.project.controllers.staff.UserController;
+import org.project.models.User;
+import org.project.service.RoleService;
+import org.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -8,9 +12,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +34,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class SecurityController {
 
     private final Logger logger = LoggerFactory.getLogger(SecurityController.class);
+    private UserService userService;
+    private RoleService roleService;
 
+
+    @Autowired
+    public SecurityController(UserService userService, RoleService roleService) {
+        this.userService = userService;
+        this.roleService = roleService;
+        logger.info("SecurityController initialized");
+    }
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -58,5 +71,25 @@ public class SecurityController {
             logger.warn("Exiting login with POST - failed login");
             return "redirect:/form-login?error=true";
         }
+    }
+
+    @GetMapping("/create")
+    public String create(Model model) {
+        logger.info("Entering create");
+        model.addAttribute("user", new User());
+        logger.info("Exiting create");
+        return "login-create-user";
+    }
+    @PostMapping("/create")
+    public String create(@Validated @ModelAttribute(name = "user") User user, BindingResult result) {
+        logger.info("Entering create with POST");
+        if (result.hasErrors()) {
+            logger.warn("Form validation errors occurred");
+            return "login-create-user";
+        }
+        user.setRole(roleService.getRoleById(2));
+        userService.saveUser(user);
+        logger.info("Exiting create with POST");
+        return "redirect:/";
     }
 }

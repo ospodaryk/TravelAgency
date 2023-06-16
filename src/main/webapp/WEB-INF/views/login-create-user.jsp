@@ -8,14 +8,12 @@
     <meta charset="UTF-8">
     <title>Create New User</title>
     <style>
-        <%@include file="../styles/admin.css"%>
+        <%@include file="../styles/login.css"%>
     </style>
 </head>
 <body>
-<%@include file="header.html" %>
 
-<h2>CREATE USER</h2>
-<form:form method="POST" action="/user/create" modelAttribute="user">
+<form:form method="POST" action="/create" modelAttribute="user">
     <h3>Login: <form:input path="login"/></h3>
     <ul>
         <form:errors path="login" cssClass="error"/>
