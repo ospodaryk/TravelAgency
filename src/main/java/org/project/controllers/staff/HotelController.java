@@ -2,6 +2,8 @@ package org.project.controllers.staff;
 
 import org.project.models.*;
 import org.project.service.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -18,7 +20,6 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import org.project.configuration.security.Security;
-
 @Controller
 @RequestMapping("/hotel")
 public class HotelController {
@@ -29,6 +30,8 @@ public class HotelController {
     private BookingService bookingService;
     private UserService userService;
 
+    private final Logger logger = LoggerFactory.getLogger(HotelController.class);
+
     @Autowired
     public HotelController(HotelService hotelService, CountryService countryService, CityService cityService, BookingService bookingService, UserService userService) {
         this.hotelService = hotelService;
@@ -36,11 +39,12 @@ public class HotelController {
         this.cityService = cityService;
         this.bookingService = bookingService;
         this.userService = userService;
+        logger.info("HotelController initialized");
     }
-
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
+        logger.info("Entering initBinder");
         binder.registerCustomEditor(City.class, "city", new PropertyEditorSupport() {
             @Override
             public void setAsText(String text) {
@@ -48,136 +52,116 @@ public class HotelController {
                 setValue(city);
             }
         });
+        logger.info("Exiting initBinder");
     }
-
 
     @GetMapping("/book")
     public String showHotelSearchForm(Model model, Principal principal) {
+        logger.info("Entering showHotelSearchForm");
         Security userDetails = (Security) ((Authentication) principal).getPrincipal();
-        long user_id=userDetails.getUserId();
+        long user_id = userDetails.getUserId();
         model.addAttribute("searchForm", new HotelSearchForm());
         model.addAttribute("user_id", user_id);
+        logger.info("Exiting showHotelSearchForm");
         return "book-hotels";
     }
 
     @PostMapping("/book")
-    public String searchHotels(Principal principal,@ModelAttribute("searchForm") HotelSearchForm searchForm, Model model) {
-        Security userDetails = (Security) ((Authentication) principal).getPrincipal();
-        long user_id=userDetails.getUserId();
-        model.addAttribute("user_id", user_id);
-        String startDateStr = searchForm.getStartDate();
-        String endDateStr = searchForm.getEndDate();
-        model.addAttribute("user_id", user_id);
-
-        Date startDate = null;
-        Date endDate = null;
-        List<Hotel> hotels = hotelService.getAvailableHotels(startDateStr, endDateStr);
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            startDate = format.parse(startDateStr);
-            endDate = format.parse(endDateStr);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        // create a map where the key is the Hotel object and the value is a List of unique Room objects
-        Map<Hotel, List<Room>> uniqueRoomHotels = new HashMap<>();
-        Booking booking = new Booking();
-        booking.setUser(userService.getUserById(user_id));
-        booking.setStart_date(startDate);
-        booking.setEnd_date(endDate);
-
-
-        for (Hotel hotel : hotels) {
-            Set<RoomClassification> classificationsSeen = new HashSet<>();
-            List<Room> uniqueRooms = new ArrayList<>();
-            for (Room room : hotel.getRooms()) {
-                if (classificationsSeen.add(room.getRoomClassification())) {
-                    uniqueRooms.add(room);
-                }
-            }
-            uniqueRoomHotels.put(hotel, uniqueRooms);
-        }
-
-
-        bookingService.saveBookingWithoutRoom(booking);
-        model.addAttribute("booking", booking);
-
-        model.addAttribute("hotels", uniqueRoomHotels);
+    public String searchHotels(Principal principal, @ModelAttribute("searchForm") HotelSearchForm searchForm, Model model) {
+        logger.info("Entering searchHotels");
+        long userId = getUserIdFromPrincipal(principal);
+        model.addAttribute("user_id", userId);
+        model.addAttribute("hotels", hotelService.searchHotels(searchForm, userId));
+        logger.info("Exiting searchHotels");
         return "book-hotels";
     }
 
     @GetMapping("/all")
     public String showAllHotels(Model model) {
+        logger.info("Entering showAllHotels");
         List<Hotel> hotels = hotelService.getAllHotels();
         model.addAttribute("hotels", hotels);
         model.addAttribute("countries", countryService.getAllCountries());
         model.addAttribute("cities", cityService.getAllCities());
+        logger.info("Exiting showAllHotels");
         return "hotels";
     }
 
     @GetMapping
     public String showAllHotelsUser(Model model, Principal principal) {
+        logger.info("Entering showAllHotelsUser");
         List<Hotel> hotels = hotelService.getAllHotels();
         Security userDetails = (Security) ((Authentication) principal).getPrincipal();
         model.addAttribute("userId", userDetails.getUserId());
         model.addAttribute("hotels", hotels);
+        logger.info("Exiting showAllHotelsUser");
         return "user-hotels";
     }
 
     @GetMapping("/create")
     public String create(Model model) {
+        logger.info("Entering create");
         model.addAttribute("hotel", new Hotel());
         model.addAttribute("countries", countryService.getAllCountries());
         model.addAttribute("cities", cityService.getAllCities());
-
+        logger.info("Exiting create");
         return "create-hotel";
     }
 
     @PostMapping("/create")
     public String create(@Validated @ModelAttribute(name = "hotel") Hotel hotel, BindingResult result) {
+        logger.info("Entering create with POST");
         if (result.hasErrors()) {
+            logger.warn("Form validation errors occurred");
             return "create-hotel";
         }
         hotelService.saveHotel(hotel);
+        logger.info("Exiting create with POST");
         return "redirect:/hotel/" + hotel.getHotelId();
     }
 
     @GetMapping("/read/{id}")
     public String read(@PathVariable(name = "id") Integer id, Model model) {
+        logger.info("Entering read");
         Hotel hotel = hotelService.getHotelById(id);
         model.addAttribute("hotel", hotel);
+        logger.info("Exiting read");
         return "hotel-info";
     }
 
     @GetMapping("/update/{id}")
     public String update(@PathVariable(name = "id") Integer id, Model model) {
-
+        logger.info("Entering update");
         Hotel hotel = hotelService.getHotelById(id);
         model.addAttribute("hotel", hotel);
         model.addAttribute("countries", countryService.getAllCountries());
         model.addAttribute("cities", cityService.getAllCities());
-
+        logger.info("Exiting update");
         return "update-hotel";
     }
 
-
     @PostMapping("/update/{id}")
     public String update(@PathVariable(name = "id") Long id, @ModelAttribute(name = "hotel") Hotel hotel, BindingResult result) {
+        logger.info("Entering update with POST");
         if (result.hasErrors()) {
-            System.out.println("\nERROR\n");
-            System.out.println(result.getAllErrors());
+            logger.warn("Form validation errors occurred");
             return "update-hotel";
         }
         hotelService.updateHotel(id, hotel);
+        logger.info("Exiting update with POST");
         return "redirect:/hotel/";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable(name = "id") Integer id) {
+        logger.info("Entering delete");
         hotelService.deleteHotel(id);
+        logger.info("Exiting delete");
         return "redirect:/hotel";
     }
 
-
+    private long getUserIdFromPrincipal(Principal principal) {
+        logger.info("Getting user id from Principal");
+        return ((Security) ((Authentication) principal).getPrincipal()).getUserId();
+    }
 }
