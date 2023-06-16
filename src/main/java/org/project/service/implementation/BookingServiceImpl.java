@@ -73,4 +73,51 @@ public class BookingServiceImpl implements BookingService {
     public void deleteBooking(long id) {
         bookingDAO.delete(bookingDAO.findById(id));
     }
+
+    @Override
+    public Booking prepareBookingWithRoom(Long userId, Long roomId, Booking booking) {
+        User user = userDAO.findById(userId);
+        Room room = roomDAO.findById(roomId);
+
+        if (user != null && room != null) {
+            booking.setUser(user);
+            booking.getRooms().add(room);
+            booking.setHotel(room.getHotel());
+            double sum = room.getPrice(); // Assuming one room per booking
+            booking.setTotalPrice(sum);
+            room.setActual(false);
+            room.setBooking(booking);
+            roomDAO.save(room);
+            bookingDAO.save(booking);
+
+            return booking;
+        } else {
+            throw new RuntimeException("User or Room not found");
+        }
+    }
+
+    @Override
+    public Booking prepareBookingForDate(Long userId, Long roomId, Long bookingId, Booking booking) {
+        User user = userDAO.findById(userId);
+        Room room = roomDAO.findById(roomId);
+        Booking existingBooking = bookingDAO.findById(bookingId);
+
+        if (user != null && room != null && existingBooking != null) {
+            existingBooking.setUser(user);
+            existingBooking.getRooms().add(room);
+            existingBooking.setHotel(room.getHotel());
+            double sum = room.getPrice(); // Assuming one room per booking
+            existingBooking.setTotalPrice(sum);
+            room.setActual(false);
+            existingBooking.setNumOfPeople(room.getCapacity());
+            existingBooking.getRooms().add(room);
+            room.setBooking(existingBooking);
+            roomDAO.save(room);
+            bookingDAO.update(existingBooking);
+
+            return existingBooking;
+        } else {
+            throw new RuntimeException("User, Room or Booking not found");
+        }
+    }
 }
