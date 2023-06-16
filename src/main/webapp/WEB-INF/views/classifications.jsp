@@ -31,7 +31,9 @@
                 <a href="<c:url value='/roomClassification/${roomClassification.id}'/>" class="more">View</a> |
                 <a href="<c:url value='/roomClassification/update/${roomClassification.id}'/>" class="update">Update</a>
                 |
-                <a href="<c:url value='/roomClassification/delete/${roomClassification.id}'/>" class="delete">Delete</a>
+                <c:if test="${roomClassification.actual}">
+                    <a href="<c:url value='/roomClassification/delete/${roomClassification.id}'/>" class="delete">Delete</a>
+                </c:if>
             </td>
         </tr>
     </c:forEach>

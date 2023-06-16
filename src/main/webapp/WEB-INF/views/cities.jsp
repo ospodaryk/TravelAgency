@@ -30,7 +30,9 @@
             <td>
                 <a href="<c:url value='/city/${city.cityId}'/>" class="more">View</a> |
                 <a href="<c:url value='/city/update/${city.cityId}'/>" class="update">Update</a> |
-                <a href="<c:url value='/city/delete/${city.cityId}'/>" class="delete">Delete</a>
+                <c:if test="${city.actual}">
+                    <a href="<c:url value='/city/delete/${city.cityId}'/>" class="delete">Delete</a>
+                </c:if>
             </td>
         </tr>
     </c:forEach>

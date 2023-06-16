@@ -30,7 +30,9 @@
             <td>
                 <a href="<c:url value='/country/${country.countryId}'/>" class="more">View</a> |
                 <a href="<c:url value='/country/update/${country.countryId}'/>" class="update">Update</a> |
-                <a href="<c:url value='/country/delete/${country.countryId}'/>" class="delete">Delete</a>
+                <c:if test="${country.actual}">
+                    <a href="<c:url value='/country/delete/${country.countryId}'/>" class="delete">Delete</a>
+                </c:if>
             </td>
         </tr>
     </c:forEach>

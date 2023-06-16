@@ -34,7 +34,9 @@
             <td>
                 <a href="<c:url value='/user/read/${user.userId}'/>" class="more">View</a> |
                 <a href="<c:url value='/user/update/${user.userId}'/>" class="update">Update</a> |
-                <a href="<c:url value='/user/delete/${user.userId}'/>" class="delete">Delete</a>
+                <c:if test="${user.actual}">
+                    <a href="<c:url value='/user/delete/${user.userId}'/>" class="delete">Delete</a>
+                </c:if>
             </td>
         </tr>
     </c:forEach>

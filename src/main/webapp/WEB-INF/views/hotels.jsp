@@ -37,9 +37,12 @@
             <td>
                 <a href="<c:url value='/hotel/read/${hotel.hotelId}'/>" class="more">View</a> |
                 <a href="<c:url value='/hotel/update/${hotel.hotelId}'/>" class="update">Update</a> |
-                <a href="<c:url value='/hotel/delete/${hotel.hotelId}'/>" class="delete">Delete</a> |
                 <a href="<c:url value='/room/adm/hotel/${hotel.hotelId}'/>">Rooms</a> |
-                <a href="<c:url value='/room/create/${hotel.hotelId}'/>">Add room</a>
+                <a href="<c:url value='/room/create/${hotel.hotelId}'/>">Add room</a> |
+                <c:if test="${hotel.actual}">
+                    <a href="<c:url value='/hotel/delete/${hotel.hotelId}'/>" class="delete">Delete</a>
+                </c:if>
+
             </td>
         </tr>
     </c:forEach>
