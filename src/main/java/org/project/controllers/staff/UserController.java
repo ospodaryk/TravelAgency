@@ -25,10 +25,9 @@ import java.util.List;
 @Controller
 public class UserController {
 
+    private final Logger logger = LoggerFactory.getLogger(UserController.class);
     private UserService userService;
     private RoleService roleService;
-
-    private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     public UserController(UserService userService, RoleService roleService) {

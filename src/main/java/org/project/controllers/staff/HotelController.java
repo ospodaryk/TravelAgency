@@ -1,6 +1,9 @@
 package org.project.controllers.staff;
 
-import org.project.models.*;
+import org.project.configuration.security.Security;
+import org.project.models.City;
+import org.project.models.Hotel;
+import org.project.models.HotelSearchForm;
 import org.project.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,22 +18,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.beans.PropertyEditorSupport;
 import java.security.Principal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.List;
 
-import org.project.configuration.security.Security;
 @Controller
 @RequestMapping("/hotel")
 public class HotelController {
 
+    private final Logger logger = LoggerFactory.getLogger(HotelController.class);
     private HotelService hotelService;
     private CountryService countryService;
     private CityService cityService;
     private BookingService bookingService;
     private UserService userService;
-
-    private final Logger logger = LoggerFactory.getLogger(HotelController.class);
 
     @Autowired
     public HotelController(HotelService hotelService, CountryService countryService, CityService cityService, BookingService bookingService, UserService userService) {
@@ -117,7 +116,7 @@ public class HotelController {
         }
         hotelService.saveHotel(hotel);
         logger.info("Exiting create with POST");
-        return "redirect:/hotel/all" ;
+        return "redirect:/hotel/all";
     }
 
     @GetMapping("/read/{id}")

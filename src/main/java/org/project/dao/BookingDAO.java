@@ -1,7 +1,6 @@
 package org.project.dao;
 
 import org.project.models.Booking;
-import org.project.models.User;
 
 import java.util.List;
 

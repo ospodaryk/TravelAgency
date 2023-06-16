@@ -5,7 +5,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.project.dao.BookingDAO;
 import org.project.models.Booking;
-import org.project.models.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,6 +19,7 @@ public class BookingDAOImpl extends GenericDAOImpl<Booking, Long> implements Boo
         super(sessionFactory);
         this.sessionFactory = sessionFactory;
     }
+
     @Override
     public List<Booking> findAllByUser(long user_id) {
         Session session = sessionFactory.getCurrentSession();
@@ -28,6 +28,7 @@ public class BookingDAOImpl extends GenericDAOImpl<Booking, Long> implements Boo
         query.setParameter("user_id", user_id);
         return query.getResultList();
     }
+
     @Override
 
     public void deleteByUserId(long userId) {

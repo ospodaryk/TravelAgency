@@ -20,9 +20,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/room")
 public class RoomController {
+    private final Logger logger = LoggerFactory.getLogger(RoomController.class);
     private RoomService roomService;
     private HotelService hotelService;
-    private final Logger logger = LoggerFactory.getLogger(RoomController.class);
 
     @Autowired
     public RoomController(RoomService roomService, HotelService hotelService) {
@@ -53,7 +53,7 @@ public class RoomController {
     public String showAllRoomsByHotel(Principal principal, @PathVariable(name = "id") Long id, Model model) {
         logger.info("Entering showAllRoomsByHotel");
         Security userDetails = (Security) ((Authentication) principal).getPrincipal();
-        long user_id=userDetails.getUserId();
+        long user_id = userDetails.getUserId();
         List<Room> rooms = roomService.getRoomByHotelID(id);
         model.addAttribute("rooms", rooms);
         model.addAttribute("user_id", user_id);

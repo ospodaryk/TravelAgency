@@ -2,9 +2,7 @@ package org.project.configuration.security;
 
 
 import lombok.Data;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import org.project.models.Booking;
 import org.project.models.User;
 import org.slf4j.Logger;
