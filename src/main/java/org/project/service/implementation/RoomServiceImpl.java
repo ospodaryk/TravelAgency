@@ -43,7 +43,6 @@ public class RoomServiceImpl implements RoomService {
 
         if (existingRoom != null) {
             existingRoom.setRoomId(id);
-            existingRoom.setActual(room.isActual());
             existingRoom.setCapacity(room.getCapacity());
             existingRoom.setPrice(room.getPrice());
             existingRoom.setNumber(room.getNumber());

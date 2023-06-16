@@ -13,8 +13,7 @@ import java.io.IOException;
 @Component
 public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                        Authentication authentication) throws IOException, ServletException {
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         Object principal = authentication.getPrincipal();
 
         if (!(principal instanceof Security)) {
@@ -22,10 +21,8 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
         }
 
         Security userDetails = (Security) principal;
-
         String redirectURL = request.getContextPath();
-
-        if (userDetails.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("STAFF"))) {
+        if ((userDetails.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("STAFF"))) || (userDetails.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN")))) {
             redirectURL += "/user/";
         } else {
             redirectURL += "/hotel/";

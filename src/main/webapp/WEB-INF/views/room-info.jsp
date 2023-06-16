@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Room Info</title>
     <style>
-        <%@include file="../styles/user.css"%>
+        <%@include file="../styles/admin.css"%>
     </style>
 </head>
 <body>
@@ -16,9 +16,9 @@
 <h3>Room Number: ${room.number}</h3>
 <h3>Capacity: ${room.capacity}</h3>
 <h3>Price: ${room.price}</h3>
-<h3>Availability: ${room.available}</h3>
+<h3>Actual: ${room.actual}</h3>
 <hr>
-<button onclick="window.location.href='/room';">Return Back</button>
+<button onclick="window.location.href='/room/adm/hotel/${room.hotel.hotelId}';">Return Back</button>
 
 </body>
 </html>

@@ -21,6 +21,7 @@
         <th>Description</th>
         <th>City</th>
         <th>Country</th>
+        <th>Actual</th>
         <th>Action</th>
     </tr>
     <c:forEach var="hotel" items="${hotels}">
@@ -31,11 +32,13 @@
             <td>${hotel.description}</td>
             <td>${hotel.city.name}</td>
             <td>${hotel.city.country.name}</td>
+            <td>${hotel.actual ? "Yes" : "No"}</td>
+
             <td>
-                <a href="<c:url value='/hotel/${hotel.hotelId}'/>" class="more">View</a> |
+                <a href="<c:url value='/hotel/read/${hotel.hotelId}'/>" class="more">View</a> |
                 <a href="<c:url value='/hotel/update/${hotel.hotelId}'/>" class="update">Update</a> |
-                <a href="<c:url value='/hotel/delete/${hotel.hotelId}'/>" class="delete">Delete</a>
-                <a href="<c:url value='/room/hotel/${hotel.hotelId}'/>">Rooms</a> |
+                <a href="<c:url value='/hotel/delete/${hotel.hotelId}'/>" class="delete">Delete</a> |
+                <a href="<c:url value='/room/adm/hotel/${hotel.hotelId}'/>">Rooms</a> |
                 <a href="<c:url value='/room/create/${hotel.hotelId}'/>">Add room</a>
             </td>
         </tr>

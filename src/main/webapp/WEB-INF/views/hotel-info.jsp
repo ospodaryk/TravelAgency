@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Hotel Info</title>
     <style>
-        <%@include file="../styles/user.css"%>
+        <%@include file="../styles/admin.css"%>
     </style>
 </head>
 <body>
@@ -16,7 +16,7 @@
 <h3>Location: ${hotel.location}</h3>
 <h3>Description: ${hotel.description}</h3>
 <hr>
-<button onclick="window.location.href='/hotel';">Return Back</button>
+<button onclick="window.location.href='/hotel/all';">Return Back</button>
 
 </body>
 </html>

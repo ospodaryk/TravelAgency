@@ -117,7 +117,7 @@ public class HotelController {
         }
         hotelService.saveHotel(hotel);
         logger.info("Exiting create with POST");
-        return "redirect:/hotel/" + hotel.getHotelId();
+        return "redirect:/hotel/all" ;
     }
 
     @GetMapping("/read/{id}")
@@ -149,7 +149,7 @@ public class HotelController {
         }
         hotelService.updateHotel(id, hotel);
         logger.info("Exiting update with POST");
-        return "redirect:/hotel/";
+        return "redirect:/hotel/all";
     }
 
     @GetMapping("/delete/{id}")
@@ -157,7 +157,7 @@ public class HotelController {
         logger.info("Entering delete");
         hotelService.deleteHotel(id);
         logger.info("Exiting delete");
-        return "redirect:/hotel";
+        return "redirect:/hotel/all";
     }
 
     private long getUserIdFromPrincipal(Principal principal) {

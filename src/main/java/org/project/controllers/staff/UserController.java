@@ -37,7 +37,7 @@ public class UserController {
         logger.info("UserController initialized");
     }
 
-    @PreAuthorize("hasAuthority('STAFF')")
+    @PreAuthorize("hasAuthority('STAFF') or hasAuthority('ADMIN')")
     @GetMapping
     public String showAllUsers(Model model) {
         logger.info("Entering showAllUsers");
@@ -47,7 +47,7 @@ public class UserController {
         return "users";
     }
 
-    @PreAuthorize("hasAuthority('STAFF')")
+    @PreAuthorize("hasAuthority('STAFF') or hasAuthority('ADMIN')")
     @GetMapping("/create")
     public String create(Model model) {
         logger.info("Entering create");
@@ -80,7 +80,7 @@ public class UserController {
         return "user-more";
     }
 
-    @PreAuthorize("hasAuthority('STAFF')")
+    @PreAuthorize("hasAuthority('STAFF') or hasAuthority('ADMIN')")
     @GetMapping("/update/{id}")
     public String updateADMIN(@PathVariable(name = "id") Integer id, Model model) {
         logger.info("Entering updateADMIN");
@@ -92,7 +92,7 @@ public class UserController {
         return "admin-update-user";
     }
 
-    @PreAuthorize("hasAuthority('STAFF')")
+    @PreAuthorize("hasAuthority('STAFF') or hasAuthority('ADMIN')")
     @PostMapping("/update/{id}")
     public String updateADMIN(Model model, @PathVariable(name = "id") Long id, @ModelAttribute(name = "user") User user, BindingResult result) {
         logger.info("Entering updateADMIN with POST");
@@ -107,7 +107,7 @@ public class UserController {
         return "redirect:/user";
     }
 
-    @PreAuthorize("hasAuthority('STAFF')")
+    @PreAuthorize("hasAuthority('STAFF') or hasAuthority('ADMIN')")
     @GetMapping("/delete/{id}")
     public String deleteADMIN(@PathVariable(name = "id") Integer id) {
         logger.info("Entering deleteADMIN");
@@ -116,7 +116,7 @@ public class UserController {
         return "redirect:/user";
     }
 
-    @PreAuthorize("hasAuthority('STAFF')")
+    @PreAuthorize("hasAuthority('STAFF') or hasAuthority('ADMIN')")
     @GetMapping("/read/{id}")
     public String readByID(@PathVariable(name = "id") long id, Model model, Principal principal) {
         logger.info("Entering readByID");

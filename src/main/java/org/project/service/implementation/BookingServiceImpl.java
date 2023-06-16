@@ -85,7 +85,7 @@ public class BookingServiceImpl implements BookingService {
             booking.setHotel(room.getHotel());
             double sum = room.getPrice(); // Assuming one room per booking
             booking.setTotalPrice(sum);
-            room.setActual(false);
+//            room.setActual(false);
             room.setBooking(booking);
             roomDAO.save(room);
             bookingDAO.save(booking);
@@ -108,7 +108,7 @@ public class BookingServiceImpl implements BookingService {
             existingBooking.setHotel(room.getHotel());
             double sum = room.getPrice(); // Assuming one room per booking
             existingBooking.setTotalPrice(sum);
-            room.setActual(false);
+//            room.setActual(false);
             existingBooking.setNumOfPeople(room.getCapacity());
             existingBooking.getRooms().add(room);
             room.setBooking(existingBooking);
