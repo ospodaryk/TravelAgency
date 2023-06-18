@@ -17,7 +17,7 @@
 <h3>End Date: ${booking.end_date}</h3>
 <h3>Total Price: ${booking.totalPrice}</h3>
 <hr>
-<button onclick="window.location.href='/booking';">Return Back</button>
+<button onclick="window.location.href='/hotel';">Return Back</button>
 
 </body>
 </html>

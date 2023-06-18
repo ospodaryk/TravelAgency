@@ -13,6 +13,7 @@
 <button onclick="window.location.href='/booking/create';">Create Booking</button>
 
 <h1>All Bookings</h1>
+<br>
 <table>
     <thead>
     <tr>

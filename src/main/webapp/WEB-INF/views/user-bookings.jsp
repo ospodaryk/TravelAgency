@@ -10,12 +10,9 @@
 <body>
 <%@include file="header-admin.html" %>
 <hr>
+<h1>All Bookings</h1>
 <div class="container">
-    <h1>All Bookings</h1>
-    <br>    <br>
-    <br>
-    <br>
-    <br>
+
     <c:forEach var="booking" items="${bookings}">
         <div class="room-card">
             <p>Hotel: ${booking.hotel.name}</p>

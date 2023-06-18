@@ -167,7 +167,7 @@ public class UserController {
         }
         userService.updateUser(id, user);
         logger.info("Exiting update with POST");
-        return "redirect:/user";
+        return "redirect:/user/read";
     }
 
     @GetMapping("/delete")
@@ -177,7 +177,7 @@ public class UserController {
         long id = userDetails.getUserId();
         userService.deleteUser(id);
         logger.info("Exiting delete");
-        return "redirect:/user";
+        return "redirect:/logout";
     }
 
 }

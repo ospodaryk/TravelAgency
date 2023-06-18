@@ -53,12 +53,15 @@ public class BookingServiceImpl implements BookingService {
     public void saveBooking(long room_id, Booking booking) {
         Room room = roomDAO.findById(room_id);
         room.setBooking(booking);
+        booking.setActual(true);
+        booking.setNumOfPeople(room.getCapacity());
         roomDAO.save(room);
         bookingDAO.save(booking);
     }
 
     @Override
     public void saveBookingWithoutRoom(Booking booking) {
+        booking.setActual(true);
         bookingDAO.save(booking);
     }
 
@@ -77,7 +80,8 @@ public class BookingServiceImpl implements BookingService {
     public Booking prepareBookingWithRoom(Long userId, Long roomId, Booking booking) {
         User user = userDAO.findById(userId);
         Room room = roomDAO.findById(roomId);
-
+        booking.setNumOfPeople(room.getCapacity());
+        booking.setActual(true);
         if (user != null && room != null) {
             booking.setUser(user);
             booking.getRooms().add(room);
@@ -87,7 +91,6 @@ public class BookingServiceImpl implements BookingService {
             room.setBooking(booking);
             roomDAO.save(room);
             bookingDAO.save(booking);
-
             return booking;
         } else {
             throw new RuntimeException("User or Room not found");

@@ -105,6 +105,15 @@ public class BookingController {
         return "redirect:/booking/" + updatedBooking.getBookingId();
     }
 
+    @GetMapping("/adm/{id}")
+    public String viewBookingDetailsADMIN(@PathVariable("id") Long id, Model model) {
+        logger.info("Entering viewBookingDetails");
+        Booking booking = bookingService.getBookingById(id);
+        model.addAttribute("booking", booking);
+        logger.info("Exiting viewBookingDetails");
+        return "admin-booking-info";
+    }
+
     @GetMapping("/{id}")
     public String viewBookingDetails(@PathVariable("id") Long id, Model model) {
         logger.info("Entering viewBookingDetails");

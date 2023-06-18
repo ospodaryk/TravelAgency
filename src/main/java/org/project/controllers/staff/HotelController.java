@@ -1,9 +1,7 @@
 package org.project.controllers.staff;
 
 import org.project.configuration.security.Security;
-import org.project.models.City;
-import org.project.models.Hotel;
-import org.project.models.HotelSearchForm;
+import org.project.models.*;
 import org.project.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +16,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.beans.PropertyEditorSupport;
 import java.security.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/hotel")
@@ -71,6 +74,26 @@ public class HotelController {
         long userId = getUserIdFromPrincipal(principal);
         model.addAttribute("user_id", userId);
         model.addAttribute("hotels", hotelService.searchHotels(searchForm, userId));
+        String startDateStr = searchForm.getStartDate();
+        String endDateStr = searchForm.getEndDate();
+
+        Date startDate = null;
+        Date endDate = null;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            startDate = format.parse(startDateStr);
+            endDate = format.parse(endDateStr);
+        } catch (ParseException e) {
+            throw new IllegalArgumentException("Invalid date format.", e);
+        }
+
+        Booking booking = new Booking();
+        booking.setUser(userService.getUserById(userId));
+        booking.setStart_date(startDate);
+        booking.setEnd_date(endDate);
+        bookingService.saveBookingWithoutRoom(booking);
+        model.addAttribute("booking", booking);
+
         logger.info("Exiting searchHotels");
         return "book-hotels";
     }

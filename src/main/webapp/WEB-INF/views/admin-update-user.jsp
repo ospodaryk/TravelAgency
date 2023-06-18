@@ -29,6 +29,7 @@
     <button type="submit" class="update_but" style="margin-left: 30px">Update</button>
     <button type="reset" class="clear_but">Clear</button>
 </form>
-<button onclick="window.location.href='/user';">Back</button>
+<hr>
+<button onclick="window.location.href='/hotel';">Back</button>
 </body>
 </html>

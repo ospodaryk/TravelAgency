@@ -78,7 +78,7 @@
             <h2 class="room-name">${room.roomClassification.name}</h2>
             <h3 class="room-capacity">Capacity: ${room.capacity}</h3>
             <h4 class="room-price">Price: ${room.price}</h4>
-            <button onclick="window.location.href='/booking/create/${room.roomId}';">Book</button>
+<%--            <button onclick="window.location.href='/booking/create/${room.roomId}';">Book</button>--%>
         </div>
     </c:forEach>
 </div>
