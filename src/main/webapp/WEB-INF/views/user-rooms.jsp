@@ -61,7 +61,7 @@
                 <br>
                 <button class="headbut" onclick="window.location.href='/hotel';">All Hotels</button>
                 <button class="headbut" onclick="window.location.href='/hotel/book';">Book by Date</button>
-                <button className="headbut" class="headbut right-button" onclick="window.location.href='/user/read';">My
+                <button className="headbut"  onclick="window.location.href='/user/read';">My
                     profile
                 </button>
                 <br>

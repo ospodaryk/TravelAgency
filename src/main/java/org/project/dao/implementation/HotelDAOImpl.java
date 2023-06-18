@@ -3,10 +3,12 @@ package org.project.dao.implementation;
 import org.hibernate.SessionFactory;
 import org.project.configuration.security.StringToLocalDateConverter;
 import org.project.dao.HotelDAO;
+import org.project.models.Booking;
 import org.project.models.Hotel;
 import org.project.models.Room;
 import org.springframework.stereotype.Repository;
 
+import java.awt.print.Book;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Iterator;
@@ -32,6 +34,10 @@ public class HotelDAOImpl extends GenericDAOImpl<Hotel, Long> implements HotelDA
                     Room room = it.next();
                     room.setActual(false);
                 }
+
+                for (Booking item : hotel.getBookings()) {
+                    item.setActual(false);
+                }
             }
         } else {
             throw new RuntimeException("User not found.");
@@ -47,17 +53,9 @@ public class HotelDAOImpl extends GenericDAOImpl<Hotel, Long> implements HotelDA
         Date start = java.sql.Date.valueOf(startLocalDate);
         Date end = java.sql.Date.valueOf(endLocalDate);
 
-        String query = "SELECT DISTINCT h FROM Hotel h " +
-                "JOIN h.rooms r " +
-                "LEFT JOIN r.booking b " +
-                "WHERE (b IS NULL OR (b.start_date NOT BETWEEN :startDate AND :endDate " +
-                "AND b.end_date NOT BETWEEN :startDate AND :endDate)) " +
-                "AND h.isActual = true";
+        String query = "SELECT DISTINCT h FROM Hotel h " + "JOIN h.rooms r " + "LEFT JOIN r.booking b " + "WHERE (b IS NULL OR (b.start_date NOT BETWEEN :startDate AND :endDate " + "AND b.end_date NOT BETWEEN :startDate AND :endDate)) " + "AND h.isActual = true";
 
-        return getSession().createQuery(query, Hotel.class)
-                .setParameter("startDate", start)
-                .setParameter("endDate", end)
-                .getResultList();
+        return getSession().createQuery(query, Hotel.class).setParameter("startDate", start).setParameter("endDate", end).getResultList();
     }
 
 

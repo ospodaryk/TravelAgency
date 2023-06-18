@@ -44,7 +44,7 @@
             <td>${booking.actual ? "Yes" : "No"}</td>
 
             <td>
-                <a href="<c:url value='/booking/${booking.bookingId}'/>" class="more">View</a> |
+                <a href="<c:url value='/booking/adm/${booking.bookingId}'/>" class="more">View</a> |
                 <c:if test="${booking.actual}">
                     <a href="<c:url value='/booking/delete/${booking.bookingId}'/>" class="delete">Delete</a>
                 </c:if>

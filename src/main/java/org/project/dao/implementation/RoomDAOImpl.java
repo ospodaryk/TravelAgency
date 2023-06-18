@@ -76,7 +76,6 @@ public class RoomDAOImpl extends GenericDAOImpl<Room, Long> implements RoomDAO {
             query.setParameter("hotelId", hotelId);
             query.executeUpdate();
         } catch (Exception e) {
-            // Handle any exceptions
         }
     }
 
