@@ -11,7 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 @Transactional
 @Service
@@ -33,7 +36,7 @@ public class BookingServiceImpl implements BookingService {
     public List<Booking> getAllBookingsByUserId(Long userId) {
         User user = userDAO.findById(userId);
         if (user != null) {
-            return bookingDAO.findAllByUser(userId);
+            return bookingDAO.findAllByUser(userId).stream().filter(onj->onj.getHotel()!=null).toList();
         } else {
             throw new RuntimeException("User not found with id: " + userId);
         }
@@ -41,7 +44,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<Booking> getAllBookings() {
-        return bookingDAO.getAll();
+        return bookingDAO.getAll().stream().filter(obj->obj.getHotel()!=null).toList();
     }
 
     @Override
@@ -86,11 +89,11 @@ public class BookingServiceImpl implements BookingService {
             booking.setUser(user);
             booking.getRooms().add(room);
             booking.setHotel(room.getHotel());
-            double sum = room.getPrice(); // Assuming one room per booking
-            booking.setTotalPrice(sum);
+//            long daysBetween = ChronoUnit.DAYS.between(booking.getStart_date().toInstant(), booking.getEnd_date().toInstant());
+            booking.setTotalPrice(room.getPrice() * booking.getTotalPrice());
             room.setBooking(booking);
             roomDAO.save(room);
-            bookingDAO.save(booking);
+            bookingDAO.update(booking);
             return booking;
         } else {
             throw new RuntimeException("User or Room not found");
@@ -107,15 +110,14 @@ public class BookingServiceImpl implements BookingService {
             existingBooking.setUser(user);
             existingBooking.getRooms().add(room);
             existingBooking.setHotel(room.getHotel());
-            double sum = room.getPrice(); // Assuming one room per booking
-            existingBooking.setTotalPrice(sum);
+            existingBooking.setTotalPrice(room.getPrice()*existingBooking.getTotalPrice());
+//            existingBooking.setTotalPrice(room.getPrice());
 //            room.setActual(false);
             existingBooking.setNumOfPeople(room.getCapacity());
             existingBooking.getRooms().add(room);
             room.setBooking(existingBooking);
             roomDAO.save(room);
             bookingDAO.update(existingBooking);
-
             return existingBooking;
         } else {
             throw new RuntimeException("User, Room or Booking not found");

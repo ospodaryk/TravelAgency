@@ -18,6 +18,7 @@ import java.beans.PropertyEditorSupport;
 import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -91,6 +92,8 @@ public class HotelController {
         booking.setUser(userService.getUserById(userId));
         booking.setStart_date(startDate);
         booking.setEnd_date(endDate);
+        long daysBetween = ChronoUnit.DAYS.between(booking.getStart_date().toInstant(), booking.getEnd_date().toInstant());
+        booking.setTotalPrice(daysBetween);
         bookingService.saveBookingWithoutRoom(booking);
         model.addAttribute("booking", booking);
 
