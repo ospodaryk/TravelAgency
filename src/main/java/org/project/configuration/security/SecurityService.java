@@ -29,10 +29,10 @@ public class SecurityService implements UserDetailsService {
             logger.error("User with username {} not found", username);
             throw new UsernameNotFoundException("User with this email does not exist");
         }
-//        if (!user.isActual()) {
-//            logger.error("User with username {} not found or was deleted", username);
-//            throw new UsernameNotFoundException("User with this email does not exist or was deleted");
-//        }
+        if (!user.isActual()) {
+            logger.error("User with username {} not found or was deleted", username);
+            throw new UsernameNotFoundException("User with this email does not exist or was deleted");
+        }
         logger.info("User {} loaded successfully", username);
         return new Security(user);
     }

@@ -14,7 +14,7 @@ public class CustomAccessDeniedException implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException ade) throws IOException, ServletException {
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("error.html");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/views/error.jsp");
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         request.setAttribute("code", "403 / Forbidden");
         request.setAttribute("message", ade.getMessage());
