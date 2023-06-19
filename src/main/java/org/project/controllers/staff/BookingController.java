@@ -104,7 +104,7 @@ public class BookingController {
         logger.info("Exiting createBookingWithDate");
         return "redirect:/booking/" + updatedBooking.getBookingId();
     }
-
+    @PreAuthorize("hasAuthority('STAFF') or hasAuthority('ADMIN')")
     @GetMapping("/adm/{id}")
     public String viewBookingDetailsADMIN(@PathVariable("id") Long id, Model model) {
         logger.info("Entering viewBookingDetails");
@@ -134,7 +134,7 @@ public class BookingController {
         logger.info("Exiting showUpdateBookingForm");
         return "update-booking";
     }
-
+    @PreAuthorize("hasAuthority('STAFF') or hasAuthority('ADMIN')")
     @PostMapping("/update/{id}")
     public String updateBookingInfo(@PathVariable("id") Long id, @Validated @ModelAttribute("booking") Booking booking, BindingResult result, Model model) {
         logger.info("Entering updateBookingInfo");
@@ -148,12 +148,18 @@ public class BookingController {
         return "redirect:/booking/" + id;
     }
 
-    @PreAuthorize("hasAuthority('STAFF') or hasAuthority('ADMIN')")
+//    @PreAuthorize("hasAuthority('STAFF') or hasAuthority('ADMIN')")
     @GetMapping("/delete/{id}")
-    public String deleteBookingRecord(@PathVariable("id") Long id) {
+    public String deleteBookingRecord(Principal principal,@PathVariable("id") Long id) {
         logger.info("Entering deleteBookingRecord");
         bookingService.deleteBooking(id);
         logger.info("Exiting deleteBookingRecord");
+        Security userDetails = (Security) ((Authentication) principal).getPrincipal();
+        long user_id = userDetails.getUserId();
+        User user=userService.getUserById(user_id);
+        if(user.getRole().getId()==2){
+            return "redirect:/hotel";
+        }
         return "redirect:/booking";
     }
 }

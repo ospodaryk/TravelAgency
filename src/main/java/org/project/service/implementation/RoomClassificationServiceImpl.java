@@ -35,6 +35,7 @@ public class RoomClassificationServiceImpl implements RoomClassificationService 
 
     @Override
     public void saveRoomClassification(RoomClassification roomClassification) {
+        roomClassification.setActual(true);
         roomClassificationDAO.save(roomClassification);
     }
 

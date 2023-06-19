@@ -26,7 +26,7 @@
     <ul>
         <form:errors path="price" cssClass="error"/>
     </ul>
-    <h3>Is Available: <form:checkbox path="available"/></h3>
+<%--    <h3>Is Available: <form:checkbox path="actual"/></h3>--%>
     <button type="submit" class="update_but" style="margin-left: 30px">Register</button>
     <button type="reset" class="clear_but">Clear</button>
 </form:form>

@@ -9,6 +9,7 @@
 </head>
 <body>
 <%@include file="header.html" %>
+<%--<button onclick="window.location.href='/city/create';">Create city</button>--%>
 
 <h1>All Cities</h1>
 <table>

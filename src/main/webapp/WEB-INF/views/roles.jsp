@@ -26,7 +26,7 @@
             <td>${role.roleName}</td>
             <td>
                 <a href="<c:url value='/role/${role.id}'/>" class="more">View</a> |
-                <a href="<c:url value='/role/update/${role.id}'/>" class="update">Update</a> |
+<%--                <a href="<c:url value='/role/update/${role.id}'/>" class="update">Update</a> |--%>
                 <a href="<c:url value='/role/delete/${role.id}'/>" class="delete">Delete</a>
             </td>
         </tr>

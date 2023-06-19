@@ -36,6 +36,8 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public void saveCity(City city) {
+        city.setActual(true);
+
         cityDAO.save(city);
     }
 

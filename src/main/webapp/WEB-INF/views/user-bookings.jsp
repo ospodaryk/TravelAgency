@@ -29,6 +29,9 @@
                     </c:otherwise>
                 </c:choose>
             </p>
+            <c:if test="${booking.actual}">
+                <a href="<c:url value='/booking/delete/${booking.bookingId}'/>" class="delete">Delete</a>
+            </c:if>
         </div>
     </c:forEach>
 </div>

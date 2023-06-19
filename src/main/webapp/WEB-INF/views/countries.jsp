@@ -9,6 +9,8 @@
 </head>
 <body>
 <%@include file="header.html" %>
+<br><br>
+<button onclick="window.location.href='/country/create';">Create country</button>
 
 <h1>All Countries</h1>
 <table>
@@ -30,6 +32,8 @@
             <td>
                 <a href="<c:url value='/country/${country.countryId}'/>" class="more">View</a> |
                 <a href="<c:url value='/country/update/${country.countryId}'/>" class="update">Update</a> |
+                <a href="<c:url value='/city/create/${country.countryId}'/>">Add city</a> |
+
                 <c:if test="${country.actual}">
                     <a href="<c:url value='/country/delete/${country.countryId}'/>" class="delete">Delete</a>
                 </c:if>

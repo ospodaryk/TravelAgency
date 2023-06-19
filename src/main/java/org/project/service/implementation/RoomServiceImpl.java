@@ -34,6 +34,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public void saveRoom(Room room) {
+        room.setActual(true);
         roomDAO.save(room);
     }
 

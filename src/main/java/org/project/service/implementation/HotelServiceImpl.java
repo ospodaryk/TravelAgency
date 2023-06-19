@@ -44,6 +44,7 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public void saveHotel(Hotel hotel) {
+        hotel.setActual(true);
         hotelDAO.save(hotel);
     }
 

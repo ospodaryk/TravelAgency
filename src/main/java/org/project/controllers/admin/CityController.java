@@ -44,6 +44,7 @@ public class CityController {
     public String initializeCityCreation(@PathVariable(name = "id") Long id, Model model) {
         model.addAttribute("city", new City());
         logger.info("Initialize city creation for country id: {}", id);
+        model.addAttribute("country", countryService.getCountryById(id));
         return "create-city";
     }
 

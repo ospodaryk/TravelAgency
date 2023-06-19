@@ -89,6 +89,7 @@ public class RoomController {
             logger.warn("Form validation errors occurred");
             return "create-room";
         }
+        room.setActual(true);
         room.setHotel(hotelService.getHotelById(id));
         roomService.saveRoom(room);
         logger.info("Exiting create with POST");

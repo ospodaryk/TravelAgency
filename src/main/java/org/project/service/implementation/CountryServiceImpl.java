@@ -34,6 +34,7 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public void saveCountry(Country country) {
+        country.setActual(true);
         countryDAO.save(country);
     }
 

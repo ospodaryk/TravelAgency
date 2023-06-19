@@ -18,6 +18,7 @@ public class RoleDAOImpl extends GenericDAOImpl<Role, Long> implements RoleDAO {
         super(sessionFactory);
         this.sessionFactory = sessionFactory;
     }
+
     @Override
     public void delete(Role entity) {
         Long roleId = entity.getId();
@@ -32,7 +33,8 @@ public class RoleDAOImpl extends GenericDAOImpl<Role, Long> implements RoleDAO {
                 }
             }
             if (!isRoleUsed) {
-                getSession().delete(entity);
+                role.setActual(false);
+//                getSession().delete(entity);
             } else {
                 role.setActual(false);
                 usersToUpdate.addAll(role.getUsers()); // Store the users that need to be updated.

@@ -42,6 +42,9 @@ public class Room {
     @ColumnDefault("true")
     private boolean isActual;
 
+    @ColumnDefault("true")
+    private boolean isAvailable;
+
     @Override
     public int hashCode() {
         return roomId != null ? roomId.hashCode() : 0;

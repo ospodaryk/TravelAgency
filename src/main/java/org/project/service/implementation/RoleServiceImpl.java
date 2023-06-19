@@ -35,6 +35,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void saveRole(Role role) {
+        role.setActual(true);
         roleDAO.save(role);
     }
 
