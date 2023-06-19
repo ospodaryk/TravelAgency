@@ -43,7 +43,7 @@ public class RoomController {
     @GetMapping("/user-room")
     public String showAllRoomsUser(Model model) {
         logger.info("Entering showAllRoomsUser");
-        List<Room> rooms = roomService.getAllRooms();
+        List<Room> rooms = roomService.getAllRooms().stream().filter(Room::isActual).toList();
         model.addAttribute("rooms", rooms);
         logger.info("Exiting showAllRoomsUser");
         return "user-rooms";
@@ -54,7 +54,7 @@ public class RoomController {
         logger.info("Entering showAllRoomsByHotel");
         Security userDetails = (Security) ((Authentication) principal).getPrincipal();
         long user_id = userDetails.getUserId();
-        List<Room> rooms = roomService.getRoomByHotelID(id);
+        List<Room> rooms = roomService.getRoomByHotelID(id).stream().filter(Room::isActual).toList();
         model.addAttribute("rooms", rooms);
         model.addAttribute("user_id", user_id);
         model.addAttribute("hotel", hotelService.getHotelById(id).getName());
@@ -69,7 +69,6 @@ public class RoomController {
         model.addAttribute("rooms", rooms);
         model.addAttribute("hotel", hotelService.getHotelById(id).getName());
         logger.info("Exiting showAllRoomsByHotelAdmin");
-        //Todo : split by admin and user methods
         return "rooms";
     }
 

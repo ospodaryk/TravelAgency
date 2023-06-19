@@ -115,7 +115,7 @@ public class HotelController {
     @GetMapping
     public String showAllHotelsUser(Model model, Principal principal) {
         logger.info("Entering showAllHotelsUser");
-        List<Hotel> hotels = hotelService.getAllHotels();
+        List<Hotel> hotels = hotelService.getAllHotels().stream().filter(obj->obj.isActual()).toList();
         Security userDetails = (Security) ((Authentication) principal).getPrincipal();
         model.addAttribute("userId", userDetails.getUserId());
         model.addAttribute("hotels", hotels);

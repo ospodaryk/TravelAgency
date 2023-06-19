@@ -36,7 +36,7 @@
 <button onclick="window.location.href='/user/delete';" class="delete">Delete</button>
 <br><br>
 <button onclick="window.location.href='/logout';">Logout</button>
-<br><br>
+<br><br><hr>
 <button onclick="window.location.href='/hotel';">Back</button>
 <br>
 </body>

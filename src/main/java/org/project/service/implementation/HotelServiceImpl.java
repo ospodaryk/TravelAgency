@@ -100,8 +100,10 @@ public class HotelServiceImpl implements HotelService {
             Set<RoomClassification> classificationsSeen = new HashSet<>();
             List<Room> uniqueRooms = new ArrayList<>();
             for (Room room : hotel.getRooms()) {
-                if (classificationsSeen.add(room.getRoomClassification())) {
-                    uniqueRooms.add(room);
+                if (room.isActual()) {
+                    if (classificationsSeen.add(room.getRoomClassification())) {
+                        uniqueRooms.add(room);
+                    }
                 }
             }
             uniqueRoomHotels.put(hotel, uniqueRooms);
