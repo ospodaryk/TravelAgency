@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div xmlns:th="http://www.thymeleaf.org">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -6,12 +7,24 @@
                 <div class="header">
                     <br>
                     <button onclick="window.location.href='/user';">Users</button>
-                    <button onclick="window.location.href='/role';">Roles</button>
+                    <sec:authorize access="hasAuthority('ADMIN')">
+                        <!-- only for admin -->
+                        <button onclick="window.location.href='/role';">Roles</button>
+                    </sec:authorize>
                     <button onclick="window.location.href='/hotel/all';">Hotels</button>
                     <button onclick="window.location.href='/room';">Rooms</button>
-                    <button onclick="window.location.href='/roomClassification';">Room Classifications</button>
-                    <button onclick="window.location.href='/country';">Countries</button>
-                    <button onclick="window.location.href='/city';">Cities</button>
+                    <sec:authorize access="hasAuthority('ADMIN')">
+                        <!-- only for admin -->
+                        <button onclick="window.location.href='/roomClassification';">Room Classifications</button>
+                    </sec:authorize>
+                    <sec:authorize access="hasAuthority('ADMIN')">
+                        <!-- only for admin -->
+                        <button onclick="window.location.href='/country';">Countries</button>
+                    </sec:authorize>
+                    <sec:authorize access="hasAuthority('ADMIN')">
+                        <!-- only for admin -->
+                        <button onclick="window.location.href='/city';">Cities</button>
+                    </sec:authorize>
                     <button onclick="window.location.href='/booking';">Bookings</button>
                     <button onclick="window.location.href='/logout';">Logout</button>
                     <br>
