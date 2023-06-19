@@ -1,7 +1,10 @@
 package org.project.controllers.staff;
 
 import org.project.configuration.security.Security;
-import org.project.models.*;
+import org.project.models.Booking;
+import org.project.models.City;
+import org.project.models.Hotel;
+import org.project.models.HotelSearchForm;
 import org.project.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +23,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/hotel")
@@ -115,7 +116,7 @@ public class HotelController {
     @GetMapping
     public String showAllHotelsUser(Model model, Principal principal) {
         logger.info("Entering showAllHotelsUser");
-        List<Hotel> hotels = hotelService.getAllHotels().stream().filter(obj->obj.isActual()).toList();
+        List<Hotel> hotels = hotelService.getAllHotels().stream().filter(obj -> obj.isActual()).toList();
         Security userDetails = (Security) ((Authentication) principal).getPrincipal();
         model.addAttribute("userId", userDetails.getUserId());
         model.addAttribute("hotels", hotels);

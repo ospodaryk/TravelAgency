@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Create New User</title>
@@ -17,7 +17,7 @@
                 <br>
                 <button class="headbut" onclick="window.location.href='/hotel';">All Hotels</button>
                 <button class="headbut" onclick="window.location.href='/hotel/book';">Book by Date</button>
-                <button className="headbut"  onclick="window.location.href='/user/read';">My profile</button>
+                <button className="headbut" onclick="window.location.href='/user/read';">My profile</button>
                 <br>
             </div>
         </div>
@@ -36,7 +36,8 @@
 <button onclick="window.location.href='/user/delete';" class="delete">Delete</button>
 <br><br>
 <button onclick="window.location.href='/logout';">Logout</button>
-<br><br><hr>
+<br><br>
+<hr>
 <button onclick="window.location.href='/hotel';">Back</button>
 <br>
 </body>

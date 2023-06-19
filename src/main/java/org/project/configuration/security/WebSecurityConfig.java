@@ -59,7 +59,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .deleteCookies("JSESSIONID")
                 .permitAll()
                 .and()
-                .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedException());;
+                .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedException());
+        ;
     }
 
 

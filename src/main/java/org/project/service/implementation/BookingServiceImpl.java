@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.time.Duration;
-import java.time.LocalDateTime;
 
 @Transactional
 @Service
@@ -36,7 +33,7 @@ public class BookingServiceImpl implements BookingService {
     public List<Booking> getAllBookingsByUserId(Long userId) {
         User user = userDAO.findById(userId);
         if (user != null) {
-            return bookingDAO.findAllByUser(userId).stream().filter(onj->onj.getHotel()!=null).toList();
+            return bookingDAO.findAllByUser(userId).stream().filter(onj -> onj.getHotel() != null).toList();
         } else {
             throw new RuntimeException("User not found with id: " + userId);
         }
@@ -44,7 +41,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<Booking> getAllBookings() {
-        return bookingDAO.getAll().stream().filter(obj->obj.getHotel()!=null).toList();
+        return bookingDAO.getAll().stream().filter(obj -> obj.getHotel() != null).toList();
     }
 
     @Override
@@ -110,7 +107,7 @@ public class BookingServiceImpl implements BookingService {
             existingBooking.setUser(user);
             existingBooking.getRooms().add(room);
             existingBooking.setHotel(room.getHotel());
-            existingBooking.setTotalPrice(room.getPrice()*existingBooking.getTotalPrice());
+            existingBooking.setTotalPrice(room.getPrice() * existingBooking.getTotalPrice());
 //            existingBooking.setTotalPrice(room.getPrice());
 //            room.setActual(false);
             existingBooking.setNumOfPeople(room.getCapacity());
